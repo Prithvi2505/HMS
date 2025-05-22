@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+mat-card {
+    width: 100%;
+    max-width: 500px;
+    color: white;
+    background-color: #b6cde4;
+}
+
+.example-full-width {
+    width: 100%;
+    display: block;
+}
+
+
+mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #b6cde4;
+}
+button {
+    margin-left: 10px;
+}
