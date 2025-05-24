@@ -14,15 +14,50 @@ mat-card {
     background-color: #b6cde4;
 }
 
+mat-card-header {
+    justify-content: center;
+    color: rgb(120, 120, 179);
+}
+
 .example-full-width {
     width: 100%;
     display: block;
 }
 
-
 mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: #b6cde4;
 }
+
 button {
     margin-left: 10px;
+}
+
+.bg {
+    background-image: url("https://assets.clevelandclinic.org/transform/LargeFeatureImage/e9afdf49-b178-4936-92ee-5a15281b90b4/doctors-television-drama-1409487455");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* semi-transparent black */
+    z-index: 1;
+}
+
+.bg card {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding-top: 20%;
 }
