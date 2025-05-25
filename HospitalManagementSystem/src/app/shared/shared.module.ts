@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ListComponent } from './list/list.component';
+import { BannerComponent } from './banner/banner.component';
 
 
 
@@ -24,7 +25,8 @@ import { ListComponent } from './list/list.component';
     NavbarComponent,
     FooterComponent,
     HomeComponent,
-    ListComponent
+    ListComponent,
+    BannerComponent
   ],
   imports: [
     CommonModule,
@@ -53,6 +55,7 @@ import { ListComponent } from './list/list.component';
     MatIconModule,
     MatSnackBarModule,
     ListComponent,
+    BannerComponent,
   ]
 })
 export class SharedModule { }

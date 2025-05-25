@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { List } from 'src/app/type/list';
 
 @Component({
   selector: 'app-list',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class ListComponent {
 
+  @Input() showList: List | null = null;
 }
