@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { List } from 'src/app/type/list';
+import { NewPatientComponent } from '../new-patient/new-patient.component';
 
 @Component({
   selector: 'app-patient-list',
@@ -8,6 +11,7 @@ import { List } from 'src/app/type/list';
 })
 export class PatientListComponent {
 
+  constructor(private dialog : MatDialog,private router :Router){}
   dummyPatients : List[]  = [
     { 
       id:"123abc",
@@ -34,5 +38,23 @@ export class PatientListComponent {
       gender:"female"
     },
   ]
+
+  addPatient(){
+    const popup = this.dialog.open(NewPatientComponent,{
+       enterAnimationDuration:'1000ms',
+       exitAnimationDuration:'500ms',
+       width:'50%',
+      panelClass: 'custom-dialog-container'
+     });
+     popup.afterClosed().subscribe( res => {
+       this.router.navigate(['patient']);
+     })
+     
+   }
+ 
+   opendialog(){
+ 
+   }
+
 
 }

@@ -16,6 +16,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ListComponent } from './list/list.component';
 import { BannerComponent } from './banner/banner.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -40,6 +41,7 @@ import { BannerComponent } from './banner/banner.component';
     MatDatepickerModule,
     MatIconModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   exports: [
     NavbarComponent,
@@ -54,6 +56,7 @@ import { BannerComponent } from './banner/banner.component';
     MatDatepickerModule,
     MatIconModule,
     MatSnackBarModule,
+    MatDialogModule,
     ListComponent,
     BannerComponent,
   ]

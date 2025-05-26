@@ -8,6 +8,8 @@ import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,6 @@ import { RegisterComponent } from './Components/register/register.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
