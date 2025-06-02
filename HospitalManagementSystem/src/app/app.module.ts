@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 
@@ -21,6 +23,8 @@ import { RegisterComponent } from './Components/register/register.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]

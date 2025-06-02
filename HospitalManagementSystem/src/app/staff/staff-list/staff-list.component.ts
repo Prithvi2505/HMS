@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { List } from 'src/app/type/list';
+import { NewStaffComponent } from '../new-staff/new-staff.component';
 
 @Component({
   selector: 'app-staff-list',
@@ -8,6 +11,7 @@ import { List } from 'src/app/type/list';
 })
 export class StaffListComponent {
 
+  constructor( private dialog:MatDialog, private router: Router){}
   dummyStaff : List[]  = [
       { 
         id:"123abc",
@@ -34,4 +38,25 @@ export class StaffListComponent {
         gender:"female"
       },
     ]
+
+    
+
+    addStaff() {
+      const popup = this.dialog.open(NewStaffComponent,{
+                   enterAnimationDuration:'1000ms',
+                   exitAnimationDuration:'500ms',
+                   width:'50%',
+                  panelClass: 'custom-dialog-container'
+                 });
+                 popup.afterClosed().subscribe( res => {
+                   this.router.navigate(['satff']);
+                 })
+                 
+               }
+             
+               opendialog(){
+             
+               }
+    
+
 }

@@ -19,23 +19,13 @@ mat-card-header {
     justify-content: center;
     color: rgb(120, 120, 179);
 }
-
-.form-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.half-width {
-    flex: 1;
-    min-width: 48%;
-}
-
-
 mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: #b6cde4;
+}
+
+.example-full-width {
+    width: 100%;
+    display: block;
 }
 
 button {
