@@ -8,7 +8,9 @@
         <li class="list-group-item">{{showList.gender}}</li>
     </ul>
     <div>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <button class="btn btn-sm btn-primary" (click)="onButtonClick()">Show Detail</button>
+        <ng-container *ngIf="showList.role == 'patient'">
+            <button class="btn btn-sm btn-primary" (click)="navToMed()">Medical Records</button>
+        </ng-container>
     </div>
 </div>

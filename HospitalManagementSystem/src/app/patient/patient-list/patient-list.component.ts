@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { List } from 'src/app/type/list';
 import { NewPatientComponent } from '../new-patient/new-patient.component';
+import { PatientDetailComponent } from '../patient-detail/patient-detail.component';
 
 @Component({
   selector: 'app-patient-list',
@@ -52,9 +53,24 @@ export class PatientListComponent {
      
    }
  
+   
+
+   showDetails() {
+    const detailPopup = this.dialog.open(PatientDetailComponent, {
+      enterAnimationDuration: '800ms',
+      exitAnimationDuration: '400ms',
+      width: '60%',
+      panelClass: 'custom-dialog-container'
+    });
+
+    detailPopup.afterClosed().subscribe(result => {
+      console.log('Detail dialog closed', result);
+      this.router.navigate(['patient']);
+    });
+  }
+
    opendialog(){
  
    }
-
 
 }

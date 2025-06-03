@@ -8,4 +8,5 @@ import { List } from 'src/app/type/list';
 })
 export class BannerComponent {
 @Input() Lists : List[] = [];
+@Input() detailfunc!: () => void;
 }

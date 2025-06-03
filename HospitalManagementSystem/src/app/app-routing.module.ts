@@ -11,8 +11,8 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'doctor',loadChildren: () => import('./doctor/doctor.module').then( m => m.DoctorModule)},
   {path:'patient',loadChildren: () => import('./patient/patient.module').then( m => m.PatientModule)},
-  {path:'staff',loadChildren:() => import('./staff/staff.module').then(m => m.StaffModule)}
-
+  {path:'staff',loadChildren:() => import('./staff/staff.module').then(m => m.StaffModule)},
+  {path:'appointments', loadChildren:() => import('./appointments/appointments.module').then(m => m.AppointmentsModule)}
 ];
 
 @NgModule({
