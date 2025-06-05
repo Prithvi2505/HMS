@@ -6,48 +6,25 @@
                     <h1>Login</h1>
                 </mat-card-header>
                 <mat-card-content>
-                    <!-- <form class="example-form">
+                    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="example-form">
                         <mat-form-field class="example-full-width">
                             <mat-label>User Id</mat-label>
-                            <input matInput placeholder="User Id" formControlName="id">
+                            <input matInput placeholder="User Id" id="userid" type="text" formControlName="userid">
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Password</mat-label>
-                            <input matInput placeholder="Password" formControlName="name" type="password">
+                            <input matInput placeholder="Password" id="password" type="password" formControlName="password">
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Role</mat-label>
-                            <mat-select>
+                            <mat-select id="role" formControlName="role">
                                 <mat-option *ngFor="let role of roles" [value]="role.value">
                                     {{role.viewValue}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <button mat-flat-button color="primary" (click)="onLogin()">Login</button>
+                        <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
                         <button mat-flat-button color="primary" (click)="newUser()">New User</button>
-                    </form> -->
-                    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-                        <div>
-                            <label for="userid">User ID</label>
-                            <input id="userid" type="text" formControlName="userid" />
-                        </div>
-
-                        <div>
-                            <label for="password">Password</label>
-                            <input id="password" type="password" formControlName="password" />
-                        </div>
-
-                        <div>
-                            <label for="role">Role</label>
-                            <select id="role" formControlName="role">
-                            <option value="" disabled selected>Select Role</option>
-                            <option value="doctor">Doctor</option>
-                            <option value="staff">Staff</option>
-                            <option value="patient">Patient</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" [disabled]="loginForm.invalid">Login</button>
                     </form>
 
 

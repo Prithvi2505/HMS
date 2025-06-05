@@ -23,22 +23,19 @@ export class LoginComponent {
     role: new FormControl('',Validators.required)
   })
     
-  id =  this.loginForm.value.userid as string;
-  role = this.loginForm.value.role as string;
   
   constructor(private route : Router, private store:Store){ }
-  // roles: role[] = [
-  //   {value: 'patient', viewValue: 'Patient'},
-  //   {value: 'doctor', viewValue: 'Doctor'},
-  //   {value: 'staff', viewValue: 'Staff'},
-  // ];
+  roles: role[] = [
+    {value: 'patient', viewValue: 'Patient'},
+    {value: 'doctor', viewValue: 'Doctor'},
+    {value: 'staff', viewValue: 'Staff'},
+  ];
   onLogin(){
     if(this.loginForm.valid){
-      this.store.dispatch(login({userid:this.id,role:this.role}))
-      localStorage.setItem('auth',JSON.stringify({userid: this.id, role: this.role}))
-      console.log("Clicked")
-      console.log(this.id)
-      console.log(this.role)
+    const id = this.loginForm.value.userid!;
+    const role = this.loginForm.value.role!;
+      this.store.dispatch(login({userid:id,role:role}))
+      localStorage.setItem('auth',JSON.stringify({userid: id, role: role}))
       this.route.navigate(['/home']);
     }
     else{
