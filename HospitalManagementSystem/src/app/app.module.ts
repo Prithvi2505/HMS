@@ -9,6 +9,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { authReducer } from './Store/auth.reducer';
 
 
 
@@ -23,7 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({auth: authReducer}, {}),
     EffectsModule.forRoot([]),
   ],
   providers: [],

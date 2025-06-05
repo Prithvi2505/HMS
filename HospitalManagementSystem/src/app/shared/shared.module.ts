@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 
 import {MatInputModule} from '@angular/material/input';
@@ -17,6 +17,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ListComponent } from './list/list.component';
 import { BannerComponent } from './banner/banner.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -42,6 +43,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatSnackBarModule,
     MatDialogModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,
@@ -59,6 +61,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     ListComponent,
     BannerComponent,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

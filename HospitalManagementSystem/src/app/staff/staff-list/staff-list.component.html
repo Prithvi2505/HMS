@@ -2,4 +2,4 @@
     <h3>Register as New Staff</h3>
     <button class="btn btn-info" (click)="addStaff()">New Staff</button>
 </div>
-<app-banner [Lists]="dummyStaff"></app-banner>
+<app-banner [Lists]="dummyStaff" [detailfunc]="showDetails.bind(this)"></app-banner>

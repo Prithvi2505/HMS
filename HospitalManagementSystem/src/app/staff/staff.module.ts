@@ -5,12 +5,14 @@ import { StaffRoutingModule } from './staff-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { StaffListComponent } from './staff-list/staff-list.component';
 import { NewStaffComponent } from './new-staff/new-staff.component';
+import { StaffDetailComponent } from './staff-detail/staff-detail.component';
 
 
 @NgModule({
   declarations: [
     StaffListComponent,
-    NewStaffComponent
+    NewStaffComponent,
+    StaffDetailComponent
   ],
   imports: [
     CommonModule,

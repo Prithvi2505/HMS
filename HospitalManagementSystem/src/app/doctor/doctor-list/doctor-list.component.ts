@@ -1,3 +1,4 @@
+import { DoctorDetailComponent } from './../doctor-detail/doctor-detail.component';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -50,6 +51,19 @@ export class DoctorListComponent {
            })
            
          }
+    showDetails() {
+        const detailPopup = this.dialog.open(DoctorDetailComponent, {
+          enterAnimationDuration: '800ms',
+          exitAnimationDuration: '400ms',
+          width: '60%',
+          panelClass: 'custom-dialog-container'
+        });
+    
+        detailPopup.afterClosed().subscribe(result => {
+          console.log('Detail dialog closed', result);
+          this.router.navigate(['doctor']);
+        });
+      }
        
          opendialog(){
        

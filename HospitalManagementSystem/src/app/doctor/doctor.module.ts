@@ -5,12 +5,14 @@ import { DoctorRoutingModule } from './doctor-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { NewDoctorComponent } from './new-doctor/new-doctor.component';
+import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
 
 
 @NgModule({
   declarations: [
     DoctorListComponent,
-    NewDoctorComponent
+    NewDoctorComponent,
+    DoctorDetailComponent
   ],
   imports: [
     CommonModule,

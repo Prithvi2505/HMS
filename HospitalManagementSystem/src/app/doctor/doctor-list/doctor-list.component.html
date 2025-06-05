@@ -2,4 +2,4 @@
     <h3>Register as New Doctor</h3>
     <button class="btn btn-info" (click)="addDoctor()">New Doctor</button>
 </div>
-<app-banner [Lists]="dummyDoctors"></app-banner>
+<app-banner [Lists]="dummyDoctors" [detailfunc]="showDetails.bind(this)"></app-banner>

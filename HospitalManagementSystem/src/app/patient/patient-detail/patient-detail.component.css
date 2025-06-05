@@ -1,0 +1,13 @@
+.custom-card {
+      width: 30rem;
+      font-size: 1.25rem; /* Increase overall font size */
+    }
+.card {
+    margin-top: 0.5rem;
+    padding: 0.25rem;
+}
+
+button {
+    margin: 0.5rem;
+    padding: 0.25rem;
+}
