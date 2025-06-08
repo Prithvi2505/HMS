@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { List } from 'src/app/type/list';
 import { NewPatientComponent } from '../new-patient/new-patient.component';
 import { PatientDetailComponent } from '../patient-detail/patient-detail.component';
+import { selectrole } from 'src/app/Store/auth.seletor';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-patient-list',
@@ -11,8 +13,12 @@ import { PatientDetailComponent } from '../patient-detail/patient-detail.compone
   styleUrls: ['./patient-list.component.css']
 })
 export class PatientListComponent {
-
-  constructor(private dialog : MatDialog,private router :Router){}
+ role:string|null =""
+  constructor(private dialog : MatDialog,private router :Router, private store:Store){
+    this.store.select(selectrole).subscribe(auth => {
+      this.role = auth
+    })
+  }
   dummyPatients : List[]  = [
     { 
       id:"123abc",

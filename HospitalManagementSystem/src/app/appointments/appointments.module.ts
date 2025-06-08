@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AppointmentsRoutingModule } from './appointments-routing.module';
-import { AppointmrntListComponent } from './appointmrnt-list/appointmrnt-list.component';
+import { AppointmentListComponent } from './appointment-list/appointment-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    AppointmrntListComponent
+    AppointmentListComponent
   ],
   imports: [
     CommonModule,
-    AppointmentsRoutingModule
+    AppointmentsRoutingModule,
+    SharedModule
   ]
 })
 export class AppointmentsModule { }

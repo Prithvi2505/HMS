@@ -2,13 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-medical-records',
-  templateUrl: './medical-records.component.html',
-  styleUrls: ['./medical-records.component.css']
+  selector: 'app-appointment-list',
+  templateUrl: './appointment-list.component.html',
+  styleUrls: ['./appointment-list.component.css']
 })
-export class MedicalRecordsComponent {
-  dataSource:any;
+export class AppointmentListComponent {
+dataSource:any;
   @ViewChild(MatPaginator) paginator !:MatPaginator
 
   displayedColumns: string[] = ['id', 'name', 'genre', 'releaseDate','duration', 'action','remove'];
 }
+

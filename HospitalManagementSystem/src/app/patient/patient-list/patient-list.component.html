@@ -1,6 +1,8 @@
-<div class="container">
-    <h3>If you are are a Patient and is not registered as one, Please register</h3>
-    <button class="btn btn-info" (click)="addPatient()">New Patient</button>
-</div>
+<ng-container *ngIf="role=='patient'">
+    <div class="container">
+        <h3>If you are are a Patient and is not registered as one, Please register</h3>
+        <button class="btn btn-info" (click)="addPatient()">New Patient</button>
+    </div>
+</ng-container>
 <app-banner [Lists]="dummyPatients" [detailfunc]="showDetails.bind(this)">
 </app-banner>

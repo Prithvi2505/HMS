@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { List } from 'src/app/type/list';
 import { NewStaffComponent } from '../new-staff/new-staff.component';
 import { StaffDetailComponent } from '../staff-detail/staff-detail.component';
+import { selectrole } from 'src/app/Store/auth.seletor';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-staff-list',
@@ -12,7 +14,12 @@ import { StaffDetailComponent } from '../staff-detail/staff-detail.component';
 })
 export class StaffListComponent {
 
-  constructor( private dialog:MatDialog, private router: Router){}
+ role:string|null =""
+  constructor(private dialog : MatDialog,private router :Router, private store:Store){
+    this.store.select(selectrole).subscribe(auth => {
+      this.role = auth
+    })
+  }
   dummyStaff : List[]  = [
       { 
         id:"123abc",
