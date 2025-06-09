@@ -23,6 +23,10 @@ registrationForm!: FormGroup;
   genders = ['Male', 'Female', 'Other'];
   staffTypes = ['Nurse','Peon','Receptionist'];
 
+  patients: any[] = [];
+  doctors: any[] = [];
+  staff: any[] = [];
+
   constructor(private fb: FormBuilder, private router:Router) {}
 
   ngOnInit() {
@@ -30,6 +34,10 @@ registrationForm!: FormGroup;
       role: ['', Validators.required],
       details: this.fb.group({})  // empty at start
     });
+    
+    this.patients = JSON.parse(localStorage.getItem('patients') || '[]');
+    this.doctors = JSON.parse(localStorage.getItem('doctors') || '[]');
+    this.staff = JSON.parse(localStorage.getItem('staff') || '[]');
 
     // When role changes, update the form controls in details group
     this.registrationForm.get('role')!.valueChanges.subscribe(role => {
@@ -67,14 +75,32 @@ registrationForm!: FormGroup;
   }
 
   onRegister() {
-    if (this.registrationForm.valid) {
-      console.log(this.registrationForm.value);
-      this.router.navigate(['/login'])
-      // submit your form
-    } else {
-      this.registrationForm.markAllAsTouched();
-    }
+    if (this.registrationForm.invalid) return;
+    const formData = this.registrationForm.value;
+    switch (formData.role) {
+      case 'patient':
+        this.patients.push(formData);
+        localStorage.setItem('patients', JSON.stringify(this.patients));
+        alert("Registered New user")
+        this.router.navigate(['/login'])
+        console.log(this.patients)
+        break;
+      case 'doctor':
+        this.doctors.push(formData);
+        localStorage.setItem('doctors', JSON.stringify(this.doctors));
+        alert("Registered New user")
+        this.router.navigate(['/login'])
+        console.log(this.doctors)
+        break;
+      case 'staff':
+        this.staff.push(formData);
+        localStorage.setItem('staff', JSON.stringify(this.staff));
+        alert("Registered New user")
+        this.router.navigate(['/login'])
+        console.log(this.staff)
+        break;
   }
+}
 
   onCancel() {
     this.router.navigate(['/login'])

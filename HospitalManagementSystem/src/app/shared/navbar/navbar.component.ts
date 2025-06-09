@@ -26,7 +26,7 @@ constructor(private route : Router, private store:Store){
 
 onLogout() {
   this.store.dispatch(logout());
-  localStorage.clear()
+  localStorage.removeItem('auth')
   this.route.navigate(['login']);
 }
 
