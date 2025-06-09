@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { List } from 'src/app/type/list';
-import { NewStaffComponent } from '../new-staff/new-staff.component';
 import { StaffDetailComponent } from '../staff-detail/staff-detail.component';
 import { selectrole } from 'src/app/Store/auth.seletor';
 import { Store } from '@ngrx/store';
@@ -47,20 +46,6 @@ export class StaffListComponent {
       },
     ]
 
-    
-
-    addStaff() {
-      const popup = this.dialog.open(NewStaffComponent,{
-                   enterAnimationDuration:'1000ms',
-                   exitAnimationDuration:'500ms',
-                   width:'50%',
-                  panelClass: 'custom-dialog-container'
-                 });
-                 popup.afterClosed().subscribe( res => {
-                   this.router.navigate(['satff']);
-                 })
-                 
-               }
     showDetails() {
         const detailPopup = this.dialog.open(StaffDetailComponent, {
           enterAnimationDuration: '800ms',

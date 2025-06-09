@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { PatientRoutingModule } from './patient-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { PatientListComponent } from './patient-list/patient-list.component';
-import { NewPatientComponent } from './new-patient/new-patient.component';
 import { MedicalRecordsComponent } from './medical-records/medical-records.component';
 import { PatientDetailComponent } from './patient-detail/patient-detail.component';
 
@@ -12,7 +11,6 @@ import { PatientDetailComponent } from './patient-detail/patient-detail.componen
 @NgModule({
   declarations: [
     PatientListComponent,
-    NewPatientComponent,
     MedicalRecordsComponent,
     PatientDetailComponent
   ],

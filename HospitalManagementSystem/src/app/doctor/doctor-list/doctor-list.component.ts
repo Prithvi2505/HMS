@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { List } from 'src/app/type/list';
-import { NewDoctorComponent } from '../new-doctor/new-doctor.component';
 import { Store } from '@ngrx/store';
 import { selectrole } from 'src/app/Store/auth.seletor';
 
@@ -46,18 +45,6 @@ export class DoctorListComponent {
       },
     ]
 
-    addDoctor(){
-      const popup = this.dialog.open(NewDoctorComponent,{
-             enterAnimationDuration:'1000ms',
-             exitAnimationDuration:'500ms',
-             width:'50%',
-            panelClass: 'custom-dialog-container'
-           });
-           popup.afterClosed().subscribe( res => {
-             this.router.navigate(['doctor']);
-           })
-           
-         }
     showDetails() {
         const detailPopup = this.dialog.open(DoctorDetailComponent, {
           enterAnimationDuration: '800ms',

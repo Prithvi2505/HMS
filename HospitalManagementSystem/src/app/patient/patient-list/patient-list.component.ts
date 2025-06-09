@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { List } from 'src/app/type/list';
-import { NewPatientComponent } from '../new-patient/new-patient.component';
 import { PatientDetailComponent } from '../patient-detail/patient-detail.component';
 import { selectrole } from 'src/app/Store/auth.seletor';
 import { Store } from '@ngrx/store';
@@ -45,22 +44,6 @@ export class PatientListComponent {
       gender:"female"
     },
   ]
-
-  addPatient(){
-    const popup = this.dialog.open(NewPatientComponent,{
-       enterAnimationDuration:'1000ms',
-       exitAnimationDuration:'500ms',
-       width:'50%',
-      panelClass: 'custom-dialog-container'
-     });
-     popup.afterClosed().subscribe( res => {
-       this.router.navigate(['patient']);
-     })
-     
-   }
- 
-   
-
    showDetails() {
     const detailPopup = this.dialog.open(PatientDetailComponent, {
       enterAnimationDuration: '800ms',

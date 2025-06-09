@@ -10,6 +10,6 @@ export class AppointmentListComponent {
 dataSource:any;
   @ViewChild(MatPaginator) paginator !:MatPaginator
 
-  displayedColumns: string[] = ['id', 'name', 'genre', 'releaseDate','duration', 'action','remove'];
+  displayedColumns: string[] = ['id', 'patientId', 'date','time','doctorId','action','remove'];
 }
 
