@@ -60,8 +60,8 @@ registrationForm!: FormGroup;
       details.addControl('email', this.fb.control('', [Validators.required, Validators.email]));
       details.addControl('gender', this.fb.control('', Validators.required));
       details.addControl('specialization', this.fb.control('', Validators.required));
-      details.addControl('department', this.fb.control('', Validators.required));
       details.addControl('password', this.fb.control('', Validators.required));
+      details.addControl('years_of_experience', this.fb.control('', Validators.required));
       // add other doctor-specific controls
     } else if (role === 'staff') {
       details.addControl('name', this.fb.control('', Validators.required));

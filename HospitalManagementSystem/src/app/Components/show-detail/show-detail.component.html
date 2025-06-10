@@ -1,91 +1,90 @@
- <h2 mat-dialog-title>
-      <mat-icon>person</mat-icon>
-      Details
-    </h2>
-    
-    <mat-dialog-content>
-      <div class="detail-row">
+<h2 mat-dialog-title>
+    <i class="bi bi-person-lines-fill"></i> Details
+</h2>
+
+<mat-dialog-content>
+    <div class="detail-row">
         <i class="bi bi-person-badge"></i>
         <div class="detail-content">
-          <strong>Name:</strong>
-          <span>{{data.name}}</span>
+            <strong>Name:</strong>
+            <span>{{data.name}}</span>
         </div>
-      </div>
-      
-      <div class="detail-row">
+    </div>
+
+    <div class="detail-row">
         <i class="bi bi-tags-fill"></i>
         <div class="detail-content">
-          <strong>ID:</strong>
-          <span>{{data.id}}</span>
+            <strong>ID:</strong>
+            <span>{{data.id}}</span>
         </div>
-      </div>
-      
-      <div class="detail-row">
+    </div>
+
+    <div class="detail-row">
         <i class="bi bi-envelope-at-fill"></i>
         <div class="detail-content">
-          <strong>Email:</strong>
-          <span>{{data.email}}</span>
+            <strong>Email:</strong>
+            <span>{{data.email}}</span>
         </div>
-      </div>
-      
-      <div class="detail-row">
+    </div>
+
+    <div class="detail-row">
         <i class="bi bi-person"></i>
         <div class="detail-content">
-          <strong>Gender:</strong>
-          <span>{{data.gender}}</span>
+            <strong>Gender:</strong>
+            <span>{{data.gender}}</span>
         </div>
-      </div>
-      <ng-container *ngIf="isPatient(data)">
+    </div>
+    <ng-container *ngIf="isPatient(data)">
         <div class="detail-row">
             <i class="bi bi-person-vcard-fill"></i>
             <div class="detail-content">
-            <strong>Age:</strong>
-            <span>{{data.age}}</span>
+                <strong>Age:</strong>
+                <span>{{data.age}}</span>
             </div>
         </div>
         <div class="detail-row">
             <i class="bi bi-geo-alt-fill"></i>
             <div class="detail-content">
-            <strong>Address:</strong>
-            <span>{{data.address}}</span>
+                <strong>Address:</strong>
+                <span>{{data.address}}</span>
             </div>
         </div>
         <div class="detail-row">
             <i class="bi bi-sim-fill"></i>
             <div class="detail-content">
-            <strong>Mobile No:</strong>
-            <span>{{data.mobile_no}}</span>
+                <strong>Mobile No:</strong>
+                <span>{{data.mobile_no}}</span>
             </div>
         </div>
-      </ng-container>
-      <ng-container *ngIf="isDoctor(data)">
+    </ng-container>
+    <ng-container *ngIf="isDoctor(data)">
         <div class="detail-row">
             <i class="bi bi-clipboard-pulse"></i>
             <div class="detail-content">
-            <strong>Experience (in years):</strong>
-            <span>{{data.years_of_experience}}</span>
+                <strong>Experience (in years):</strong>
+                <span>{{data.years_of_experience}}</span>
             </div>
         </div>
         <div class="detail-row">
             <i class="bi bi-heart-pulse-fill"></i>
             <div class="detail-content">
-            <strong>Specialization:</strong>
-            <span>{{data.specialization}}</span>
+                <strong>Specialization:</strong>
+                <span>{{data.specialization}}</span>
             </div>
         </div>
-      </ng-container>
-      <ng-container *ngIf="isStaff(data)">
-         <div class="detail-row">
+    </ng-container>
+    <ng-container *ngIf="isStaff(data)">
+        <div class="detail-row">
             <i class="bi bi-journal-check"></i>
             <div class="detail-content">
-            <strong>Category:</strong>
-            <span>{{data.type}}</span>
+                <strong>Category:</strong>
+                <span>{{data.type}}</span>
             </div>
         </div>
-      </ng-container>
-    </mat-dialog-content>
-    
-    <mat-dialog-actions align="end">
-      <button mat-button (click)="onClose()">Close</button>
-      <button mat-raised-button color="primary" (click)="onClose()">OK</button>
-    </mat-dialog-actions>
+    </ng-container>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onClose()">Close</button>
+    <button mat-raised-button color="primary" (click)="onClose()">OK</button>
+</mat-dialog-actions>
