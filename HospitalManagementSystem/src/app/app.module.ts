@@ -10,6 +10,8 @@ import { RegisterComponent } from './Components/register/register.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './Store/auth.reducer';
+import { ListPageComponent } from './Components/list-page/list-page.component';
+import { ShowDetailComponent } from './Components/show-detail/show-detail.component';
 
 
 
@@ -17,7 +19,9 @@ import { authReducer } from './Store/auth.reducer';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ListPageComponent,
+    ShowDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StaffListComponent } from './staff-list.component';
+import { ListPageComponent } from './list-page.component';
 
-describe('StaffListComponent', () => {
-  let component: StaffListComponent;
-  let fixture: ComponentFixture<StaffListComponent>;
+describe('ListPageComponent', () => {
+  let component: ListPageComponent;
+  let fixture: ComponentFixture<ListPageComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [StaffListComponent]
+      declarations: [ListPageComponent]
     });
-    fixture = TestBed.createComponent(StaffListComponent);
+    fixture = TestBed.createComponent(ListPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

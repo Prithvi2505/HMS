@@ -1,6 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { List } from 'src/app/type/list';
 import { Router, RouterModule } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Doctor } from 'src/app/Model/doctor';
+import { List } from 'src/app/Model/list';
+import { Patient } from 'src/app/Model/patient';
+import { Staff } from 'src/app/Model/staff';
+import { selectrole } from 'src/app/Store/auth.seletor';
 
 @Component({
   selector: 'app-list',
@@ -8,14 +13,21 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
+  role$:string|null = ""
 
-  constructor(private router:Router){}
-  @Input() showList: List | null = null;
-  @Input() action!: () => void;
+  constructor(private store:Store,private router:Router){
+    this.store.select(selectrole).subscribe(auth => {
+      this.role$ = auth
+    })
+  }
 
-  onButtonClick() {
+ @Input() showList!: List;
+ @Input() action!:(item: Patient|Doctor|Staff) => void;
+
+
+   onButtonClick() {
     if (this.action) {
-      this.action();
+      this.action(this.showList as Patient | Doctor | Staff); // Pass the item data to parent
     }
   }
   navToMed(){

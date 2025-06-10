@@ -1,0 +1,11 @@
+.row {
+  margin-left: -30px;
+  margin-right: -30px;
+  margin-top: 40px;
+}
+
+.col-md-3 {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 40px;
+}

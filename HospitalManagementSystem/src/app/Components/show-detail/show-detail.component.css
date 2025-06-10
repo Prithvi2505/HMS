@@ -1,0 +1,33 @@
+.detail-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+    
+    .detail-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .detail-content strong {
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .detail-content span {
+      font-size: 16px;
+      color: #333;
+    }
+    
+    i {
+      color: #4e73df;
+      font-size: 1.25rem;
+    }
+    
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }

@@ -9,12 +9,12 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="home">Home</a>
                     <ng-container *ngIf="role == 'patient' || role == 'doctor'">
-                    <a class="nav-link" href="patient">Patient</a>
+                    <a class="nav-link" href="list/patient">Patient</a>
                     <a class="nav-link" href="appointments">Appointments</a>
-                    <a class="nav-link" href="doctor">Doctor</a>
+                    <a class="nav-link" href="list/doctor">Doctor</a>
                     </ng-container>
                     <ng-container *ngIf="role == 'staff'">
-                    <a class="nav-link" href="staff">Staff</a>
+                    <a class="nav-link" href="list/staff">Staff</a>
                     <a class="nav-link" href="room">Room</a>
                     </ng-container>
                     <ng-container *ngIf="isAuthenticated">

@@ -1,6 +1,6 @@
-export type List = {
+export interface List {
     id: string,
-    role: string,
     name: string,
+    email:string,
     gender: string
 }
