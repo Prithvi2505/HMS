@@ -83,10 +83,8 @@
 }
 
 /* Container padding */
-.container {
-  padding-top: 50px;
-  padding-bottom: 40px;
-}
+
+
 
 /* Mobile responsive */
 @media (max-width: 768px) {

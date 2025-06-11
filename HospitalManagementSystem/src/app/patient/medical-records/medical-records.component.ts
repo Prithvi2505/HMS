@@ -10,5 +10,5 @@ export class MedicalRecordsComponent {
   dataSource:any;
   @ViewChild(MatPaginator) paginator !:MatPaginator
 
-  displayedColumns: string[] = ['id', 'name', 'genre', 'releaseDate','duration', 'action','remove'];
+  displayedColumns: string[] = ['id', 'diagnosis', 'year_of_diagnosis', 'medicine_used','patient_id', 'action','remove'];
 }

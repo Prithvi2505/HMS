@@ -13,7 +13,7 @@
                     <a class="nav-link" href="appointments">Appointments</a>
                     <a class="nav-link" href="list/doctor">Doctor</a>
                     </ng-container>
-                    <ng-container *ngIf="role == 'staff'">
+                    <ng-container *ngIf="role == 'staff' || role == 'doctor'">
                     <a class="nav-link" href="list/staff">Staff</a>
                     <a class="nav-link" href="room">Room</a>
                     </ng-container>
