@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './Store/auth.reducer';
 import { ListPageComponent } from './Components/list-page/list-page.component';
 import { ShowDetailComponent } from './Components/show-detail/show-detail.component';
+import { DataTableComponent } from './Components/data-table/data-table.component';
 
 
 
@@ -21,7 +22,8 @@ import { ShowDetailComponent } from './Components/show-detail/show-detail.compon
     LoginComponent,
     RegisterComponent,
     ListPageComponent,
-    ShowDetailComponent
+    ShowDetailComponent,
+    DataTableComponent
   ],
   imports: [
     BrowserModule,

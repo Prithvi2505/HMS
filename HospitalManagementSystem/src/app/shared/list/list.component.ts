@@ -31,6 +31,6 @@ export class ListComponent {
     }
   }
   navToMed(){
-    this.router.navigate(['/patient/medicalRecord']);
+    this.router.navigate(['/medical-records']);
   }
 }

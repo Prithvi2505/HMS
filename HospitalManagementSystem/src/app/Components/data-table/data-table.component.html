@@ -1,0 +1,10 @@
+<h2>{{ tableType | titlecase }}</h2>
+
+<app-material-table
+  [dataSource]="dataSource"
+  [displayedColumns]="displayedColumns"
+  [columnHeaders]="columnHeaders"
+  (update)="onUpdate($event)"
+  (remove)="onDelete($event)">
+</app-material-table>
+

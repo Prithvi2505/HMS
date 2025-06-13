@@ -18,6 +18,7 @@ import { ListComponent } from './list/list.component';
 import { BannerComponent } from './banner/banner.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialTableComponent } from './material-table/material-table.component';
 
 
 
@@ -28,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     HomeComponent,
     ListComponent,
-    BannerComponent
+    BannerComponent,
+    MaterialTableComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +63,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     ListComponent,
     BannerComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialTableComponent
   ]
 })
 export class SharedModule { }
