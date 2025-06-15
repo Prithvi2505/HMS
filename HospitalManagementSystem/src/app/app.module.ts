@@ -13,6 +13,10 @@ import { authReducer } from './Store/auth.reducer';
 import { ListPageComponent } from './Components/list-page/list-page.component';
 import { ShowDetailComponent } from './Components/show-detail/show-detail.component';
 import { DataTableComponent } from './Components/data-table/data-table.component';
+import { AddAppointmentComponent } from './dialogs/add-appointment/add-appointment.component';
+import { AddBillComponent } from './dialogs/add-bill/add-bill.component';
+import { AssignStaffRoomComponent } from './dialogs/assign-staff-room/assign-staff-room.component';
+import { AddMedicalRecordComponent } from './dialogs/add-medical-record/add-medical-record.component';
 
 
 
@@ -23,7 +27,11 @@ import { DataTableComponent } from './Components/data-table/data-table.component
     RegisterComponent,
     ListPageComponent,
     ShowDetailComponent,
-    DataTableComponent
+    DataTableComponent,
+    AddAppointmentComponent,
+    AddBillComponent,
+    AssignStaffRoomComponent,
+    AddMedicalRecordComponent
   ],
   imports: [
     BrowserModule,

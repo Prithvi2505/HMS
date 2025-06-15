@@ -13,17 +13,12 @@ import { selectrole } from 'src/app/Store/auth.seletor';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
-  role$:string|null = ""
-
-  constructor(private store:Store,private router:Router){
-    this.store.select(selectrole).subscribe(auth => {
-      this.role$ = auth
-    })
+  constructor(private router:Router){
   }
 
  @Input() showList!: List;
  @Input() action!:(item: Patient|Doctor|Staff) => void;
-
+ @Input() role!:string;
 
    onButtonClick() {
     if (this.action) {

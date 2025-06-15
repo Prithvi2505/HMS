@@ -19,7 +19,10 @@ const routes: Routes = [
   {path:'appointments',component:DataTableComponent ,canActivate:[authGuard]},
   {path:'medical-records',component:DataTableComponent,canActivate:[authGuard]},
   { path: 'rooms', component: DataTableComponent,canActivate:[authGuard] },
-  { path: 'bills', component: DataTableComponent }
+  { path: 'bills', component: DataTableComponent,canActivate:[authGuard] },
+  { path: 'medical-records/:patientId', component: DataTableComponent,canActivate:[authGuard] },
+  { path: 'bills/:patientId', component: DataTableComponent,canActivate:[authGuard] },
+
 ];
 
 @NgModule({

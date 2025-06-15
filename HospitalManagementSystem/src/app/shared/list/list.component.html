@@ -11,7 +11,7 @@
     </ul>
     <div>
         <button class="btn btn-sm btn-primary" (click)="onButtonClick()">Show Detail</button>
-        <ng-container *ngIf="role$ == 'patient'">
+        <ng-container *ngIf="role == 'patient'">
             <button class="btn btn-sm btn-primary" (click)="navToMed()">Medical Records</button>
         </ng-container>
     </div>

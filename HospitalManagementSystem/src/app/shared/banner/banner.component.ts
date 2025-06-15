@@ -11,4 +11,5 @@ import { Staff } from 'src/app/Model/staff';
 export class BannerComponent {
 @Input() Lists : List[] = [];
 @Input() detailfunc!: (item: Patient|Doctor|Staff) => void;
+@Input() assignRole!:string;
 }
