@@ -17,6 +17,9 @@ import { AddBillComponent } from './dialogs/add-bill/add-bill.component';
 import { AssignStaffRoomComponent } from './dialogs/assign-staff-room/assign-staff-room.component';
 import { AddMedicalRecordComponent } from './dialogs/add-medical-record/add-medical-record.component';
 import { BillTableComponent } from './Components/bill-table/bill-table.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -38,10 +41,17 @@ import { BillTableComponent } from './Components/bill-table/bill-table.component
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
+    HttpClientModule,
     StoreModule.forRoot({auth: authReducer}, {}),
     EffectsModule.forRoot([]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

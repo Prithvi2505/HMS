@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -22,11 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialTableComponent } from './material-table/material-table.component';
 import { MatNativeDateModule } from '@angular/material/core';
 
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { ShowDetailComponent } from './show-detail/show-detail.component';
-
-
-
 
 
 @NgModule({
@@ -54,7 +49,6 @@ import { ShowDetailComponent } from './show-detail/show-detail.component';
     MatDialogModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    NgxMaterialTimepickerModule,
   ],
   exports: [
     NavbarComponent,
@@ -75,7 +69,6 @@ import { ShowDetailComponent } from './show-detail/show-detail.component';
     ReactiveFormsModule,
     MaterialTableComponent,
     MatNativeDateModule,
-    NgxMaterialTimepickerModule,
     ShowDetailComponent
   ]
 })

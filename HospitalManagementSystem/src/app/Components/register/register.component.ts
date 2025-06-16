@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegistrationService } from 'src/app/Services/registration.service';
 interface role {
   value: string;
   viewValue: string;
@@ -23,11 +24,8 @@ registrationForm!: FormGroup;
   genders = ['Male', 'Female', 'Other'];
   staffTypes = ['Nurse','Peon','Receptionist'];
 
-  patients: any[] = [];
-  doctors: any[] = [];
-  staff: any[] = [];
-
-  constructor(private fb: FormBuilder, private router:Router) {}
+  constructor(private fb: FormBuilder, private router:Router,
+    private registrationService: RegistrationService) {}
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
@@ -35,10 +33,6 @@ registrationForm!: FormGroup;
       details: this.fb.group({})  // empty at start
     });
     
-    this.patients = JSON.parse(localStorage.getItem('patients') || '[]');
-    this.doctors = JSON.parse(localStorage.getItem('doctors') || '[]');
-    this.staff = JSON.parse(localStorage.getItem('staff') || '[]');
-
     // When role changes, update the form controls in details group
     this.registrationForm.get('role')!.valueChanges.subscribe(role => {
       this.setRoleForm(role);
@@ -53,7 +47,7 @@ registrationForm!: FormGroup;
       details.addControl('gender', this.fb.control('', Validators.required));
       details.addControl('age', this.fb.control('', Validators.required));
       details.addControl('city', this.fb.control('', Validators.required));
-      details.addControl('mobile_no', this.fb.control('', Validators.required));
+      details.addControl('mobileNo', this.fb.control('', Validators.required));
       details.addControl('password', this.fb.control('', Validators.required));
     } else if (role === 'doctor') {
       details.addControl('name', this.fb.control('', Validators.required));
@@ -61,7 +55,7 @@ registrationForm!: FormGroup;
       details.addControl('gender', this.fb.control('', Validators.required));
       details.addControl('specialization', this.fb.control('', Validators.required));
       details.addControl('password', this.fb.control('', Validators.required));
-      details.addControl('years_of_experience', this.fb.control('', Validators.required));
+      details.addControl('yearsOfExperience', this.fb.control('', Validators.required));
       // add other doctor-specific controls
     } else if (role === 'staff') {
       details.addControl('name', this.fb.control('', Validators.required));
@@ -76,31 +70,43 @@ registrationForm!: FormGroup;
 
   onRegister() {
     if (this.registrationForm.invalid) return;
+  
     const formData = this.registrationForm.value;
+    const payload = formData.details;
+    console.log(payload);
+  
     switch (formData.role) {
       case 'patient':
-        this.patients.push(formData);
-        localStorage.setItem('patients', JSON.stringify(this.patients));
-        alert("Registered New user")
-        this.router.navigate(['/login'])
-        console.log(this.patients)
+        this.registrationService.registerPatient(payload).subscribe({
+          next: () => {
+            alert('Patient registered successfully');
+            this.router.navigate(['/login']);
+          },
+          error: (err) => alert('Error registering patient: ' + err.error.message)
+        });
         break;
+  
       case 'doctor':
-        this.doctors.push(formData);
-        localStorage.setItem('doctors', JSON.stringify(this.doctors));
-        alert("Registered New user")
-        this.router.navigate(['/login'])
-        console.log(this.doctors)
+        this.registrationService.registerDoctor(payload).subscribe({
+          next: () => {
+            alert('Doctor registered successfully');
+            this.router.navigate(['/login']);
+          },
+          error: (err) => alert('Error registering doctor: ' + err.error.message)
+        });
         break;
+  
       case 'staff':
-        this.staff.push(formData);
-        localStorage.setItem('staff', JSON.stringify(this.staff));
-        alert("Registered New user")
-        this.router.navigate(['/login'])
-        console.log(this.staff)
+        this.registrationService.registerStaff(payload).subscribe({
+          next: () => {
+            alert('Staff registered successfully');
+            this.router.navigate(['/login']);
+          },
+          error: (err) => alert('Error registering staff: ' + err.error.message)
+        });
         break;
+    }
   }
-}
 
   onCancel() {
     this.router.navigate(['/login'])
