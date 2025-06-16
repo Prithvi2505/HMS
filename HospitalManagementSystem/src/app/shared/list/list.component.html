@@ -12,7 +12,10 @@
     <div>
         <button class="btn btn-sm btn-primary" (click)="onButtonClick()">Show Detail</button>
         <ng-container *ngIf="role == 'patient'">
-            <button class="btn btn-sm btn-primary" (click)="navToMed()">Medical Records</button>
+            <button class="btn btn-sm btn-primary" (click)="navToMed(showList.email)">Medical Records</button>
+        </ng-container>
+        <ng-container *ngIf="role == 'staff'">
+            <button class="btn btn-sm btn-primary" (click)="staffAssignedToRoom(showList.email)">Assiged Room</button>
         </ng-container>
     </div>
 </div>

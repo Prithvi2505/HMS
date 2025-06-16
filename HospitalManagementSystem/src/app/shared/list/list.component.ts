@@ -25,7 +25,10 @@ export class ListComponent {
       this.action(this.showList as Patient | Doctor | Staff); // Pass the item data to parent
     }
   }
-  navToMed(){
-    this.router.navigate(['/medical-records']);
+  navToMed(id:any){
+    this.router.navigate([`/patient/${id}/medical-records`]);
+  }
+  staffAssignedToRoom(id:any){
+    this.router.navigate([`/staff/${id}/assigned-rooms`]);
   }
 }

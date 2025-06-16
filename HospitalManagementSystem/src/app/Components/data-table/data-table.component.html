@@ -1,7 +1,6 @@
 <div class="flex justify-between items-center mb-4">
   <h2 class="text-2xl">{{ tableType | titlecase }}</h2>
 
-  <!-- Add Buttons -->
   <button *ngIf="tableType === 'appointments'" mat-flat-button color="primary" (click)="addAppointment()">
     Add Appointment
   </button>

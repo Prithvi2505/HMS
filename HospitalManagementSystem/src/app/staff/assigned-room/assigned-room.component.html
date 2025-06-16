@@ -1,8 +1,7 @@
 <div class="flex justify-between items-center mb-4">
-    <h2>Medical Records</h2>
-   <button *ngIf="(user.role === 'doctor' || user.role === 'patient')"
-          mat-flat-button color="primary" (click)="addMedicalRecord()">
-    Add Medical Record
+    <h2>Assinged Staff To Room</h2>
+     <button *ngIf="user.role === 'doctor'" mat-flat-button color="primary" (click)="assignStaffToRoom()">
+    Assign Staff
   </button>
 </div>
 <app-material-table

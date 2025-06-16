@@ -27,9 +27,9 @@
              {{ element[column] | currency:'INR':'symbol':'1.0-0' }}
           </ng-container>
 
-          <ng-container *ngSwitchCase="'time'">
+          <!-- <ng-container *ngSwitchCase="'time'">
             {{ element[column] | date:'hh:mm a' }}
-          </ng-container>
+          </ng-container> -->
 
           <!-- Default value rendering -->
           <ng-container *ngSwitchDefault>

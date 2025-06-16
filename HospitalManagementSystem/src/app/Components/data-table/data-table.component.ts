@@ -3,9 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddAppointmentComponent } from 'src/app/dialogs/add-appointment/add-appointment.component';
 import { AddBillComponent } from 'src/app/dialogs/add-bill/add-bill.component';
-import { AddMedicalRecordComponent } from 'src/app/dialogs/add-medical-record/add-medical-record.component';
 import { AssignStaffRoomComponent } from 'src/app/dialogs/assign-staff-room/assign-staff-room.component';
-
+import { AddMedicalRecordComponent } from 'src/app/dialogs/add-medical-record/add-medical-record.component';
 
 
 
@@ -121,30 +120,40 @@ export class DataTableComponent implements OnInit {
     }
   }
 
-  // Actions (connect to dialogs or routes if needed)
   addAppointment() {
-    this.dialog.open(AddAppointmentComponent, {
+    const dialogRef = this.dialog.open(AddAppointmentComponent, {
       width: '500px',
-      data: {} // pass any input if needed
     });
+     dialogRef.afterClosed().subscribe(result => {
+        console.log('Dialog closed');
+      });
   }
   
   addBill() {
-    this.dialog.open(AddBillComponent, {
-      width: '500px'
+    const dialogRef = this.dialog.open(AddBillComponent, {
+      width: '500px',
     });
+     dialogRef.afterClosed().subscribe(result => {
+        console.log('Dialog closed');
+      });
   }
   
   assignStaffToRoom() {
-    this.dialog.open(AssignStaffRoomComponent, {
-      width: '500px'
+   const dialogRef = this.dialog.open(AssignStaffRoomComponent, {
+      width: '500px',
     });
+     dialogRef.afterClosed().subscribe(result => {
+        console.log('Dialog closed');
+      });
   }
   
   addMedicalRecord() {
-    this.dialog.open(AddMedicalRecordComponent, {
-      width: '500px'
+    const dialogRef = this.dialog.open(AddMedicalRecordComponent, {
+      width: '500px',
     });
+     dialogRef.afterClosed().subscribe(result => {
+        console.log('Dialog closed');
+      });
   }
   
 

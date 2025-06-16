@@ -1,1 +1,27 @@
-<p>add-medical-record works!</p>
+<mat-card>
+    <mat-card-header>
+        <h1>Add Appointment</h1>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="addMedicalRecordForm" (ngSubmit)="addMedicalRecord()" class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Patient ID </mat-label>
+                <input matInput placeholder="Patient ID" id="patientId" type="number" formControlName="patientId" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Diagnosis</mat-label>
+                <input matInput placeholder="Diagnosis" id="diagnosis" type="text" formControlName="diagnosis" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Year of Diagnosis</mat-label>
+                <input matInput placeholder="Year of Diagnosis" id="yearOfDiagnosis" type="number" formControlName="yearOfDiagnosis" min="1900" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Medicine Used</mat-label>
+                <input matInput placeholder="Medicine Used" id="medicineUsed" type="text" formControlName="medicineUsed" required>
+            </mat-form-field>
+            <button mat-flat-button color="primary" type="submit" [disabled]="addMedicalRecordForm.invalid">Add</button>
+            <button mat-flat-button color="warn" (click)="OnCancel()">Cancel</button>
+        </form>
+    </mat-card-content>
+</mat-card>

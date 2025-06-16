@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -19,6 +20,11 @@ import { BannerComponent } from './banner/banner.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialTableComponent } from './material-table/material-table.component';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { ShowDetailComponent } from './show-detail/show-detail.component';
+
 
 
 
@@ -30,7 +36,8 @@ import { MaterialTableComponent } from './material-table/material-table.componen
     HomeComponent,
     ListComponent,
     BannerComponent,
-    MaterialTableComponent
+    MaterialTableComponent,
+    ShowDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -45,7 +52,9 @@ import { MaterialTableComponent } from './material-table/material-table.componen
     MatIconModule,
     MatSnackBarModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
   ],
   exports: [
     NavbarComponent,
@@ -64,7 +73,10 @@ import { MaterialTableComponent } from './material-table/material-table.componen
     ListComponent,
     BannerComponent,
     ReactiveFormsModule,
-    MaterialTableComponent
+    MaterialTableComponent,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+    ShowDetailComponent
   ]
 })
 export class SharedModule { }

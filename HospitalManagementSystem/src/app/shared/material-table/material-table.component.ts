@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./material-table.component.css']
 })
 export class MaterialTableComponent {
-   @Input() dataSource: any[] = [];
+  @Input() dataSource: any[] = [];
   @Input() displayedColumns: string[] = [];
   @Input() columnHeaders: { [key: string]: string } = {};
 

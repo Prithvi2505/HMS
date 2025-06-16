@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { ShowDetailComponent } from '../show-detail/show-detail.component';
+import { ShowDetailComponent } from '../../shared/show-detail/show-detail.component';
 import { List } from 'src/app/Model/list';
 import { Patient } from 'src/app/Model/patient';
 import { Doctor } from 'src/app/Model/doctor';
