@@ -1,5 +1,5 @@
 export interface List {
-    id: string,
+    id: number,
     name: string,
     email:string,
     gender: string
