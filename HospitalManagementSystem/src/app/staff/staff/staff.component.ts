@@ -8,6 +8,8 @@ import { Patient } from 'src/app/Model/patient';
 import { ShowDetailComponent } from 'src/app/shared/show-detail/show-detail.component';
 import { selectStaffList } from 'src/app/Store/staff/staff.selector';
 import { loadStaff } from 'src/app/Store/staff/staff.action';
+import {selectUserId,selectrole} from 'src/app/Store/auth.seletor';
+
 
 @Component({
   selector: 'app-staff',
@@ -16,12 +18,21 @@ import { loadStaff } from 'src/app/Store/staff/staff.action';
 })
 export class StaffComponent implements OnInit {
   staffList$: Observable<Staff[]> = this.store.select(selectStaffList);
-  role: string = 'staff';
+  buttonrole: string = 'staff';
+  loggedInUserId: number | null = null;
+  role!: string;
 
   constructor(private store: Store, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadStaff());
+    this.store.select(selectUserId).subscribe(id => this.loggedInUserId = id);
+    console.log(this.loggedInUserId);
+  this.store.select(selectrole).subscribe(role => {
+    if (role) {
+      this.role = role.toLowerCase();
+    }
+  });
   }
 
   showDetails(item: Staff | Doctor | Patient): void {

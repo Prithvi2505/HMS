@@ -20,7 +20,11 @@ export class ListComponent {
 
  @Input() showList!: List;
  @Input() action!:(item: Patient|Doctor|Staff) => void;
- @Input() role!:string;
+ @Input() buttonrole!:string;
+ @Input() loggedInUserId: number | null = null;
+ @Input() role!: string; 
+ @Input() listType!: 'patient' | 'doctor' | 'staff';
+
 
    onButtonClick() {
     if (this.action) {
@@ -36,7 +40,7 @@ export class ListComponent {
   openEditDialog() {
   const dialogRef = this.dialog.open(EditUserComponent, {
     width: '400px',
-    data: { ...this.showList, role: this.role }  // pass role and data
+    data: { ...this.showList, role: this.buttonrole } 
   });
 
   dialogRef.afterClosed().subscribe(result => {
@@ -45,4 +49,14 @@ export class ListComponent {
   }
 });
 }
+shouldShowEditIcon(): boolean {
+  // Doctor can edit any patient or staff
+  if (this.role === 'doctor' && (this.listType === 'patient' || this.listType === 'staff')) {
+    return true;
+  }
+
+  // Only allow editing own profile
+  return this.loggedInUserId === this.showList.id && this.role === this.listType;
+}
+
 }

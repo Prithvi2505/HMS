@@ -1,5 +1,8 @@
 <app-banner
   [Lists]="(patients$ | async) || []"
   [detailfunc]="showDetails.bind(this)"
-  [assignRole]="role">
+  [assignbuttonRole]="buttonrole"
+  [assignRole]="role"
+  [loggedInUserId]="loggedInUserId"
+  [listType]="'patient'">
 </app-banner>

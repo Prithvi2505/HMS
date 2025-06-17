@@ -45,7 +45,7 @@ export class LoginComponent {
           userid: res.userId,
           role: res.role
         }));
-        this.store.dispatch(login({ userid: res.userId.toString(), role: res.role }));
+        this.store.dispatch(login({ userid: res.userId, role: res.role }));
         this.router.navigate(['/home']);
       },
       error: () => {

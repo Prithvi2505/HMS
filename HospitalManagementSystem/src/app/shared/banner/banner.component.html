@@ -1,7 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of Lists">
-            <app-list [showList]="list" [action]="detailfunc" [role]="assignRole"></app-list>
+            <app-list [showList]="list" [action]="detailfunc" [buttonrole]="assignbuttonRole"  [role]="assignRole"
+            [loggedInUserId]="loggedInUserId"
+            [listType]="listType" ></app-list>
         </div>
     </div>
 </div>
