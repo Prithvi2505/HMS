@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { EditUserComponent } from 'src/app/dialogs/edit-user/edit-user.component';
 import { Doctor } from 'src/app/Model/doctor';
 import { List } from 'src/app/Model/list';
 import { Patient } from 'src/app/Model/patient';
@@ -13,7 +15,7 @@ import { selectrole } from 'src/app/Store/auth.seletor';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
-  constructor(private router:Router){
+  constructor(private router:Router,private dialog:MatDialog){
   }
 
  @Input() showList!: List;
@@ -31,4 +33,16 @@ export class ListComponent {
   staffAssignedToRoom(id:any){
     this.router.navigate([`/staff/${id}/assigned-rooms`]);
   }
+  openEditDialog() {
+  const dialogRef = this.dialog.open(EditUserComponent, {
+    width: '400px',
+    data: { ...this.showList, role: this.role }  // pass role and data
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+  if (result?.action === 'update' || result?.action === 'delete') {
+    this.onButtonClick(); // Trigger parent's action to re-fetch data
+  }
+});
+}
 }

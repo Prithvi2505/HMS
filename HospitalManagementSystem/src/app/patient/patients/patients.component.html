@@ -1,1 +1,5 @@
-<app-banner [Lists]="entityList" [detailfunc]="showDetails.bind(this)" [assignRole]="role"></app-banner>
+<app-banner
+  [Lists]="(patients$ | async) || []"
+  [detailfunc]="showDetails.bind(this)"
+  [assignRole]="role">
+</app-banner>

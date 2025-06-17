@@ -20,6 +20,13 @@ import { BillTableComponent } from './Components/bill-table/bill-table.component
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { EditUserComponent } from './dialogs/edit-user/edit-user.component';
+import { doctorReducer } from './Store/doctor/doctor.reducer';
+import { patientReducer } from './Store/patient/patient.reducer';
+import { staffReducer } from './Store/staff/staff.reducer';
+import { PatientEffects } from './Store/patient/patient.effects';
+import { StaffEffects } from './Store/staff/staff.effects';
+import { DoctorEffects } from './Store/doctor/doctor.effects';
 
 
 
@@ -35,6 +42,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AssignStaffRoomComponent,
     AddMedicalRecordComponent,
     BillTableComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +50,11 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    StoreModule.forRoot({auth: authReducer}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({auth: authReducer,patients: patientReducer,
+      doctors: doctorReducer,
+      staff: staffReducer}),
+    EffectsModule.forRoot([DoctorEffects,
+  StaffEffects,PatientEffects]),
   ],
   providers: [
     {

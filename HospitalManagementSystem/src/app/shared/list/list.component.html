@@ -1,8 +1,12 @@
 <div class="card basic-card" style="width: 18rem;" *ngIf="showList">
+        
     <div class="card-body">
         <h5 class="card-title" *ngIf="showList.name">
             <i class="bi bi-person-lines-fill"></i>{{showList.name}}
         </h5>
+        <button class="btn btn-sm position-absolute top-0 end-0 m-2" (click)="openEditDialog()">
+      <i class="bi bi-pencil-square"></i>
+    </button>
         <h6 class="card-subtitle mb-2">{{showList.id}}</h6>
     </div>
     <ul class="list-group list-group-flush">

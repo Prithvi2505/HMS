@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegistrationService } from 'src/app/Services/registration.service';
+import { RegistrationService } from 'src/app/services/registration.service';
 interface role {
   value: string;
   viewValue: string;
@@ -55,7 +55,7 @@ registrationForm!: FormGroup;
       details.addControl('gender', this.fb.control('', Validators.required));
       details.addControl('specialization', this.fb.control('', Validators.required));
       details.addControl('password', this.fb.control('', Validators.required));
-      details.addControl('yearsOfExperience', this.fb.control('', Validators.required));
+      details.addControl('yearOfExperience', this.fb.control('', Validators.required));
       // add other doctor-specific controls
     } else if (role === 'staff') {
       details.addControl('name', this.fb.control('', Validators.required));
