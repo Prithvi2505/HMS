@@ -22,4 +22,7 @@ export class StaffService {
     deleteStaff(id: number): Observable<void> {
       return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
     }
+    assignRoomToStaff(staffId: number, roomId: number): Observable<Staff> {
+      return this.http.put<Staff>(`${this.apiUrl}/assign-room/${staffId}/${roomId}`, {});
+    }
 }

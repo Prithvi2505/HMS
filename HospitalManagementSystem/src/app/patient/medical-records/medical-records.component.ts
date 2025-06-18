@@ -27,7 +27,6 @@ export class MedicalRecordsComponent {
       if (userStr) {
         this.user = JSON.parse(userStr);
       }
-      console.log(userStr);
       const { userid, role } = this.user;
       const all:any = localStorage.getItem('medicalRecords')
 

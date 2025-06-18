@@ -26,10 +26,7 @@ export class BillTableComponent {
       this.user = JSON.parse(userStr);
     }
     const { userid, role } = this.user;
-    const all: any = localStorage.getItem('bills')
 
-
-    this.dataSource = all ? JSON.parse(all) : [];
     const baseColumns = ['id', 'amount', 'date', 'billDetail', 'patientId'];
     const actionColumns = ['action', 'remove'];
 

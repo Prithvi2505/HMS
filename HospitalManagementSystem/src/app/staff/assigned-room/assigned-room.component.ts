@@ -1,58 +1,71 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AssignStaffRoomComponent } from 'src/app/dialogs/assign-staff-room/assign-staff-room.component';
+import { ActivatedRoute } from '@angular/router';
+import { RoomService } from 'src/app/services/room.service';
+import { RoomWithStaff } from 'src/app/Model/room';
 
 @Component({
   selector: 'app-assigned-room',
   templateUrl: './assigned-room.component.html',
   styleUrls: ['./assigned-room.component.css']
 })
-export class AssignedRoomComponent {
+export class AssignedRoomComponent implements OnInit {
+  rooms:RoomWithStaff[] = []
+  staffId:number = 0;
   dataSource: any[] = [];
   displayedColumns: string[] = [];
   columnHeaders: { [key: string]: string } = {};
   user = { userid: '', role: '' };
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private route:ActivatedRoute, private roomService:RoomService) { }
 
   ngOnInit() {
     const userStr = localStorage.getItem('auth');
     if (userStr) {
       this.user = JSON.parse(userStr);
     }
-    const all: any = [
-      { id: 1, type: 'ICU', capacity: 2, price: 2000, assignedStaffEmail: 'staff1@mail.com' },
-      { id: 2, type: 'General', capacity: 4, price: 800, assignedStaffEmail: 'staff2@mail.com' },
-      { id: 3, type: 'Private', capacity: 1, price: 5000, assignedStaffEmail: 'staff1@mail.com' }
-    ];
-
-    this.dataSource = all;
-    const baseColumns = ['id', 'type', 'capacity', 'price', 'assignedStaffEmail'];
+    const { userid, role } = this.user;
+    const baseColumns = ['roomId', 'type', 'capacity', 'price', 'staffId'];
     const actionColumns = ['action', 'remove'];
 
     this.displayedColumns = baseColumns;
-    const role = this.user.role.toLowerCase();
-if (role === 'doctor') {
+    if (this.user.role === 'doctor') {
   this.displayedColumns = [...baseColumns, ...actionColumns];
 }
     this.columnHeaders = {
-      id: 'ID', type: 'Type', capacity: 'Capacity', price: 'Price',
-      assignedStaffEmail: 'Assigned Staff', action: 'Action', remove: 'Remove'
+      roomId: 'Room Id', type: 'Type', capacity: 'Capacity', price: 'Price',
+      staffId: 'Assigned Staff ID', action: 'Action', remove: 'Remove'
     };
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      this.staffId = id ? Number(id) : 0;
+      console.log(this.staffId);
+      this.loadRooms(this.staffId);
+    });
   }
 
   assignStaffToRoom() {
     const dialogRef = this.dialog.open(AssignStaffRoomComponent, {
       width: '500px',
+      data: { staffId: this.staffId }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed');
-      const all = localStorage.getItem('staffToRooms');
-      this.dataSource = all ? JSON.parse(all) : [];
+      if (result === true) {
+        this.loadRooms(this.staffId);
+      }
     });
   }
+
   onUpdate(item: any) { console.log('Update', item); }
   onDelete(item: any) { console.log('Delete', item); }
+
+  loadRooms(staffId: number) {
+    this.roomService.getRoomsByStaff(staffId).subscribe({
+      next: (rooms) => this.dataSource = rooms,
+      error: (err) => console.error('Failed to fetch Rooms:', err)
+    });
+  }
 
 }
