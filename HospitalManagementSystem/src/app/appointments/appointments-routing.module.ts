@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppointmentTableComponent } from './appointment-table/appointment-table.component';
 
 const routes: Routes = [
-  {path:'',component:AppointmentTableComponent}
+  {path:'',component:AppointmentTableComponent},
+  {path:'doctor/:id',component:AppointmentTableComponent}
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 <div class="flex justify-between items-center mb-4">
     <h2>Medical Records</h2>
-   <button *ngIf="(user.role === 'doctor' || user.role === 'patient')"
+   <button *ngIf="showAddButton"
           mat-flat-button color="primary" (click)="addMedicalRecord()">
     Add Medical Record
   </button>
@@ -9,6 +9,8 @@
   [dataSource]="dataSource"
   [displayedColumns]="displayedColumns"
   [columnHeaders]="columnHeaders"
+  [user]="user" 
+  [moduleType]="'medicalRecord'"
   (update)="onUpdate($event)"
   (remove)="onDelete($event)">
 </app-material-table>

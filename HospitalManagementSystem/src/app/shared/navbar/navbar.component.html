@@ -2,21 +2,25 @@
     <nav class="navbar navbar-expand-lg" id="commonNav">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><i class="bi bi-heart-pulse-fill"></i> Hospital</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="home">Home</a>
                     <ng-container *ngIf="role == 'patient' || role == 'doctor'">
-                    <a class="nav-link" href="patient">Patient</a>
-                    <a class="nav-link" href="appointments">Appointments</a>
-                    <a class="nav-link" href="doctor">Doctor</a>
-                    <a class="nav-link" href="/bills">Bills</a>
+                        <a class="nav-link" href="patient">Patient</a>
+                        <a class="nav-link" href="appointments" *ngIf="role === 'patient'">Appointments</a>
+                        <a class="nav-link" [href]="'appointments/doctor/' + userId"
+                            *ngIf="role === 'doctor'">Appointments</a>
+                        <a class="nav-link" href="doctor">Doctor</a>
+                        <a class="nav-link" href="bills" *ngIf="role === 'doctor'">Bills</a>
+                        <a class="nav-link" [href]="'bills/patient/' + userId" *ngIf="role === 'patient'">Bills</a>
                     </ng-container>
                     <ng-container *ngIf="role == 'staff' || role == 'doctor'">
-                    <a class="nav-link" href="staff">Staff</a>
-                    <a class="nav-link" href="rooms">Room</a>
+                        <a class="nav-link" href="staff">Staff</a>
+                        <a class="nav-link" href="rooms">Room</a>
                     </ng-container>
                     <ng-container *ngIf="isAuthenticated">
                         <button type="button" class="btn btn-info" (click)="onLogout()">Logout</button>

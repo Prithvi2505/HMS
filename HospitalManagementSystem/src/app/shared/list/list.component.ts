@@ -20,7 +20,6 @@ export class ListComponent {
 
  @Input() showList!: List;
  @Input() action!:(item: Patient|Doctor|Staff) => void;
- @Input() buttonrole!:string;
  @Input() loggedInUserId: number | null = null;
  @Input() role!: string; 
  @Input() listType!: 'patient' | 'doctor' | 'staff';
@@ -40,7 +39,7 @@ export class ListComponent {
   openEditDialog() {
   const dialogRef = this.dialog.open(EditUserComponent, {
     width: '400px',
-    data: { ...this.showList, role: this.buttonrole } 
+    data: { ...this.showList, role: this.listType} 
   });
 
   dialogRef.afterClosed().subscribe(result => {

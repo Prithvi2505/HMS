@@ -18,7 +18,6 @@ import {selectUserId,selectrole} from 'src/app/Store/auth.seletor';
 })
 export class PatientsComponent implements OnInit {
   patients$: Observable<Patient[]> = this.store.select(selectPatientList);
-  buttonrole: string = 'patient';
   loggedInUserId: number | null = null;
   role!: string;
 
@@ -27,8 +26,7 @@ export class PatientsComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(loadPatients());
     this.store.select(selectUserId).subscribe(id => this.loggedInUserId = id);
-    console.log(this.loggedInUserId);
-  this.store.select(selectrole).subscribe(role => {
+    this.store.select(selectrole).subscribe(role => {
     if (role) {
       this.role = role.toLowerCase();
     }

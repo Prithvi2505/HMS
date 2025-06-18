@@ -6,16 +6,22 @@
 
       <td mat-cell *matCellDef="let element">
         <ng-container [ngSwitch]="column">
-          
+
           <!-- Action buttons -->
           <ng-container *ngSwitchCase="'action'">
-            <button mat-flat-button color="accent" (click)="update.emit(element)">Update</button>
+            <ng-container *ngIf="canEdit(element); else emptyCell">
+              <button mat-flat-button color="accent" (click)="update.emit(element)">Update</button>
+            </ng-container>
+            <ng-template #emptyCell>&nbsp;</ng-template>
           </ng-container>
 
           <ng-container *ngSwitchCase="'remove'">
-            <button mat-fab color="warn" (click)="remove.emit(element)">
-              <mat-icon>delete</mat-icon>
-            </button>
+            <ng-container *ngIf="canEdit(element); else emptyCell2">
+              <button mat-fab color="warn" (click)="remove.emit(element)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </ng-container>
+            <ng-template #emptyCell2>&nbsp;</ng-template>
           </ng-container>
 
           <!-- Built-in date pipe formatting -->
@@ -24,12 +30,12 @@
           </ng-container>
 
           <ng-container *ngSwitchCase="'amount'">
-             {{ element[column] | currency:'INR':'symbol':'1.0-0' }}
+            {{ element[column] | currency:'INR':'symbol':'1.0-0' }}
           </ng-container>
 
-          <!-- <ng-container *ngSwitchCase="'time'">
+          <ng-container *ngSwitchCase="'time'">
             {{ element[column] | date:'hh:mm a' }}
-          </ng-container> -->
+          </ng-container>
 
           <!-- Default value rendering -->
           <ng-container *ngSwitchDefault>

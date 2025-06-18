@@ -1,21 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MedicalRecordService } from 'src/app/services/medical-record.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-add-medical-record',
   templateUrl: './add-medical-record.component.html',
   styleUrls: ['./add-medical-record.component.css']
 })
-export class AddMedicalRecordComponent {
-  medicalRecords:any[] =[];
-  constructor(private router:Router,private dialogRef: MatDialogRef<AddMedicalRecordComponent>){
-     const storedMedicalRecords = localStorage.getItem('medicalRecords');
-      this.medicalRecords = storedMedicalRecords ? JSON.parse(storedMedicalRecords) : [];
+export class AddMedicalRecordComponent implements OnInit {
+  patientId: number = 0;
+  constructor(private router:Router, private dialogRef: MatDialogRef<AddMedicalRecordComponent>,
+  private medicalService: MedicalRecordService,
+  @Inject(MAT_DIALOG_DATA) public data: any){}
+  ngOnInit() {
+  this.patientId = this.data.patientId;
   }
         addMedicalRecordForm = new FormGroup({
-            patientId: new FormControl('', Validators.required),
             diagnosis:new FormControl('',Validators.required),
             yearOfDiagnosis: new FormControl('',Validators.required),
             medicineUsed: new FormControl('', Validators.required)
@@ -24,11 +28,29 @@ export class AddMedicalRecordComponent {
         OnCancel(){
           this.dialogRef.close();
         }
-        addMedicalRecord(){
-           if(this.addMedicalRecordForm.invalid) return; 
-      const formData = this.addMedicalRecordForm.value;
-      this.medicalRecords.push(formData)
-      localStorage.setItem('medicalRecords', JSON.stringify(this.medicalRecords));
-      this.dialogRef.close();
-        }
+    addMedicalRecord() {
+    if (this.addMedicalRecordForm.invalid) return;
+
+    const form = this.addMedicalRecordForm.value;
+
+    const record = {
+      diagnosis: form.diagnosis,
+      yearOfDiagnosis: Number(form.yearOfDiagnosis),
+      medicineUsed: form.medicineUsed,
+      patientId: Number(this.patientId)
+    };
+    console.log(this.addMedicalRecordForm.value, "patientId from route:", this.patientId);
+
+    this.medicalService.createRecord(record).subscribe({
+      next: () => {
+        alert('Medical record created successfully!');
+        this.dialogRef.close(true);
+      },
+      error: (err) => {
+        console.error(err);
+        console.error('Error from backend:', err.error);
+        alert('Failed to create record.');
+      }
+    });
+  }
 }

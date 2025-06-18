@@ -18,7 +18,6 @@ import {selectUserId,selectrole} from 'src/app/Store/auth.seletor';
 })
 export class StaffComponent implements OnInit {
   staffList$: Observable<Staff[]> = this.store.select(selectStaffList);
-  buttonrole: string = 'staff';
   loggedInUserId: number | null = null;
   role!: string;
 

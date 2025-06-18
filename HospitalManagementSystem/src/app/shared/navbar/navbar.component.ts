@@ -11,7 +11,8 @@ import { selectisAuthenticated, selectrole, selectUserId } from 'src/app/Store/a
 })
 export class NavbarComponent {
   isAuthenticated:boolean = false;
-  role:string|null = ""
+  role:string|null = "";
+  userId:number|null = 0 ;
 constructor(private route : Router, private store:Store){
   this.store.select(selectisAuthenticated).subscribe(auth => {
     this.isAuthenticated = auth;
@@ -19,7 +20,9 @@ constructor(private route : Router, private store:Store){
   })
   this.store.select(selectrole).subscribe(auth => {
     this.role = auth;
-    console.log(auth)
+  })
+  this.store.select(selectUserId).subscribe(auth => {
+    this.userId = auth;
   })
 }
 

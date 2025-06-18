@@ -1,7 +1,6 @@
 <app-banner
   [Lists]="(staffList$ | async) || []"
   [detailfunc]="showDetails.bind(this)"
-  [assignbuttonRole]="buttonrole"
   [assignRole]="role"
   [loggedInUserId]="loggedInUserId"
   [listType]="'staff'">

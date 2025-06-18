@@ -18,7 +18,6 @@ import { filter } from 'rxjs/operators';
 })
 export class DoctorsComponent implements OnInit {
   doctors$: Observable<Doctor[]> = this.store.select(selectDoctorList);
-  buttonrole: string = 'doctor';
   loggedInUserId: number | null = null;
   role!: string;
 

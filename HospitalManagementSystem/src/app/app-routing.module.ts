@@ -21,8 +21,8 @@ const routes: Routes = [
   // {path:'medical-records',component:DataTableComponent,canActivate:[authGuard]},
   { path: 'rooms', component: DataTableComponent,canActivate:[authGuard] },
   { path: 'bills', component: BillTableComponent,canActivate:[authGuard] },
+  {path:'bills/patient/:id',component:BillTableComponent,canActivate:[authGuard]}
   // { path: 'medical-records/:patientId', component: DataTableComponent,canActivate:[authGuard] },
-  { path: 'bills/:patientId', component: DataTableComponent,canActivate:[authGuard] },
 
 ];
 
