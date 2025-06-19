@@ -6,6 +6,8 @@ import { EditBillComponent } from 'src/app/dialogs/edit-bill/edit-bill.component
 import { Bill } from 'src/app/Model/bill';
 import { BillService } from 'src/app/services/bill.service';
 import { TokenService } from 'src/app/services/token.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
 
 @Component({
   selector: 'app-bill-table',
@@ -18,7 +20,12 @@ export class BillTableComponent implements OnInit {
   columnHeaders: { [key: string]: string } = {};
   user = { userid: 0, role: '' };
 
-  constructor(private dialog: MatDialog, private route:ActivatedRoute,private billService: BillService,private tokenService:TokenService) { };
+  constructor(private dialog: MatDialog, 
+    private route:ActivatedRoute,
+    private billService: BillService,
+    private tokenService:TokenService,
+    private store:Store
+  ) { };
 
   ngOnInit() {
     const urlId = this.route.snapshot.paramMap.get('id');
@@ -102,7 +109,7 @@ export class BillTableComponent implements OnInit {
 
   this.billService.deleteBill(item.id).subscribe({
     next: () => {
-      alert('Bill deleted successfully!');
+      this.store.dispatch(showSuccess({ message: 'Bill deleted successfully!' }));
       const patientId = this.route.snapshot.paramMap.get('id');
       if (this.user.role === 'patient' && patientId) {
         this.loadPatientBills(+patientId);
@@ -112,7 +119,7 @@ export class BillTableComponent implements OnInit {
     },
     error: (err) => {
       console.error('Failed to delete bill:', err);
-      alert('Failed to delete bill.');
+      this.store.dispatch(showError({ message: err.error?.message || 'Failed to delete bill.' }));
     }
   }); }
 }

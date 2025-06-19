@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AppointmentService } from 'src/app/services/appointment.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
 
 @Component({
   selector: 'app-edit-appointment',
@@ -14,7 +16,7 @@ editAppointmentForm: FormGroup;
   constructor(
     private dialogRef: MatDialogRef<EditAppointmentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private appointmentService: AppointmentService
+    private appointmentService: AppointmentService,private store:Store
   ) {
     this.editAppointmentForm = new FormGroup({
       patientId: new FormControl(data.patientId, Validators.required),
@@ -47,12 +49,12 @@ editAppointmentForm: FormGroup;
 
     this.appointmentService.updateAppointment(updatedAppointment.id, updatedAppointment).subscribe({
       next: () => {
-        alert('Appointment updated successfully!');
+        this.store.dispatch(showSuccess({ message: 'Appointment updated successfully!' }));
         this.dialogRef.close(true);
       },
       error: (err) => {
         console.error('Update failed', err);
-        alert('Failed to update appointment');
+        this.store.dispatch(showError({ message: err.error?.message || 'Failed to update appointment' }));
       }
     });
   }

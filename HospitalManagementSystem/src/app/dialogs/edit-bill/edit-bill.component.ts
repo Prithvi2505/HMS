@@ -2,6 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BillService } from 'src/app/services/bill.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
+
 
 @Component({
   selector: 'app-edit-bill',
@@ -15,7 +18,8 @@ export class EditBillComponent {
   constructor(
     private dialogRef: MatDialogRef<EditBillComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private billService: BillService
+    private billService: BillService,
+    private store:Store
   ) {
 
       this.editBillForm = new FormGroup({
@@ -49,12 +53,12 @@ export class EditBillComponent {
 
     this.billService.updateBill(this.data.id, updatedBill).subscribe({
       next: () => {
-        alert('Bill updated successfully!');
+        this.store.dispatch(showSuccess({ message: 'Bill updated successfully!' }));
         this.dialogRef.close(true);
       },
       error: (err) => {
         console.error('Failed to update bill:', err);
-        alert('Failed to update bill.');
+        this.store.dispatch(showError({ message: err.error?.message || 'Failed to update bill.' }));
       }
     });
   }

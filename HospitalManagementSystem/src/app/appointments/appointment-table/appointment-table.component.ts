@@ -6,6 +6,8 @@ import { EditAppointmentComponent } from 'src/app/dialogs/edit-appointment/edit-
 import { Appointment } from 'src/app/Model/appointment';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { TokenService } from 'src/app/services/token.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
 
 @Component({
   selector: 'app-appointment-table',
@@ -20,7 +22,7 @@ export class AppointmentTableComponent implements OnInit {
   user = { userid: 0, role: '' };
 
   constructor(private dialog:MatDialog, private route:ActivatedRoute,private appointmentService: AppointmentService,
-    private tokenService:TokenService
+    private tokenService:TokenService,private store:Store
   ){}
 
   ngOnInit(){
@@ -125,7 +127,7 @@ export class AppointmentTableComponent implements OnInit {
 
   this.appointmentService.deleteAppointment(item.id).subscribe({
     next: () => {
-      alert('Appointment deleted successfully!');
+      this.store.dispatch(showSuccess({ message: 'Appointment deleted successfully!' }));
       const doctorId = this.route.snapshot.paramMap.get('id');
       if (this.user.role === 'doctor' && doctorId) {
         this.loadDoctorAppointments(+doctorId);
@@ -135,7 +137,7 @@ export class AppointmentTableComponent implements OnInit {
     },
     error: (err) => {
       console.error('Failed to delete appointment:', err);
-      alert('Failed to delete appointment.');
+      this.store.dispatch(showError({ message: err.error?.message || 'Failed to delete appointment.' }));
     }
   }); }
   

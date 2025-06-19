@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MedicalRecordService } from 'src/app/services/medical-record.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
 
 @Component({
   selector: 'app-add-medical-record',
@@ -14,7 +16,7 @@ import { Inject } from '@angular/core';
 export class AddMedicalRecordComponent implements OnInit {
   patientId: number = 0;
   constructor(private router:Router, private dialogRef: MatDialogRef<AddMedicalRecordComponent>,
-  private medicalService: MedicalRecordService,
+  private medicalService: MedicalRecordService,private store:Store,
   @Inject(MAT_DIALOG_DATA) public data: any){}
   ngOnInit() {
   this.patientId = this.data.patientId;
@@ -43,13 +45,13 @@ export class AddMedicalRecordComponent implements OnInit {
 
     this.medicalService.createRecord(record).subscribe({
       next: () => {
-        alert('Medical record created successfully!');
+        this.store.dispatch(showSuccess({ message: 'Medical record created successfully!' }));
         this.dialogRef.close(true);
       },
       error: (err) => {
         console.error(err);
         console.error('Error from backend:', err.error);
-        alert('Failed to create record.');
+        this.store.dispatch(showError({ message: err.error?.message || 'Failed to create record.' }));
       }
     });
   }

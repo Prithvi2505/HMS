@@ -6,6 +6,9 @@ import { AddMedicalRecordComponent } from 'src/app/dialogs/add-medical-record/ad
 import { EditMedicalRecordComponent } from 'src/app/dialogs/edit-medical-record/edit-medical-record.component';
 import { MedicalRecordService } from 'src/app/services/medical-record.service';
 import { TokenService } from 'src/app/services/token.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
+
 
 @Component({
   selector: 'app-medical-records',
@@ -21,7 +24,8 @@ export class MedicalRecordsComponent implements OnInit {
   user = { userid: 0, role: '' };
 
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private medicalRecordService: MedicalRecordService,
-    private tokenService:TokenService
+    private tokenService:TokenService,
+    private store:Store
   ) { }
 
   ngOnInit() {
@@ -92,12 +96,12 @@ export class MedicalRecordsComponent implements OnInit {
 
   this.medicalRecordService.deleteRecord(item.id).subscribe({
     next: () => {
-      alert('Medical record deleted successfully!');
+      this.store.dispatch(showSuccess({ message: 'Medical record deleted successfully!'}));
       this.loadPatientRecords(this.patientId);
     },
     error: (err) => {
       console.error('Failed to delete medical record:', err);
-      alert('Failed to delete medical record.');
+      this.store.dispatch(showError({ message: err.error?.message || 'Failed to delete medical record.' }));
     }
   });
 }

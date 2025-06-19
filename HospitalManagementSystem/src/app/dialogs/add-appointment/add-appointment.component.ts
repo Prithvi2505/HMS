@@ -4,6 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Appointment } from 'src/app/Model/appointment';
 import { AppointmentService } from 'src/app/services/appointment.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
 
 
 @Component({
@@ -13,10 +15,9 @@ import { AppointmentService } from 'src/app/services/appointment.service';
 })
 export class AddAppointmentComponent {
   appointments: Appointment[] = [];
-  constructor(private router: Router, private dialogRef: MatDialogRef<AddAppointmentComponent>, private appointmentService: AppointmentService) {
-    const storedAppointments = localStorage.getItem('appointments');
-    this.appointments = storedAppointments ? JSON.parse(storedAppointments) : [];
-  }
+  constructor(private router: Router, private dialogRef: MatDialogRef<AddAppointmentComponent>, private appointmentService: AppointmentService,
+    private store:Store
+  ) { }
   addAppointmentForm = new FormGroup({
     patientId: new FormControl('', Validators.required),
     doctorId: new FormControl('', Validators.required),
@@ -40,12 +41,12 @@ export class AddAppointmentComponent {
     this.appointmentService.createAppointment(formData).subscribe({
       next: (response) => {
         console.log('Appointment created:', response);
-        alert('Appointment successfully created!');
+        this.store.dispatch(showSuccess({ message: 'Appointment successfully created!'}));
         this.dialogRef.close(true); // Pass true to indicate success
       },
       error: (error) => {
         console.error('Error creating appointment:', error);
-        alert('Failed to create appointment. Please try again.');
+        this.store.dispatch(showError({ message: error.error?.message || 'Failed to create appointment. Please try again.' }));
       }
     });
   }

@@ -4,6 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Bill } from 'src/app/Model/bill';
 import { BillService } from 'src/app/services/bill.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
 
 @Component({
   selector: 'app-add-bill',
@@ -13,10 +15,9 @@ import { BillService } from 'src/app/services/bill.service';
 export class AddBillComponent {
   status: string[] = ['Paid', 'Unpaid'];
   bills: Bill[] = [];
-  constructor(private router: Router, private dialogRef: MatDialogRef<AddBillComponent>, private billService: BillService) {
-    const storedBills = localStorage.getItem('bills');
-    this.bills = storedBills ? JSON.parse(storedBills) : [];
-  }
+  constructor(private router: Router, private dialogRef: MatDialogRef<AddBillComponent>, private billService: BillService,
+    private store:Store
+  ) {}
   addBillForm = new FormGroup({
     patientId: new FormControl('', Validators.required),
     amount: new FormControl('', Validators.required),
@@ -45,12 +46,12 @@ export class AddBillComponent {
     this.billService.createBill(formData).subscribe({
       next: (response) => {
         console.log('Bill created:', response);
-        alert('Bill successfully created!');
+        this.store.dispatch(showSuccess({ message: 'Bill successfully created!'}));
         this.dialogRef.close(true); 
       },
       error: (error) => {
         console.error('Error creating bill:', error);
-        alert('Failed to create bill. Please try again.');
+        this.store.dispatch(showError({ message: error.error?.message || 'Failed to create bill. Please try again.'}));
       }
     });
   }

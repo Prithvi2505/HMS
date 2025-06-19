@@ -33,6 +33,8 @@ import { EditRoomComponent } from './dialogs/edit-room/edit-room.component';
 import { EditMedicalRecordComponent } from './dialogs/edit-medical-record/edit-medical-record.component';
 import { EditAppointmentComponent } from './dialogs/edit-appointment/edit-appointment.component';
 import { EditBillComponent } from './dialogs/edit-bill/edit-bill.component';
+import { snackbarReducer } from './Store/snackbar/snackbar.reducer';
+import { SnackbarEffects } from './Store/snackbar/snackbar.effects';
 
 
 
@@ -62,11 +64,14 @@ import { EditBillComponent } from './dialogs/edit-bill/edit-bill.component';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    StoreModule.forRoot({auth: authReducer,patients: patientReducer,
+    StoreModule.forRoot({auth: authReducer,
+      patients: patientReducer,
       doctors: doctorReducer,
-      staff: staffReducer}),
+      staff: staffReducer,snackbar: snackbarReducer}),
     EffectsModule.forRoot([DoctorEffects,
-  StaffEffects,PatientEffects]),
+  StaffEffects,
+  PatientEffects,
+  SnackbarEffects]),
   ],
   providers: [
     {

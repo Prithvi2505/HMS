@@ -6,6 +6,7 @@ import { login } from 'src/app/Store/auth.action';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service'; 
 import { TokenService } from 'src/app/services/token.service';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +45,7 @@ export class LoginComponent {
 
     this.authService.login(loginData).subscribe({
       next: (res) => {
-         console.log('Login response:', res);
+        console.log('Login response:', res);
         localStorage.setItem('auth', JSON.stringify({token: res.token}));
         this.role = this.tokenService.getUserRole()!;
         this.id = this.tokenService.getUserId()!;
@@ -57,7 +58,7 @@ export class LoginComponent {
       },
       error: (err) => {
         console.error('Login error:', err);
-        alert('Invalid credentials or server error');
+        this.store.dispatch(showError({ message: err.error?.message || 'Invalid credentials or server error' }));
       }
     });
   }

@@ -2,6 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MedicalRecordService } from 'src/app/services/medical-record.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
+
 
 @Component({
   selector: 'app-edit-medical-record',
@@ -14,7 +17,8 @@ export class EditMedicalRecordComponent {
   constructor(
     private dialogRef: MatDialogRef<EditMedicalRecordComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private medicalService: MedicalRecordService
+    private medicalService: MedicalRecordService,
+    private store:Store
   ) {}
 
   ngOnInit(): void {
@@ -41,12 +45,12 @@ export class EditMedicalRecordComponent {
 
     this.medicalService.updateRecord(this.data.id, updatedRecord).subscribe({
       next: () => {
-        alert('Medical record updated successfully!');
+        this.store.dispatch(showSuccess({ message: 'Medical record updated successfully!' }));
         this.dialogRef.close(true);
       },
       error: (err) => {
         console.error('Update failed:', err);
-        alert('Failed to update medical record.');
+        this.store.dispatch(showError({ message: err.error?.message || 'Failed to update medical record.' }));
       }
     });
   }

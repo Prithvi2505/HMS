@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { RoomService } from 'src/app/services/room.service';
 import { RoomWithStaff } from 'src/app/Model/room';
 import { TokenService } from 'src/app/services/token.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
+
 
 @Component({
   selector: 'app-assigned-room',
@@ -20,7 +23,7 @@ export class AssignedRoomComponent implements OnInit {
   user = { userid: 0, role: '' };
 
   constructor(private dialog: MatDialog, private route:ActivatedRoute, private roomService:RoomService,
-    private tokenService:TokenService
+    private tokenService:TokenService,private store:Store
   ) { }
 
   ngOnInit() {
@@ -51,12 +54,12 @@ export class AssignedRoomComponent implements OnInit {
     if (confirm(`Unassign staff ID ${item.staffId} from room ID ${item.roomId}?`)) {
     this.roomService.unassignStaffFromRoom(item.staffId, item.roomId).subscribe({
       next: () => {
-        alert('Staff unassigned from room successfully.');
+        this.store.dispatch(showSuccess({ message: 'Staff unassigned from room successfully.' }));
         this.loadRooms(this.staffId);
       },
       error: (err) => {
         console.error('Failed to unassign staff:', err);
-        alert('Failed to unassign staff from room.');
+        this.store.dispatch(showError({ message: err.error?.message || 'Failed to unassign staff from room.' }));
       }
     });
   }}

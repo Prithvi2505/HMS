@@ -6,6 +6,8 @@ import { AssignStaffRoomComponent } from 'src/app/dialogs/assign-staff-room/assi
 import { EditRoomComponent } from 'src/app/dialogs/edit-room/edit-room.component';
 import { RoomService } from 'src/app/services/room.service';
 import { TokenService } from 'src/app/services/token.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
 
 @Component({
   selector: 'app-room-table',
@@ -18,7 +20,7 @@ export class RoomTableComponent implements OnInit {
   columnHeaders: { [key: string]: string } = {};
   user = { userid: 0, role: '' };
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private roomService: RoomService,
-    private tokenService:TokenService
+    private tokenService:TokenService,private store:Store
   ) { };
 
   ngOnInit() {
@@ -79,12 +81,12 @@ export class RoomTableComponent implements OnInit {
 
     this.roomService.deleteRoom(item.id).subscribe({
       next: () => {
-        alert('Room deleted successfully!');
+        this.store.dispatch(showSuccess({ message: 'Room deleted successfully!' }));
         this.loadRooms(); 
       },
       error: (err) => {
         console.error('Failed to delete room:', err);
-        alert('Failed to delete room.');
+        this.store.dispatch(showError({ message: err.error?.message || 'Failed to delete room.' }));
       }
     });
   }

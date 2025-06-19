@@ -2,6 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { RoomService } from 'src/app/services/room.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
+
 
 @Component({
   selector: 'app-edit-room',
@@ -14,7 +17,8 @@ export class EditRoomComponent {
   constructor(
     public dialogRef: MatDialogRef<EditRoomComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private roomService: RoomService
+    private roomService: RoomService,
+    private store:Store
   ) {
     this.editRoomForm = new FormGroup({
       type: new FormControl(data.type, Validators.required),
@@ -39,11 +43,11 @@ export class EditRoomComponent {
 
     this.roomService.updateRoom(updatedRoom.id, updatedRoom).subscribe({
       next: () => {
-        alert('Room updated successfully!');
+        this.store.dispatch(showSuccess({ message: 'Room updated successfully!' }));
         this.dialogRef.close(true);
       },
-      error: () => {
-        alert('Update failed.');
+      error: (err) => {
+        this.store.dispatch(showError({ message: err.error?.message || 'Update failed.' }));
       }
     });
   }

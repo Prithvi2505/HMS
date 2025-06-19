@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegistrationService } from 'src/app/services/registration.service';
+import { Store } from '@ngrx/store';
+import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
 interface role {
   value: string;
   viewValue: string;
@@ -25,7 +27,9 @@ registrationForm!: FormGroup;
   staffTypes = ['Nurse','Peon','Receptionist'];
 
   constructor(private fb: FormBuilder, private router:Router,
-    private registrationService: RegistrationService) {}
+    private registrationService: RegistrationService,
+    private store:Store
+  ) {}
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
@@ -79,30 +83,30 @@ registrationForm!: FormGroup;
       case 'patient':
         this.registrationService.registerPatient(payload).subscribe({
           next: () => {
-            alert('Patient registered successfully');
+            this.store.dispatch(showSuccess({ message: 'Patient registered successfully' }));
             this.router.navigate(['/login']);
           },
-          error: (err) => alert('Error registering patient: ' + err.error.message)
+          error: (err) => this.store.dispatch(showError({ message: err.error?.message || 'Error registering patient' }))
         });
         break;
   
       case 'doctor':
         this.registrationService.registerDoctor(payload).subscribe({
           next: () => {
-            alert('Doctor registered successfully');
+            this.store.dispatch(showSuccess({ message: 'Doctor registered successfully!' }));
             this.router.navigate(['/login']);
           },
-          error: (err) => alert('Error registering doctor: ' + err.error.message)
+          error: (err) => this.store.dispatch(showError({ message: err.error?.message || 'Error registering doctor ' }))
         });
         break;
   
       case 'staff':
         this.registrationService.registerStaff(payload).subscribe({
           next: () => {
-            alert('Staff registered successfully');
+            this.store.dispatch(showSuccess({ message: 'Staff registered successfully' }));
             this.router.navigate(['/login']);
           },
-          error: (err) => alert('Error registering staff: ' + err.error.message)
+          error: (err) => this.store.dispatch(showError({ message: err.error?.message || 'Error registering staff' }))
         });
         break;
     }
