@@ -4,6 +4,7 @@ import { AssignStaffRoomComponent } from 'src/app/dialogs/assign-staff-room/assi
 import { ActivatedRoute } from '@angular/router';
 import { RoomService } from 'src/app/services/room.service';
 import { RoomWithStaff } from 'src/app/Model/room';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-assigned-room',
@@ -16,18 +17,18 @@ export class AssignedRoomComponent implements OnInit {
   dataSource: any[] = [];
   displayedColumns: string[] = [];
   columnHeaders: { [key: string]: string } = {};
-  user = { userid: '', role: '' };
+  user = { userid: 0, role: '' };
 
-  constructor(private dialog: MatDialog, private route:ActivatedRoute, private roomService:RoomService) { }
+  constructor(private dialog: MatDialog, private route:ActivatedRoute, private roomService:RoomService,
+    private tokenService:TokenService
+  ) { }
 
   ngOnInit() {
-    const userStr = localStorage.getItem('auth');
-    if (userStr) {
-      this.user = JSON.parse(userStr);
-    }
+   this.user.role = this.tokenService.getUserRole()!;
+  this.user.userid = this.tokenService.getUserId()!;
     const { userid, role } = this.user;
     const baseColumns = ['roomId', 'type', 'capacity', 'price', 'staffId'];
-    const actionColumns = ['action', 'remove'];
+    const actionColumns = ['remove'];
 
     this.displayedColumns = baseColumns;
     if (this.user.role === 'doctor') {
@@ -35,7 +36,7 @@ export class AssignedRoomComponent implements OnInit {
 }
     this.columnHeaders = {
       roomId: 'Room Id', type: 'Type', capacity: 'Capacity', price: 'Price',
-      staffId: 'Assigned Staff ID', action: 'Action', remove: 'Remove'
+      staffId: 'Assigned Staff ID', remove: 'Remove'
     };
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
@@ -45,21 +46,20 @@ export class AssignedRoomComponent implements OnInit {
     });
   }
 
-  assignStaffToRoom() {
-    const dialogRef = this.dialog.open(AssignStaffRoomComponent, {
-      width: '500px',
-      data: { staffId: this.staffId }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
+  onUpdate(item: any) { console.log('Update', item); }
+  onDelete(item: any) { 
+    if (confirm(`Unassign staff ID ${item.staffId} from room ID ${item.roomId}?`)) {
+    this.roomService.unassignStaffFromRoom(item.staffId, item.roomId).subscribe({
+      next: () => {
+        alert('Staff unassigned from room successfully.');
         this.loadRooms(this.staffId);
+      },
+      error: (err) => {
+        console.error('Failed to unassign staff:', err);
+        alert('Failed to unassign staff from room.');
       }
     });
-  }
-
-  onUpdate(item: any) { console.log('Update', item); }
-  onDelete(item: any) { console.log('Delete', item); }
+  }}
 
   loadRooms(staffId: number) {
     this.roomService.getRoomsByStaff(staffId).subscribe({

@@ -9,6 +9,7 @@ import { ShowDetailComponent } from 'src/app/shared/show-detail/show-detail.comp
 import { selectStaffList } from 'src/app/Store/staff/staff.selector';
 import { loadStaff } from 'src/app/Store/staff/staff.action';
 import {selectUserId,selectrole} from 'src/app/Store/auth.seletor';
+import { TokenService } from 'src/app/services/token.service';
 
 
 @Component({
@@ -21,17 +22,12 @@ export class StaffComponent implements OnInit {
   loggedInUserId: number | null = null;
   role!: string;
 
-  constructor(private store: Store, private dialog: MatDialog) {}
+  constructor(private store: Store, private dialog: MatDialog,private tokenService:TokenService) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadStaff());
-    this.store.select(selectUserId).subscribe(id => this.loggedInUserId = id);
-    console.log(this.loggedInUserId);
-  this.store.select(selectrole).subscribe(role => {
-    if (role) {
-      this.role = role.toLowerCase();
-    }
-  });
+    this.role = this.tokenService.getUserRole()!;
+    this.loggedInUserId = this.tokenService.getUserId()!;
   }
 
   showDetails(item: Staff | Doctor | Patient): void {

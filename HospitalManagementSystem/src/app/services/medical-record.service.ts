@@ -8,7 +8,7 @@ const BASE_URL = 'http://localhost:8080/medical-records';
   providedIn: 'root'
 })
 export class MedicalRecordService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createRecord(record: any): Observable<any> {
     return this.http.post(`${BASE_URL}/create`, record);
@@ -24,6 +24,10 @@ export class MedicalRecordService {
 
   getRecordsByPatientId(patientId: number): Observable<any[]> {
     return this.http.get<any[]>(`${BASE_URL}/patient/${patientId}`);
+  }
+
+  updateRecord(id: number, record: any): Observable<any> {
+    return this.http.put<any>(`${BASE_URL}/${id}`, record);
   }
 
   deleteRecord(id: number): Observable<void> {

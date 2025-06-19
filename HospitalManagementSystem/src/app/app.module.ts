@@ -27,6 +27,12 @@ import { staffReducer } from './Store/staff/staff.reducer';
 import { PatientEffects } from './Store/patient/patient.effects';
 import { StaffEffects } from './Store/staff/staff.effects';
 import { DoctorEffects } from './Store/doctor/doctor.effects';
+import { RoomTableComponent } from './Components/room-table/room-table.component';
+import { AddRoomComponent } from './dialogs/add-room/add-room.component';
+import { EditRoomComponent } from './dialogs/edit-room/edit-room.component';
+import { EditMedicalRecordComponent } from './dialogs/edit-medical-record/edit-medical-record.component';
+import { EditAppointmentComponent } from './dialogs/edit-appointment/edit-appointment.component';
+import { EditBillComponent } from './dialogs/edit-bill/edit-bill.component';
 
 
 
@@ -43,6 +49,12 @@ import { DoctorEffects } from './Store/doctor/doctor.effects';
     AddMedicalRecordComponent,
     BillTableComponent,
     EditUserComponent,
+    RoomTableComponent,
+    AddRoomComponent,
+    EditRoomComponent,
+    EditMedicalRecordComponent,
+    EditAppointmentComponent,
+    EditBillComponent,
   ],
   imports: [
     BrowserModule,

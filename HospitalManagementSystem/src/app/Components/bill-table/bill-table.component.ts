@@ -1,33 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { AddBillComponent } from 'src/app/dialogs/add-bill/add-bill.component';
+import { EditBillComponent } from 'src/app/dialogs/edit-bill/edit-bill.component';
 import { Bill } from 'src/app/Model/bill';
 import { BillService } from 'src/app/services/bill.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-bill-table',
   templateUrl: './bill-table.component.html',
   styleUrls: ['./bill-table.component.css']
 })
-export class BillTableComponent {
-  bills : Bill[]= [];
+export class BillTableComponent implements OnInit {
   dataSource: any[] = [];
   displayedColumns: string[] = [];
   columnHeaders: { [key: string]: string } = {};
-  user = { userid: '', role: '' };
+  user = { userid: 0, role: '' };
 
-  constructor(private dialog: MatDialog, private route:ActivatedRoute,private billService: BillService) { };
+  constructor(private dialog: MatDialog, private route:ActivatedRoute,private billService: BillService,private tokenService:TokenService) { };
 
   ngOnInit() {
     const urlId = this.route.snapshot.paramMap.get('id');
-    const userStr = localStorage.getItem('auth');
-    if (userStr) {
-      this.user = JSON.parse(userStr);
-    }
+    this.user.role = this.tokenService.getUserRole()!;
+    this.user.userid = this.tokenService.getUserId()!;
     const { userid, role } = this.user;
 
-    const baseColumns = ['id', 'amount', 'date', 'billDetail', 'patientId'];
+    const baseColumns = ['id', 'amount', 'date', 'billDetail','status' ,'patientId'];
     const actionColumns = ['action', 'remove'];
 
     this.displayedColumns = baseColumns;
@@ -35,7 +34,7 @@ export class BillTableComponent {
       this.displayedColumns = [...baseColumns, ...actionColumns];
     }
     this.columnHeaders = {
-      id: 'ID', amount: 'Amount', date: 'Date',
+      id: 'ID', amount: 'Amount',status:'Bill Status',date: 'Date',
       billDetail: 'Bill Detail', patientId: 'Patient ID',
       action: 'Action', remove: 'Remove'
     };
@@ -80,6 +79,40 @@ export class BillTableComponent {
       error: (err) => console.error('Failed to fetch patient bills:', err)
     });
   }
-  onUpdate(item: any) { console.log('Update', item); }
-  onDelete(item: any) { console.log('Delete', item); }
+  onUpdate(item: any) { const dialogRef = this.dialog.open(EditBillComponent, {
+      width: '400px',
+      data: item  // pass the room data to be edited
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.route.paramMap.subscribe(params => {
+      const patientId = params.get('id');
+      if (this.user.role === 'patient' && patientId) {
+        this.loadPatientBills(+patientId);
+      } else {
+        this.loadAllBills();
+      }
+    });
+      }
+    })
+   }
+  onDelete(item: any) { const confirmed = confirm(`Are you sure you want to delete bill ID ${item.id}?`);
+  if (!confirmed) return;
+
+  this.billService.deleteBill(item.id).subscribe({
+    next: () => {
+      alert('Bill deleted successfully!');
+      const patientId = this.route.snapshot.paramMap.get('id');
+      if (this.user.role === 'patient' && patientId) {
+        this.loadPatientBills(+patientId);
+      } else {
+        this.loadAllBills();
+      }
+    },
+    error: (err) => {
+      console.error('Failed to delete bill:', err);
+      alert('Failed to delete bill.');
+    }
+  }); }
 }

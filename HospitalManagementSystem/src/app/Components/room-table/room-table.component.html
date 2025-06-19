@@ -1,0 +1,18 @@
+<div class="flex justify-between items-center mb-4">
+    <h2>Rooms</h2>
+     <button *ngIf="user.role === 'doctor'" mat-flat-button color="primary" (click)="addRoom()">
+    Add Room
+  </button>
+   <button *ngIf="user.role === 'doctor'" mat-flat-button color="primary" (click)="assignStaffToRoom()">
+    Assign Staff
+  </button>
+</div>
+<app-material-table
+  [dataSource]="dataSource"
+  [displayedColumns]="displayedColumns"
+  [columnHeaders]="columnHeaders"
+  [user]="user" 
+  [moduleType]="'room'"
+  (update)="onUpdate($event)"
+  (remove)="onDelete($event)">
+</app-material-table>

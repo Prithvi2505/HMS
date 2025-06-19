@@ -22,6 +22,7 @@ import { MaterialTableComponent } from './material-table/material-table.componen
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { ShowDetailComponent } from './show-detail/show-detail.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { ShowDetailComponent } from './show-detail/show-detail.component';
     MatDialogModule,
     ReactiveFormsModule,
     MatNativeDateModule,
+    RouterModule,
   ],
   exports: [
     NavbarComponent,

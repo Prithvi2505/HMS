@@ -23,6 +23,10 @@ export class BillService {
     return this.http.post<Bill>(`${this.baseUrl}/create`, bill);
   }
 
+  updateBill(id: number, bill: Bill): Observable<Bill> {
+  return this.http.put<Bill>(`${this.baseUrl}/${id}`, bill);
+  }
+
   deleteBill(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
   }

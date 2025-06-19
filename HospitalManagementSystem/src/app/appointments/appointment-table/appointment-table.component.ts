@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { AddAppointmentComponent } from 'src/app/dialogs/add-appointment/add-appointment.component';
+import { EditAppointmentComponent } from 'src/app/dialogs/edit-appointment/edit-appointment.component';
 import { Appointment } from 'src/app/Model/appointment';
 import { AppointmentService } from 'src/app/services/appointment.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-appointment-table',
@@ -15,16 +17,16 @@ export class AppointmentTableComponent implements OnInit {
   dataSource: any[] = [];
   displayedColumns: string[] = [];
   columnHeaders: { [key: string]: string } = {};
-  user = { userid: '', role: '' };
+  user = { userid: 0, role: '' };
 
-  constructor(private dialog:MatDialog, private route:ActivatedRoute,private appointmentService: AppointmentService){}
+  constructor(private dialog:MatDialog, private route:ActivatedRoute,private appointmentService: AppointmentService,
+    private tokenService:TokenService
+  ){}
 
   ngOnInit(){
-    const urlId = this.route.snapshot.paramMap.get('id');
-    const userStr = localStorage.getItem('auth');
-    if (userStr) {
-      this.user = JSON.parse(userStr);
-    }
+    const urlId = Number(this.route.snapshot.paramMap.get('id'));
+    this.user.role = this.tokenService.getUserRole()!;
+    this.user.userid = this.tokenService.getUserId()!;
     const { userid, role } = this.user;
     
       const baseColumns = ['id', 'patientId', 'doctorId', 'date', 'time',];
@@ -100,7 +102,41 @@ export class AppointmentTableComponent implements OnInit {
   });
   }
 
-  onUpdate(item: any) { console.log('Update', item); }
-  onDelete(item: any) { console.log('Delete', item); }
+  onUpdate(item: any) { const dialogRef = this.dialog.open(EditAppointmentComponent, {
+      width: '400px',
+      data: item 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+         this.route.paramMap.subscribe(params => {
+      const doctorId = params.get('id');
+      if (this.user.role === 'doctor' && doctorId) {
+        this.loadDoctorAppointments(+doctorId);
+      } else {
+        this.loadAllAppointments();
+      }
+    });
+      }
+    });
+   }
+  onDelete(item: any) { const confirmDelete = confirm(`Are you sure you want to delete appointment ID ${item.id}?`);
+  if (!confirmDelete) return;
+
+  this.appointmentService.deleteAppointment(item.id).subscribe({
+    next: () => {
+      alert('Appointment deleted successfully!');
+      const doctorId = this.route.snapshot.paramMap.get('id');
+      if (this.user.role === 'doctor' && doctorId) {
+        this.loadDoctorAppointments(+doctorId);
+      } else {
+        this.loadAllAppointments();
+      }
+    },
+    error: (err) => {
+      console.error('Failed to delete appointment:', err);
+      alert('Failed to delete appointment.');
+    }
+  }); }
   
 }

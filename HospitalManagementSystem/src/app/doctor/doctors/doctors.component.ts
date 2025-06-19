@@ -1,3 +1,4 @@
+import { TokenService } from './../../services/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -21,17 +22,12 @@ export class DoctorsComponent implements OnInit {
   loggedInUserId: number | null = null;
   role!: string;
 
-  constructor(private store: Store, private dialog: MatDialog) {}
+  constructor(private store: Store, private dialog: MatDialog,private tokenService:TokenService) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadDoctors());
-    this.store.select(selectUserId).subscribe(id => this.loggedInUserId = id);
-    console.log(this.loggedInUserId);
-  this.store.select(selectrole).subscribe(role => {
-    if (role) {
-      this.role = role.toLowerCase();
-    }
-  });
+    this.role = this.tokenService.getUserRole()!;
+    this.loggedInUserId = this.tokenService.getUserId()!;
   }
 
   showDetails(item: Doctor | Patient | Staff): void {

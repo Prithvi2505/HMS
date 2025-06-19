@@ -21,6 +21,9 @@ export class RoomService {
   getRoomsByStaff(staffId: number): Observable<RoomWithStaff[]> {
     return this.http.get<RoomWithStaff[]>(`${this.apiUrl}/by-staff/${staffId}`);
   }
+  unassignStaffFromRoom(staffId: number, roomId: number): Observable<any> {
+  return this.http.put(`http://localhost:8080/staff/unassign-room/${staffId}/${roomId}`, {});
+  }
   createRoom(data: { type: string; capacity: number; price: number }): Observable<RoomResponse> {
     return this.http.post<RoomResponse>(`${this.apiUrl}/create`, data);
   }

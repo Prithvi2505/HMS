@@ -11,6 +11,7 @@ import { BillService } from 'src/app/services/bill.service';
   styleUrls: ['./add-bill.component.css']
 })
 export class AddBillComponent {
+  status: string[] = ['Paid', 'Unpaid'];
   bills: Bill[] = [];
   constructor(private router: Router, private dialogRef: MatDialogRef<AddBillComponent>, private billService: BillService) {
     const storedBills = localStorage.getItem('bills');
@@ -19,6 +20,7 @@ export class AddBillComponent {
   addBillForm = new FormGroup({
     patientId: new FormControl('', Validators.required),
     amount: new FormControl('', Validators.required),
+    status:new FormControl('', Validators.required),
     date: new FormControl('', Validators.required),
     billDetail: new FormControl('', Validators.required)
   })
@@ -34,6 +36,7 @@ export class AddBillComponent {
 
     const formData = {
       amount: Number(this.addBillForm.value.amount),
+      status:this.addBillForm.value.status ?? '',
       date: formattedDate,
       billDetail: this.addBillForm.value.billDetail ?? '',
       patientId: Number(this.addBillForm.value.patientId)

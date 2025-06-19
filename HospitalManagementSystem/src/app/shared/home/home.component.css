@@ -1,0 +1,136 @@
+.home-container {
+  padding: 2rem;
+  background: #f9fbfc;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.banner {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  padding: 2rem;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.banner-icon {
+  font-size: 3.5rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-title h2 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card i {
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 0.5rem;
+}
+
+.card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.overview-section {
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  background: #f8f9fa;
+  border-top: 2px solid #e0e0e0;
+}
+
+.overview-section h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.overview-section p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.overview-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.overview-card:hover {
+  transform: translateY(-5px);
+}
+
+.overview-card i {
+  font-size: 2.5rem;
+  color: #0d6efd;
+  margin-bottom: 0.5rem;
+}
+
+.overview-card h4 {
+  margin: 0.5rem 0;
+  color: #222;
+}
+
+.overview-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+

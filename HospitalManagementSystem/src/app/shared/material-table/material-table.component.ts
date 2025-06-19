@@ -9,7 +9,7 @@ export class MaterialTableComponent {
   @Input() dataSource: any[] = [];
   @Input() displayedColumns: string[] = [];
   @Input() columnHeaders: { [key: string]: string } = {};
-  @Input() user: { userid: string; role: string } = { userid: '', role: '' };
+  @Input() user: { userid: number; role: string } = { userid: 0, role: '' };
   @Input() moduleType: string = '';
 
 
@@ -32,6 +32,9 @@ export class MaterialTableComponent {
 
     case 'assignedRoom':
       return role == 'doctor'; // Only doctors can update/delete
+
+    case 'room':
+      return role == 'doctor';
 
     default:
       return false;

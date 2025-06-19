@@ -1,26 +1,25 @@
 <ng-container *ngIf="isAuthenticated">
     <nav class="navbar navbar-expand-lg" id="commonNav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><i class="bi bi-heart-pulse-fill"></i> Hospital</a>
+            <a class="navbar-brand" [routerLink]="['/home']"><i class="bi bi-heart-pulse-fill"></i> MediCare+</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="home">Home</a>
+                    <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Home</a>
+                    <a class="nav-link" [routerLink]="['/patient']">Patient</a>
+                    <a class="nav-link" [routerLink]="['/doctor']">Doctor</a>
+                    <a class="nav-link" [routerLink]="['/staff']">Staff</a>
+                    <a class="nav-link" [routerLink]="['/rooms']">Room</a>
                     <ng-container *ngIf="role == 'patient' || role == 'doctor'">
-                        <a class="nav-link" href="patient">Patient</a>
-                        <a class="nav-link" href="appointments" *ngIf="role === 'patient'">Appointments</a>
-                        <a class="nav-link" [href]="'appointments/doctor/' + userId"
+                        <a class="nav-link" [routerLink]="['/appointments']" *ngIf="role === 'patient'">Appointments</a>
+                        <a class="nav-link" [routerLink]="['/appointments/doctor', userId]"
                             *ngIf="role === 'doctor'">Appointments</a>
-                        <a class="nav-link" href="doctor">Doctor</a>
-                        <a class="nav-link" href="bills" *ngIf="role === 'doctor'">Bills</a>
-                        <a class="nav-link" [href]="'bills/patient/' + userId" *ngIf="role === 'patient'">Bills</a>
-                    </ng-container>
-                    <ng-container *ngIf="role == 'staff' || role == 'doctor'">
-                        <a class="nav-link" href="staff">Staff</a>
-                        <a class="nav-link" href="rooms">Room</a>
+                        <a class="nav-link" [routerLink]="['/bills']" *ngIf="role === 'doctor'">Bills</a>
+                        <a class="nav-link" [routerLink]="['/bills/patient', userId]"
+                            *ngIf="role === 'patient'">Bills</a>
                     </ng-container>
                     <ng-container *ngIf="isAuthenticated">
                         <button type="button" class="btn btn-info" (click)="onLogout()">Logout</button>

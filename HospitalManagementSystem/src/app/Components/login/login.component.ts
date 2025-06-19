@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { login } from 'src/app/Store/auth.action';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service'; 
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+    id:number = 0
+    role:string ='';
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -27,7 +30,8 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private store: Store,
-    private authService: AuthService // Inject service
+    private authService: AuthService ,
+    private tokenService: TokenService // Inject service
   ) {}
 
   onLogin() {
@@ -40,15 +44,19 @@ export class LoginComponent {
 
     this.authService.login(loginData).subscribe({
       next: (res) => {
-        localStorage.setItem('auth', JSON.stringify({
-          token: res.token,
-          userid: res.userId,
-          role: res.role
-        }));
-        this.store.dispatch(login({ userid: res.userId, role: res.role }));
+         console.log('Login response:', res);
+        localStorage.setItem('auth', JSON.stringify({token: res.token}));
+        this.role = this.tokenService.getUserRole()!;
+        this.id = this.tokenService.getUserId()!;
+        this.store.dispatch(login({ userid: this.id, role: this.role }));
+
+        console.log(this.tokenService.getUserEmail());
+        console.log(this.tokenService.getUserId());
+        console.log(this.tokenService.getUserRole());
         this.router.navigate(['/home']);
       },
-      error: () => {
+      error: (err) => {
+        console.error('Login error:', err);
         alert('Invalid credentials or server error');
       }
     });
