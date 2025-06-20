@@ -42,16 +42,22 @@ export class EditBillComponent {
 
   onUpdateBill(): void {
     if (this.editBillForm.invalid) return;
+    const rawDate = this.editBillForm.value.date as Date;
 
-    const updatedBill = {
-      amount: this.editBillForm.value.amount,
-      status: this.editBillForm.value.status ?? '',
-      date: this.editBillForm.value.date,
-      billDetail: this.editBillForm.value.billDetail,
-      patientId: this.editBillForm.value.patientId
-    };
+const formattedDate = rawDate
+  ? `${rawDate.getFullYear()}-${(rawDate.getMonth() + 1).toString().padStart(2, '0')}-${rawDate.getDate().toString().padStart(2, '0')}`
+  : '';
 
-    this.billService.updateBill(this.data.id, updatedBill).subscribe({
+const formData = {
+  amount: this.editBillForm.value.amount,
+  status: this.editBillForm.value.status,
+  date: formattedDate, // ✅ Now it's a string
+  billDetail: this.editBillForm.value.billDetail,
+  patientId: this.editBillForm.value.patientId
+};
+    
+
+    this.billService.updateBill(this.data.id, formData).subscribe({
       next: () => {
         this.store.dispatch(showSuccess({ message: 'Bill updated successfully!' }));
         this.dialogRef.close(true);

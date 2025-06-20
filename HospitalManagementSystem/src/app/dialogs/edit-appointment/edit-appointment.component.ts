@@ -37,13 +37,21 @@ editAppointmentForm: FormGroup;
 
   onUpdateAppointment(): void {
     if (this.editAppointmentForm.invalid) return;
-
+    const rawDate = this.editAppointmentForm.value.date;
+    let formattedDate = '';
+    if (rawDate) {
+      const jsDate = new Date(rawDate);
+      const year = jsDate.getFullYear();
+      const month = String(jsDate.getMonth() + 1).padStart(2, '0');
+      const day = String(jsDate.getDate()).padStart(2, '0');
+      formattedDate = `${year}-${month}-${day}`; // ⬅️ Send only date part
+    }
     const formValue = this.editAppointmentForm.value;
     const updatedAppointment = {
       id: this.data.id,
       patientId: formValue.patientId,
       doctorId: formValue.doctorId,
-      date: formValue.date,
+      date: formattedDate,
       time: formValue.time
     };
 

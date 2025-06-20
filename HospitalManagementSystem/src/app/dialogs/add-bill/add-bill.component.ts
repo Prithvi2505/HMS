@@ -33,7 +33,14 @@ export class AddBillComponent {
     if (this.addBillForm.invalid) return;
 
     const rawDate = this.addBillForm.value.date;
-    const formattedDate = rawDate ? new Date(rawDate).toISOString().split('T')[0] : '';
+    let formattedDate = '';
+    if (rawDate) {
+      const jsDate = new Date(rawDate);
+      const year = jsDate.getFullYear();
+      const month = String(jsDate.getMonth() + 1).padStart(2, '0');
+      const day = String(jsDate.getDate()).padStart(2, '0');
+      formattedDate = `${year}-${month}-${day}`; // ⬅️ Send only date part
+    }
 
     const formData = {
       amount: Number(this.addBillForm.value.amount),

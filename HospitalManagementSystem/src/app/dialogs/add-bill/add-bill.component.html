@@ -35,7 +35,7 @@
                     formControlName="billDetail"></textarea>
             </mat-form-field>
             <button mat-flat-button color="primary" type="submit" [disabled]="addBillForm.invalid">Add</button>
-            <button mat-flat-button color="warn" (click)="OnCancel()">Cancel</button>
+            <button mat-flat-button color="warn" type="button" (click)="OnCancel()">Cancel</button>
         </form>
     </mat-card-content>
 </mat-card>

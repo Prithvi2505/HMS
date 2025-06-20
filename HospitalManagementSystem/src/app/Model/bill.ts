@@ -3,6 +3,6 @@ export interface Bill {
   patientId: number;
   amount: number;
   status:string;
-  date: string; // 'yyyy-MM-dd'
+  date: string; 
   billDetail: string;
 }

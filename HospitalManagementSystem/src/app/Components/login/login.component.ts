@@ -37,7 +37,7 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginForm.invalid) {
-      alert('Please enter all fields');
+      this.store.dispatch(showError({message: 'Please enter all fields' }));
       return;
     }
 

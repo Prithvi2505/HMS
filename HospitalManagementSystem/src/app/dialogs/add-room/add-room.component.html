@@ -17,7 +17,7 @@
                 <input matInput placeholder="Price of Room" id="price" type="number" formControlName="price" required min="0">
             </mat-form-field>
             <button mat-flat-button color="primary" type="submit" [disabled]="addRoomForm.invalid">Add</button>
-            <button mat-flat-button color="warn" (click)="OnCancel()">Cancel</button>
+            <button mat-flat-button color="warn" type="button" (click)="OnCancel()">Cancel</button>
         </form>
     </mat-card-content>
 </mat-card>

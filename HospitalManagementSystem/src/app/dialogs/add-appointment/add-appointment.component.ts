@@ -16,7 +16,7 @@ import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions'
 export class AddAppointmentComponent {
   appointments: Appointment[] = [];
   constructor(private router: Router, private dialogRef: MatDialogRef<AddAppointmentComponent>, private appointmentService: AppointmentService,
-    private store:Store
+    private store: Store
   ) { }
   addAppointmentForm = new FormGroup({
     patientId: new FormControl('', Validators.required),
@@ -31,17 +31,24 @@ export class AddAppointmentComponent {
   addAppointment() {
     if (this.addAppointmentForm.invalid) return;
     const rawDate = this.addAppointmentForm.value.date;
-    const formattedDate = rawDate ? new Date(rawDate).toISOString().split('T')[0] : '';
+    let formattedDate = '';
+    if (rawDate) {
+      const jsDate = new Date(rawDate);
+      const year = jsDate.getFullYear();
+      const month = String(jsDate.getMonth() + 1).padStart(2, '0');
+      const day = String(jsDate.getDate()).padStart(2, '0');
+      formattedDate = `${year}-${month}-${day}`; // ⬅️ Send only date part
+    }
     const formData = {
-    patientId: Number(this.addAppointmentForm.value.patientId),
-    doctorId: Number(this.addAppointmentForm.value.doctorId),
-    date: formattedDate,
-    time: this.addAppointmentForm.value.time
-  };
+      patientId: Number(this.addAppointmentForm.value.patientId),
+      doctorId: Number(this.addAppointmentForm.value.doctorId),
+      date: formattedDate,
+      time: this.addAppointmentForm.value.time
+    };
     this.appointmentService.createAppointment(formData).subscribe({
       next: (response) => {
         console.log('Appointment created:', response);
-        this.store.dispatch(showSuccess({ message: 'Appointment successfully created!'}));
+        this.store.dispatch(showSuccess({ message: 'Appointment successfully created!' }));
         this.dialogRef.close(true); // Pass true to indicate success
       },
       error: (error) => {

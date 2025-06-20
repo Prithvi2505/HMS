@@ -98,7 +98,7 @@ export class AppointmentTableComponent implements OnInit {
     this.appointmentService.getAppointmentsByPatientId(id).subscribe(data => {
     this.appointments = data.map(app => ({
       ...app,
-      time: new Date(`1970-01-01T${app.time}`) // Convert string to Date
+      time: new Date(`1970-01-01T${app.time}`) 
     }));
     this.dataSource = this.appointments;
   });
