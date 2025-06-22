@@ -1,5 +1,7 @@
+<app-search-bar (search)="onSearch($event)"></app-search-bar>
+
 <app-banner
-  [Lists]="(staffList$ | async) || []"
+  [Lists]="filteredStaff"
   [detailfunc]="showDetails.bind(this)"
   [assignRole]="role"
   [loggedInUserId]="loggedInUserId"

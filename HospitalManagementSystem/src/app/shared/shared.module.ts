@@ -20,9 +20,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialTableComponent } from './material-table/material-table.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+
 
 import { ShowDetailComponent } from './show-detail/show-detail.component';
 import { RouterModule } from '@angular/router';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 
 @NgModule({
@@ -34,6 +37,7 @@ import { RouterModule } from '@angular/router';
     BannerComponent,
     MaterialTableComponent,
     ShowDetailComponent,
+    SearchBarComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +55,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     MatNativeDateModule,
     RouterModule,
+    FormsModule
   ],
   exports: [
     NavbarComponent,
@@ -71,7 +76,9 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     MaterialTableComponent,
     MatNativeDateModule,
-    ShowDetailComponent
+    ShowDetailComponent,
+    SearchBarComponent,
+    FormsModule
   ]
 })
 export class SharedModule { }

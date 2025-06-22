@@ -18,16 +18,23 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./patients.component.css']
 })
 export class PatientsComponent implements OnInit {
-  patients$: Observable<Patient[]> = this.store.select(selectPatientList);
+  allPatients: Patient[] = [];
+  filteredPatients: Patient[] = [];
   loggedInUserId: number | null = null;
   role!: string;
 
   constructor(private store: Store, private dialog: MatDialog,private tokenService:TokenService) { }
 
   ngOnInit(): void {
-    this.store.dispatch(loadPatients());
     this.role = this.tokenService.getUserRole()!;
     this.loggedInUserId = this.tokenService.getUserId()!;
+
+    this.store.dispatch(loadPatients());
+
+    this.store.select(selectPatientList).subscribe(patients => {
+      this.allPatients = patients;
+      this.filteredPatients = [...patients];
+    });
   }
 
   showDetails(item: Patient | Doctor | Staff): void {
@@ -35,5 +42,12 @@ export class PatientsComponent implements OnInit {
       width: '400px',
       data: item
     });
+  }
+  onSearch(term: string): void {
+    this.filteredPatients = this.allPatients.filter(p =>
+      p.id.toString().includes(term) ||
+      p.name.toLowerCase().includes(term) ||
+      p.email.toLowerCase().includes(term)
+    );
   }
 }

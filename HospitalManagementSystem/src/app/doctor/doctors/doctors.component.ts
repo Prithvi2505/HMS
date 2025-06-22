@@ -18,16 +18,22 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./doctors.component.css']
 })
 export class DoctorsComponent implements OnInit {
-  doctors$: Observable<Doctor[]> = this.store.select(selectDoctorList);
+  allDoctors: Doctor[] = [];
+  filteredDoctors: Doctor[] = [];
   loggedInUserId: number | null = null;
   role!: string;
 
   constructor(private store: Store, private dialog: MatDialog,private tokenService:TokenService) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(loadDoctors());
+  ngOnInit(): void { 
     this.role = this.tokenService.getUserRole()!;
     this.loggedInUserId = this.tokenService.getUserId()!;
+
+    this.store.dispatch(loadDoctors());
+    this.store.select(selectDoctorList).subscribe(doctors => {
+      this.allDoctors = doctors;
+      this.filteredDoctors = [...doctors];
+    });
   }
 
   showDetails(item: Doctor | Patient | Staff): void {
@@ -35,6 +41,13 @@ export class DoctorsComponent implements OnInit {
       width: '400px',
       data: item
     });
+  }
+  onSearch(term: string): void {
+    this.filteredDoctors = this.allDoctors.filter(d =>
+      d.id.toString().includes(term) ||
+      d.name.toLowerCase().includes(term) ||
+      d.email.toLowerCase().includes(term)
+    );
   }
 
 }

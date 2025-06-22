@@ -18,6 +18,8 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./staff.component.css']
 })
 export class StaffComponent implements OnInit {
+  allStaff: Staff[] = [];
+  filteredStaff: Staff[] = [];
   staffList$: Observable<Staff[]> = this.store.select(selectStaffList);
   loggedInUserId: number | null = null;
   role!: string;
@@ -25,9 +27,15 @@ export class StaffComponent implements OnInit {
   constructor(private store: Store, private dialog: MatDialog,private tokenService:TokenService) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadStaff());
     this.role = this.tokenService.getUserRole()!;
     this.loggedInUserId = this.tokenService.getUserId()!;
+
+    this.store.dispatch(loadStaff());
+
+    this.store.select(selectStaffList).subscribe(staff => {
+      this.allStaff = staff;
+      this.filteredStaff = [...staff];
+    });
   }
 
   showDetails(item: Staff | Doctor | Patient): void {
@@ -35,6 +43,14 @@ export class StaffComponent implements OnInit {
       width: '400px',
       data: item
     });
+  }
+
+  onSearch(term: string): void {
+    this.filteredStaff = this.allStaff.filter(s =>
+      s.id.toString().includes(term) ||
+      s.name.toLowerCase().includes(term) ||
+      s.email.toLowerCase().includes(term)
+    );
   }
 
 }
