@@ -31,10 +31,10 @@
 .card-subtitle {
   color: #d1e7ff;
   font-size: 13px;
-}
+} */
 
 /* List items */
-.list-group-item {
+.list-group-item { 
   padding: 15px 20px;
   font-size: 14px;
   color: #5a5c69;
@@ -107,3 +107,5 @@
     transform: none;
   }
 }
+
+

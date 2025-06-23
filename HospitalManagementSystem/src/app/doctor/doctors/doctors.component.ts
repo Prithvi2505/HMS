@@ -8,9 +8,9 @@ import { Patient } from 'src/app/Model/patient';
 import { Staff } from 'src/app/Model/staff';
 import { ShowDetailComponent } from 'src/app/shared/show-detail/show-detail.component';
 import { selectDoctorList } from 'src/app/Store/doctor/doctor.selector';
-import { loadDoctors } from 'src/app/Store/doctor/doctor.action';
 import {selectUserId,selectrole} from 'src/app/Store/auth.seletor';
 import { filter } from 'rxjs/operators';
+import { loadDoctors } from 'src/app/Store/doctor/doctor.action';
 
 @Component({
   selector: 'app-doctors',

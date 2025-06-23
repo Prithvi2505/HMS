@@ -1,3 +1,112 @@
-#commonNav {
+/* #commonNav {
     background-color: #9dc7e6;
+} */
+
+/* Darker, modern navbar */
+/* Slightly lighter blue navbar */
+.custom-navbar {
+  background-color: #42a5f5; /* lighter blue */
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
+/* Brand logo styling */
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: #ffffff !important;
+}
+
+/* General link styling */
+.nav-link {
+  position: relative;
+  font-weight: 500;
+  color: #f0f8ff !important;
+  margin-right: 12px;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+/* Underline animation effect */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+/* On hover or active link */
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* On hover - also change text color a bit */
+.nav-link:hover {
+  color: #ffffff !important;
+}
+
+/* Enhanced dropdown menu */
+.dropdown-menu {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: none;
+  min-width: 180px;
+}
+
+.dropdown-item {
+  font-weight: 500;
+  color: #333;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  padding: 8px 16px;
+}
+
+.dropdown-item:hover {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+/* Logout button */
+.btn-logout {
+  background-color: #f44336;
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: #d32f2f;
+}
+
+/* Same base nav link underline */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Apply underline on hover or when active */
+.nav-link:hover::after,
+.nav-link.active::after,
+.active-parent > .nav-link::after {
+  width: 100%;
+}
+
+/* Lighter underline */
+.active-parent > .nav-link::after {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+

@@ -1,140 +1,99 @@
 <div class="bg">
-    <div class="overlay">
-        <mat-card>
-            <mat-card-header>
-                <h1>Registration Form</h1>
-            </mat-card-header>
-            <mat-card-content>
-                <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+  <div class="overlay">
+    <mat-card>
+      <mat-card-header>
+        <h1>Registration Form</h1>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+          <!-- Role -->
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Select Role</mat-label>
+            <mat-select formControlName="role">
+              <mat-option *ngFor="let role of roles" [value]="role.value">
+                {{ role.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-                    <!-- Select Role -->
-                    <mat-form-field appearance="fill" class="example-full-width">
-                        <mat-label>Select Role</mat-label>
-                        <mat-select formControlName="role">
-                            <mat-option *ngFor="let role of roles" [value]="role.value">
-                                {{ role.viewValue }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+          <!-- Common Fields -->
+          <div formGroupName="details">
+            <div class="form-row">
+              <mat-form-field class="half-width" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" placeholder="Name" />
+              </mat-form-field>
+              <mat-form-field class="half-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" placeholder="Email" />
+              </mat-form-field>
+            </div>
 
-                    <!-- Dynamic Form Fields -->
-                    <div formGroupName="details" *ngIf="registrationForm.get('details')">
+            <div class="form-row">
+              <mat-form-field class="half-width" appearance="fill">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender">
+                  <mat-option *ngFor="let gender of genders" [value]="gender">
+                    {{ gender }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="half-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" placeholder="Password" />
+              </mat-form-field>
+            </div>
 
-                        <!-- Patient Form -->
-                        <ng-container *ngIf="registrationForm.get('role')!.value === 'patient'">
-                            <div class="form-row">
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Name</mat-label>
-                                    <input matInput formControlName="name" placeholder="Name" />
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Email</mat-label>
-                                    <input matInput type="email" formControlName="email" placeholder="Email" />
-                                </mat-form-field>
-                            </div>
-                            <div class="form-row">
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Gender</mat-label>
-                                    <mat-select formControlName="gender">
-                                        <mat-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Age</mat-label>
-                                    <input matInput type="number" formControlName="age" placeholder="Age" />
-                                </mat-form-field>
-                            </div>
-                            <div class="form-row">
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>City</mat-label>
-                                    <input matInput type="text" formControlName="city" placeholder="City" />
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Mobile No</mat-label>
-                                    <input matInput type="number" formControlName="mobileNo" placeholder="Mobile No" />
-                                </mat-form-field>
-                            </div>
-                            <mat-form-field appearance="fill" class="example-full-width">
-                                <mat-label>Create Password</mat-label>
-                                <input matInput type="password" formControlName="password" placeholder="Password" />
-                            </mat-form-field>
-                        </ng-container>
+            <!-- Patient Fields -->
+            <div *ngIf="registrationForm.get('role')!.value === 'patient'">
+              <div class="form-row">
+                <mat-form-field class="half-width" appearance="fill">
+                  <mat-label>Age</mat-label>
+                  <input matInput type="number" formControlName="age" placeholder="Age" />
+                </mat-form-field>
+                <mat-form-field class="half-width" appearance="fill">
+                  <mat-label>City</mat-label>
+                  <input matInput type="text" formControlName="city" placeholder="City" />
+                </mat-form-field>
+              </div>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Mobile No</mat-label>
+                <input matInput type="number" formControlName="mobileNo" placeholder="Mobile No" />
+              </mat-form-field>
+            </div>
 
-                        <!-- Doctor Form -->
-                        <ng-container *ngIf="registrationForm.get('role')!.value === 'doctor'">
-                            <div class="form-row">
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Name</mat-label>
-                                    <input matInput formControlName="name" placeholder="Name" />
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Email</mat-label>
-                                    <input matInput type="email" formControlName="email" placeholder="Email" />
-                                </mat-form-field>
-                            </div>
-                            <div class="form-row">
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Gender</mat-label>
-                                    <mat-select formControlName="gender">
-                                        <mat-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Specialization</mat-label>
-                                    <input matInput formControlName="specialization" placeholder="Specialization" />
-                                </mat-form-field>
-                            </div>
-                            <div class="form-row">
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Years of Experience</mat-label>
-                                    <input matInput formControlName="yearOfExperience" placeholder="Year of Experience" type="number" />
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Create Password</mat-label>
-                                    <input matInput type="password" formControlName="password" placeholder="Password" />
-                                </mat-form-field>
-                            </div>
-                        </ng-container>
+            <!-- Doctor Fields -->
+            <div *ngIf="registrationForm.get('role')!.value === 'doctor'">
+              <div class="form-row">
+                <mat-form-field class="half-width" appearance="fill">
+                  <mat-label>Specialization</mat-label>
+                  <input matInput formControlName="specialization" placeholder="Specialization" />
+                </mat-form-field>
+                <mat-form-field class="half-width" appearance="fill">
+                  <mat-label>Years of Experience</mat-label>
+                  <input matInput type="number" formControlName="yearOfExperience" placeholder="Years of Experience" />
+                </mat-form-field>
+              </div>
+            </div>
 
-                        <!-- Staff Form -->
-                        <ng-container *ngIf="registrationForm.get('role')!.value === 'staff'">
-                            <div class="form-row">
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Name</mat-label>
-                                    <input matInput formControlName="name" placeholder="Name" />
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Email</mat-label>
-                                    <input matInput type="email" formControlName="email" placeholder="Email" />
-                                </mat-form-field>
-                            </div>
-                            <div class="form-row">
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Gender</mat-label>
-                                    <mat-select formControlName="gender">
-                                        <mat-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <mat-form-field appearance="fill" class="half-width">
-                                    <mat-label>Type</mat-label>
-                                    <mat-select formControlName="type">
-                                        <mat-option *ngFor="let type of staffTypes" [value]="type">{{ type }}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <mat-form-field appearance="fill" class="example-full-width">
-                                <mat-label>Create Password</mat-label>
-                                <input matInput type="password" formControlName="password" placeholder="Password" />
-                            </mat-form-field>
-                        </ng-container>
+            <!-- Staff Fields -->
+            <div *ngIf="registrationForm.get('role')!.value === 'staff'">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Staff Type</mat-label>
+                <mat-select formControlName="type">
+                  <mat-option *ngFor="let type of staffTypes" [value]="type">
+                    {{ type }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
 
-                    </div>
-
-                    <button mat-flat-button color="primary" type="submit">Register</button>
-                    <button mat-flat-button color="warn" type="button" (click)="onCancel()">Cancel</button>
-
-                </form>
-            </mat-card-content>
-        </mat-card>
-    </div>
+          <!-- Buttons -->
+          <button mat-flat-button color="primary" type="submit">Register</button>
+          <button mat-flat-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
