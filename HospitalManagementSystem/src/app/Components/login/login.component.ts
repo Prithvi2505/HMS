@@ -32,7 +32,7 @@ export class LoginComponent {
     private router: Router,
     private store: Store,
     private authService: AuthService ,
-    private tokenService: TokenService // Inject service
+    private tokenService: TokenService
   ) {}
 
   onLogin() {
@@ -45,15 +45,10 @@ export class LoginComponent {
 
     this.authService.login(loginData).subscribe({
       next: (res) => {
-        console.log('Login response:', res);
         localStorage.setItem('auth', JSON.stringify({token: res.token}));
         this.role = this.tokenService.getUserRole()!;
         this.id = this.tokenService.getUserId()!;
         this.store.dispatch(login({ userid: this.id, role: this.role }));
-
-        console.log(this.tokenService.getUserEmail());
-        console.log(this.tokenService.getUserId());
-        console.log(this.tokenService.getUserRole());
         this.router.navigate(['/home']);
       },
       error: (err) => {

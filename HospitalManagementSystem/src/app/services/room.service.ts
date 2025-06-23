@@ -25,13 +25,13 @@ export class RoomService {
   return this.http.put(`http://localhost:8080/staff/unassign-room/${staffId}/${roomId}`, {});
   }
   createRoom(data: { type: string; capacity: number; price: number }): Observable<RoomResponse> {
-    return this.http.post<RoomResponse>(`${this.apiUrl}/create`, data);
+    return this.http.post<RoomResponse>(`${this.apiUrl}`, data);
   }
   updateRoom(id: number, data: { type: string; capacity: number; price: number }): Observable<RoomResponse> {
-    return this.http.put<RoomResponse>(`${this.apiUrl}/update/${id}`, data);
+    return this.http.put<RoomResponse>(`${this.apiUrl}/${id}`, data);
   }
   deleteRoom(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
 

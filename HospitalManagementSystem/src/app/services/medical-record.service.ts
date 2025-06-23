@@ -11,7 +11,7 @@ export class MedicalRecordService {
   constructor(private http: HttpClient) { }
 
   createRecord(record: any): Observable<any> {
-    return this.http.post(`${BASE_URL}/create`, record);
+    return this.http.post(`${BASE_URL}`, record);
   }
 
   getAllRecords(): Observable<any[]> {
@@ -31,6 +31,6 @@ export class MedicalRecordService {
   }
 
   deleteRecord(id: number): Observable<void> {
-    return this.http.delete<void>(`${BASE_URL}/delete/${id}`);
+    return this.http.delete<void>(`${BASE_URL}/${id}`);
   }
 }

@@ -11,14 +11,14 @@ export class RegistrationService {
   constructor(private http: HttpClient) {}
 
   registerPatient(patient: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/patients/create`, patient);
+    return this.http.post(`${this.baseUrl}/patients`, patient);
   }
 
   registerDoctor(doctor: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/doctors/create`, doctor);
+    return this.http.post(`${this.baseUrl}/doctors`, doctor);
   }
 
   registerStaff(staff: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/staff/create`, staff);
+    return this.http.post(`${this.baseUrl}/staff`, staff);
   }
 }

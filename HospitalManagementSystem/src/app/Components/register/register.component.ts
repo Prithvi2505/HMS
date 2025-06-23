@@ -77,7 +77,6 @@ registrationForm!: FormGroup;
   
     const formData = this.registrationForm.value;
     const payload = formData.details;
-    console.log(payload);
   
     switch (formData.role) {
       case 'patient':

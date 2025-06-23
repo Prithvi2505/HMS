@@ -27,7 +27,7 @@ export class ListComponent {
 
    onButtonClick() {
     if (this.action) {
-      this.action(this.showList as Patient | Doctor | Staff); // Pass the item data to parent
+      this.action(this.showList as Patient | Doctor | Staff); 
     }
   }
   navToMed(id:any){
@@ -44,17 +44,14 @@ export class ListComponent {
 
   dialogRef.afterClosed().subscribe(result => {
   if (result?.action === 'update' || result?.action === 'delete') {
-    this.onButtonClick(); // Trigger parent's action to re-fetch data
+    this.onButtonClick();
   }
 });
 }
 shouldShowEditIcon(): boolean {
-  // Doctor can edit any patient or staff
   if (this.role === 'doctor' && (this.listType === 'patient' || this.listType === 'staff')) {
     return true;
   }
-
-  // Only allow editing own profile
   return this.loggedInUserId === this.showList.id && this.role === this.listType;
 }
 

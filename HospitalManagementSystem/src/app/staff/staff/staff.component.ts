@@ -20,7 +20,6 @@ import { TokenService } from 'src/app/services/token.service';
 export class StaffComponent implements OnInit {
   allStaff: Staff[] = [];
   filteredStaff: Staff[] = [];
-  staffList$: Observable<Staff[]> = this.store.select(selectStaffList);
   loggedInUserId: number | null = null;
   role!: string;
 

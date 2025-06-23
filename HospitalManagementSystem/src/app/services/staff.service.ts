@@ -16,11 +16,11 @@ export class StaffService {
   }
 
    updateStaff(id: number, updatedData: Partial<Staff>): Observable<Staff> {
-      return this.http.put<Staff>(`${this.apiUrl}/update/${id}`, updatedData);
+      return this.http.put<Staff>(`${this.apiUrl}/${id}`, updatedData);
     }
   
     deleteStaff(id: number): Observable<void> {
-      return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
+      return this.http.delete<void>(`${this.apiUrl}/${id}`);
     }
     assignRoomToStaff(staffId: number, roomId: number): Observable<Staff> {
       return this.http.put<Staff>(`${this.apiUrl}/assign-room/${staffId}/${roomId}`, {});

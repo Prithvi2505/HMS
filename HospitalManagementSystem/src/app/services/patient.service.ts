@@ -15,10 +15,10 @@ export class PatientService {
     return this.http.get<Patient[]>(this.baseUrl); // Interceptor adds token
   }
    updatePatient(id: number, updatedData: Partial<Patient>): Observable<Patient> {
-    return this.http.put<Patient>(`${this.baseUrl}/update/${id}`, updatedData);
+    return this.http.put<Patient>(`${this.baseUrl}/${id}`, updatedData);
   }
 
   deletePatient(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

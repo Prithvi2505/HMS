@@ -90,18 +90,10 @@ export class EditUserComponent implements OnInit {
 
   onDelete(): void {
     const id = this.data.id;
-    if(this.data.role === 'patient'){
-    const confirmDelete = confirm(`Are you sure you want to delete Patient ID ${id}?`);
+    const role = this.data.role.toUpperCase();
+    const confirmDelete = confirm(`Are you sure you want to delete ${role} ID ${id}?`);
     if (!confirmDelete) return;
-    }
-    if(this.data.role === 'doctor'){
-    const confirmDelete = confirm(`Are you sure you want to delete Doctor ID ${id}?`);
-    if (!confirmDelete) return;
-    }
-    if(this.data.role === 'staff'){
-    const confirmDelete = confirm(`Are you sure you want to delete Staff ID ${id}?`);
-    if (!confirmDelete) return;
-    }
+    
 
     if (this.data.role === 'patient') {
       this.store.dispatch(deletePatient({ id }));

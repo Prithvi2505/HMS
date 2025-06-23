@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { AddAppointmentComponent } from 'src/app/dialogs/add-appointment/add-appointment.component';
-import { EditAppointmentComponent } from 'src/app/dialogs/edit-appointment/edit-appointment.component';
+import { AddAppointmentComponent } from 'src/app/appointments/add-appointment/add-appointment.component';
+import { EditAppointmentComponent } from 'src/app/appointments/edit-appointment/edit-appointment.component';
 import { Appointment } from 'src/app/Model/appointment';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { TokenService } from 'src/app/services/token.service';
@@ -78,7 +78,7 @@ export class AppointmentTableComponent implements OnInit {
     this.appointmentService.getAllAppointments().subscribe(data => {
     this.appointments = data.map(app => ({
       ...app,
-      time: new Date(`1970-01-01T${app.time}`) // Convert string to Date
+      time: new Date(`1970-01-01T${app.time}`)
     }));
     this.dataSource = this.appointments;
   });
@@ -88,7 +88,7 @@ export class AppointmentTableComponent implements OnInit {
     this.appointmentService.getAppointmentsByDoctorId(id).subscribe(data => {
     this.appointments = data.map(app => ({
       ...app,
-      time: new Date(`1970-01-01T${app.time}`) // Convert string to Date
+      time: new Date(`1970-01-01T${app.time}`) 
     }));
     this.dataSource = this.appointments;
   });

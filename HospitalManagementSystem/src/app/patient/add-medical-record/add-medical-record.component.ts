@@ -41,7 +41,6 @@ export class AddMedicalRecordComponent implements OnInit {
       medicineUsed: form.medicineUsed,
       patientId: Number(this.patientId)
     };
-    console.log(this.addMedicalRecordForm.value, "patientId from route:", this.patientId);
 
     this.medicalService.createRecord(record).subscribe({
       next: () => {

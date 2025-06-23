@@ -24,7 +24,7 @@ export class AppointmentService {
   }
 
   createAppointment(appointment: any): Observable<Appointment> {
-    return this.http.post<Appointment>(`${this.baseUrl}/create`, appointment);
+    return this.http.post<Appointment>(`${this.baseUrl}`, appointment);
   }
 
   updateAppointment(id: number, appointment: any): Observable<Appointment> {
@@ -32,6 +32,6 @@ export class AppointmentService {
 }
 
   deleteAppointment(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

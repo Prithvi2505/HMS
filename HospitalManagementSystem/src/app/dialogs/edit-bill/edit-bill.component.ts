@@ -51,7 +51,7 @@ const formattedDate = rawDate
 const formData = {
   amount: this.editBillForm.value.amount,
   status: this.editBillForm.value.status,
-  date: formattedDate, // ✅ Now it's a string
+  date: formattedDate, 
   billDetail: this.editBillForm.value.billDetail,
   patientId: this.editBillForm.value.patientId
 };

@@ -86,9 +86,10 @@ export class BillTableComponent implements OnInit {
       error: (err) => console.error('Failed to fetch patient bills:', err)
     });
   }
-  onUpdate(item: any) { const dialogRef = this.dialog.open(EditBillComponent, {
+  onUpdate(item: any) { 
+    const dialogRef = this.dialog.open(EditBillComponent, {
       width: '400px',
-      data: item  // pass the room data to be edited
+      data: item 
     });
 
     dialogRef.afterClosed().subscribe(result => {

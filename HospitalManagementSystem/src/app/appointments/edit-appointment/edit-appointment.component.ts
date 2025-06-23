@@ -11,6 +11,7 @@ import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions'
   styleUrls: ['./edit-appointment.component.css']
 })
 export class EditAppointmentComponent {
+today!: string;
 editAppointmentForm: FormGroup;
 
   constructor(
@@ -36,24 +37,31 @@ editAppointmentForm: FormGroup;
   }
 
   onUpdateAppointment(): void {
-    if (this.editAppointmentForm.invalid) return;
     const rawDate = this.editAppointmentForm.value.date;
-    let formattedDate = '';
-    if (rawDate) {
-      const jsDate = new Date(rawDate);
-      const year = jsDate.getFullYear();
-      const month = String(jsDate.getMonth() + 1).padStart(2, '0');
-      const day = String(jsDate.getDate()).padStart(2, '0');
-      formattedDate = `${year}-${month}-${day}`; // ⬅️ Send only date part
+  let formattedDate = '';
+  if (rawDate) {
+    const jsDate = new Date(rawDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // normalize today's date to midnight
+    if (jsDate < today) {
+      this.store.dispatch(showError({ message: 'Appointment date cannot be in the past.' }));
+      return;
     }
-    const formValue = this.editAppointmentForm.value;
-    const updatedAppointment = {
-      id: this.data.id,
-      patientId: formValue.patientId,
-      doctorId: formValue.doctorId,
-      date: formattedDate,
-      time: formValue.time
-    };
+
+    const year = jsDate.getFullYear();
+    const month = String(jsDate.getMonth() + 1).padStart(2, '0');
+    const day = String(jsDate.getDate()).padStart(2, '0');
+    formattedDate = `${year}-${month}-${day}`;
+  }
+
+  const updatedAppointment = {
+    id: this.data.id,
+    patientId: Number(this.editAppointmentForm.value.patientId),
+    doctorId: Number(this.editAppointmentForm.value.doctorId),
+    date: formattedDate,
+    time: this.editAppointmentForm.value.time
+  };
+    
 
     this.appointmentService.updateAppointment(updatedAppointment.id, updatedAppointment).subscribe({
       next: () => {

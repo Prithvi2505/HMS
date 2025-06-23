@@ -16,10 +16,10 @@ export class DoctorService {
     return this.http.get<Doctor[]>(this.apiUrl);
   }
    updateDoctor(id: number, updatedData: Partial<Doctor>): Observable<Doctor> {
-    return this.http.put<Doctor>(`${this.apiUrl}/update/${id}`, updatedData);
+    return this.http.put<Doctor>(`${this.apiUrl}/${id}`, updatedData);
   }
 
   deleteDoctor(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

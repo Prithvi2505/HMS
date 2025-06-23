@@ -39,7 +39,7 @@ export class AddBillComponent {
       const year = jsDate.getFullYear();
       const month = String(jsDate.getMonth() + 1).padStart(2, '0');
       const day = String(jsDate.getDate()).padStart(2, '0');
-      formattedDate = `${year}-${month}-${day}`; // ⬅️ Send only date part
+      formattedDate = `${year}-${month}-${day}`; 
     }
 
     const formData = {
@@ -52,7 +52,6 @@ export class AddBillComponent {
 
     this.billService.createBill(formData).subscribe({
       next: (response) => {
-        console.log('Bill created:', response);
         this.store.dispatch(showSuccess({ message: 'Bill successfully created!'}));
         this.dialogRef.close(true); 
       },

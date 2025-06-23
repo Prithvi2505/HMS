@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { AddAppointmentComponent } from 'src/app/dialogs/add-appointment/add-appointment.component';
+import { AddAppointmentComponent } from 'src/app/appointments/add-appointment/add-appointment.component';
 import { AddBillComponent } from 'src/app/dialogs/add-bill/add-bill.component';
 import { AssignStaffRoomComponent } from 'src/app/dialogs/assign-staff-room/assign-staff-room.component';
-import { AddMedicalRecordComponent } from 'src/app/dialogs/add-medical-record/add-medical-record.component';
+import { AddMedicalRecordComponent } from 'src/app/patient/add-medical-record/add-medical-record.component';
 
 
 

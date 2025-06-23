@@ -44,7 +44,6 @@ export class AssignedRoomComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       this.staffId = id ? Number(id) : 0;
-      console.log(this.staffId);
       this.loadRooms(this.staffId);
     });
   }
