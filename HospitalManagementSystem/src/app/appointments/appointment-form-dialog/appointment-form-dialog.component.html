@@ -1,0 +1,17 @@
+<app-dynamic-form
+  [formConfig]="formConfig"
+  [formTitle]="title"
+  [submitButtonText]="submitText"
+  [initialValues]="initialValues"
+  [onFormChange]="onFormChange"
+  [dateFilter]="dateFilter"
+  (formSubmit)="onSubmit($event)"
+  (cancel)="onCancel()">
+</app-dynamic-form>
+
+<div *ngIf="maxSlots !== null" class="availability-info" style="margin: 0.5rem 1rem;">
+  <small *ngIf="slotFull" class="text-danger">No slots left for the selected day.</small>
+  <small *ngIf="!slotFull && slotsLeft !== null">
+    {{ slotsLeft }} slot{{ slotsLeft === 1 ? '' : 's' }} left out of {{ maxSlots }}
+  </small>
+</div>

@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
 import { ShowDetailComponent } from './show-detail/show-detail.component';
 import { RouterModule } from '@angular/router';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     MaterialTableComponent,
     ShowDetailComponent,
     SearchBarComponent,
+    DynamicFormComponent,
   ],
   imports: [
     CommonModule,
@@ -78,7 +80,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     MatNativeDateModule,
     ShowDetailComponent,
     SearchBarComponent,
-    FormsModule
+    FormsModule,
+    DynamicFormComponent,
   ]
 })
 export class SharedModule { }
