@@ -84,3 +84,13 @@ mat-form-field .mat-form-field {
 .mat-select-trigger {
     padding: 10px;
 }
+.availability-info {
+  margin-bottom: 10px;
+  margin-top: -10px;
+}
+
+.text-danger {
+  color: #e53935;
+  font-weight: 500;
+}
+

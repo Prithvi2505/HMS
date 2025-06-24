@@ -22,4 +22,7 @@ export class DoctorService {
   deleteDoctor(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+  getDoctorById(id: number) {
+  return this.http.get<Doctor>(`${this.apiUrl}/${id}`);
+}
 }

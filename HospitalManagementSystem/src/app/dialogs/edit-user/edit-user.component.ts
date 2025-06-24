@@ -56,7 +56,8 @@ export class EditUserComponent implements OnInit {
       case 'doctor':
         roleControls = {
           specialization: [this.data.specialization, Validators.required],
-          yearOfExperience: [this.data.yearOfExperience, [Validators.required, Validators.min(0)]]
+          yearOfExperience: [this.data.yearOfExperience, [Validators.required, Validators.min(0)]],
+          maxAppointmentsPerDay: [this.data.maxAppointmentsPerDay, [Validators.required, Validators.min(0)]]
         };
         break;
       case 'staff':

@@ -1,12 +1,13 @@
+// add-appointment.component.ts
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { Appointment } from 'src/app/Model/appointment';
 import { AppointmentService } from 'src/app/services/appointment.service';
+import { DoctorService } from 'src/app/services/doctor.service';
 import { Store } from '@ngrx/store';
-import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
-
+import { showError, showSuccess } from 'src/app/Store/snackbar/snackbar.actions';
+import { forkJoin, of } from 'rxjs';
+import { switchMap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-appointment',
@@ -14,66 +15,113 @@ import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions'
   styleUrls: ['./add-appointment.component.css']
 })
 export class AddAppointmentComponent {
-  today!: string;
-  appointments: Appointment[] = [];
-  constructor(private router: Router, private dialogRef: MatDialogRef<AddAppointmentComponent>, private appointmentService: AppointmentService,
-    private store: Store
-  ) {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    this.today = `${year}-${month}-${day}`;
-  }
+  today: Date = new Date();
+  bookedDates: string[] = [];
+  slotFull = false;
+  slotsLeft: number | null = null;
+  maxSlots: number | null = null;
+
   addAppointmentForm = new FormGroup({
     patientId: new FormControl('', Validators.required),
     doctorId: new FormControl('', Validators.required),
     date: new FormControl('', Validators.required),
     time: new FormControl('', Validators.required)
-  })
+  });
 
-  OnCancel() {
+  constructor(
+    private dialogRef: MatDialogRef<AddAppointmentComponent>,
+    private appointmentService: AppointmentService,
+    private doctorService: DoctorService,
+    private store: Store
+  ) {}
+
+  onCancel() {
     this.dialogRef.close();
   }
-  
- addAppointment() {
-  if (this.addAppointmentForm.invalid) return;
 
-  const rawDate = this.addAppointmentForm.value.date;
-  let formattedDate = '';
-  if (rawDate) {
-    const jsDate = new Date(rawDate);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // normalize today's date to midnight
-    if (jsDate < today) {
-      this.store.dispatch(showError({ message: 'Appointment date cannot be in the past.' }));
-      return;
-    }
+  addAppointment() {
+    if (this.addAppointmentForm.invalid) return;
 
-    const year = jsDate.getFullYear();
-    const month = String(jsDate.getMonth() + 1).padStart(2, '0');
-    const day = String(jsDate.getDate()).padStart(2, '0');
-    formattedDate = `${year}-${month}-${day}`;
+    const rawDateString = this.addAppointmentForm.value.date;
+    const rawDate = new Date(rawDateString!);
+    const timeStr = this.addAppointmentForm.value.time;
+    const doctorId = Number(this.addAppointmentForm.value.doctorId);
+    const patientId = Number(this.addAppointmentForm.value.patientId);
+
+    const year = rawDate.getFullYear();
+    const month = String(rawDate.getMonth() + 1).padStart(2, '0');
+    const day = String(rawDate.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+
+    forkJoin({
+      count: this.appointmentService.getAppointmentCount(doctorId, formattedDate),
+      doctor: this.doctorService.getDoctorById(doctorId)
+    }).pipe(
+      switchMap(({ count, doctor }) => {
+        this.maxSlots = doctor.maxAppointmentsPerDay;
+        this.slotsLeft = doctor.maxAppointmentsPerDay - count;
+        this.slotFull = this.slotsLeft <= 0;
+
+        if (this.slotFull) {
+          this.store.dispatch(showError({ message: 'All slots are full for this day.' }));
+          return of(null);
+        }
+
+        return this.appointmentService.createAppointment({
+          patientId,
+          doctorId,
+          date: formattedDate,
+          time:timeStr
+        });
+      }),
+      catchError(err => {
+        this.store.dispatch(showError({ message: err.error?.message || 'Failed to create appointment.' }));
+        return of(null);
+      })
+    ).subscribe(result => {
+      if (result) {
+        this.store.dispatch(showSuccess({ message: 'Appointment successfully created!' }));
+        this.dialogRef.close(true);
+      }
+    });
   }
 
-  const formData = {
-    patientId: Number(this.addAppointmentForm.value.patientId),
-    doctorId: Number(this.addAppointmentForm.value.doctorId),
-    date: formattedDate,
-    time: this.addAppointmentForm.value.time
+  onDoctorOrDateChange() {
+    this.slotFull = false;
+    this.maxSlots = null;
+    this.slotsLeft = null;
+    this.bookedDates = [];
+
+    const doctorId = Number(this.addAppointmentForm.value.doctorId);
+    if (!doctorId) return;
+
+    const today = new Date();
+    const requests = Array.from({ length: 30 }, (_, i) => {
+      const checkDate = new Date(today);
+      checkDate.setDate(today.getDate() + i);
+      const formatted = checkDate.toISOString().split('T')[0];
+
+      return this.appointmentService.getAppointmentCount(doctorId, formatted).pipe(
+        switchMap(count =>
+          this.doctorService.getDoctorById(doctorId).pipe(
+            switchMap(doctor => {
+              if (count >= doctor.maxAppointmentsPerDay) {
+                this.bookedDates.push(formatted);
+              }
+              return of(null);
+            })
+          )
+        )
+      );
+    });
+
+    forkJoin(requests).subscribe();
+  }
+
+  dateFilter = (d: Date | null): boolean => {
+    if (!d) return false;
+    const localDate = new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+    return !this.bookedDates.includes(localDate);
   };
-
-  this.appointmentService.createAppointment(formData).subscribe({
-    next: (response) => {
-      console.log('Appointment created:', response);
-      this.store.dispatch(showSuccess({ message: 'Appointment successfully created!' }));
-      this.dialogRef.close(true);
-    },
-    error: (error) => {
-      console.error('Error creating appointment:', error);
-      this.store.dispatch(showError({ message: error.error?.message || 'Failed to create appointment. Please try again.' }));
-    }
-  });
-}
-
+  
 }

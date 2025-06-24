@@ -42,6 +42,10 @@
           <mat-label>Years of Experience</mat-label>
           <input matInput type="number" formControlName="yearOfExperience" required />
         </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Max Appointments Per Day</mat-label>
+          <input matInput type="number" formControlName="maxAppointmentsPerDay" required />
+        </mat-form-field>
       </ng-container>
 
       <ng-container *ngIf="data.role === 'staff'">

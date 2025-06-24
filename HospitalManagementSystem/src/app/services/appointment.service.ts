@@ -26,6 +26,9 @@ export class AppointmentService {
   createAppointment(appointment: any): Observable<Appointment> {
     return this.http.post<Appointment>(`${this.baseUrl}`, appointment);
   }
+  getAppointmentCount(doctorId: number, date: string): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/count?doctorId=${doctorId}&date=${date}`);
+  }
 
   updateAppointment(id: number, appointment: any): Observable<Appointment> {
   return this.http.put<Appointment>(`${this.baseUrl}/${id}`, appointment);

@@ -2,5 +2,6 @@ import { List } from "./list";
 
 export interface Doctor extends List{
     yearOfExperience:number,
-    specialization: string
+    specialization: string,
+    maxAppointmentsPerDay:number,
 }

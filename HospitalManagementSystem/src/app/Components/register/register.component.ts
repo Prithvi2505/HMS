@@ -63,6 +63,7 @@ export class RegisterComponent implements OnInit {
     } else if (role === 'doctor') {
       details.addControl('specialization', this.fb.control('', Validators.required));
       details.addControl('yearOfExperience', this.fb.control('', Validators.required));
+      details.addControl('maxAppointmentsPerDay',this.fb.control('',Validators.required));
     } else if (role === 'staff') {
       details.addControl('type', this.fb.control('', Validators.required));
     }
