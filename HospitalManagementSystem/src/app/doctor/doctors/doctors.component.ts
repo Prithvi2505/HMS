@@ -1,15 +1,12 @@
 import { TokenService } from './../../services/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Doctor } from 'src/app/Model/doctor';
 import { MatDialog } from '@angular/material/dialog';
 import { Patient } from 'src/app/Model/patient';
 import { Staff } from 'src/app/Model/staff';
 import { ShowDetailComponent } from 'src/app/shared/show-detail/show-detail.component';
 import { selectDoctorList } from 'src/app/Store/doctor/doctor.selector';
-import {selectUserId,selectrole} from 'src/app/Store/auth.seletor';
-import { filter } from 'rxjs/operators';
 import { loadDoctors } from 'src/app/Store/doctor/doctor.action';
 
 @Component({

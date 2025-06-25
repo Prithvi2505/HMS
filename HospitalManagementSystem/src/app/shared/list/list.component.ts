@@ -1,13 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { EditUserComponent } from 'src/app/dialogs/edit-user/edit-user.component';
+import { EditUserComponent } from 'src/app/shared/edit-user/edit-user.component';
 import { Doctor } from 'src/app/Model/doctor';
 import { List } from 'src/app/Model/list';
 import { Patient } from 'src/app/Model/patient';
 import { Staff } from 'src/app/Model/staff';
-import { selectrole } from 'src/app/Store/auth.seletor';
 
 @Component({
   selector: 'app-list',

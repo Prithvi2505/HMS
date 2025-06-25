@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Staff } from 'src/app/Model/staff';
 import { MatDialog } from '@angular/material/dialog';
 import { Doctor } from 'src/app/Model/doctor';
@@ -8,7 +7,6 @@ import { Patient } from 'src/app/Model/patient';
 import { ShowDetailComponent } from 'src/app/shared/show-detail/show-detail.component';
 import { selectStaffList } from 'src/app/Store/staff/staff.selector';
 import { loadStaff } from 'src/app/Store/staff/staff.action';
-import {selectUserId,selectrole} from 'src/app/Store/auth.seletor';
 import { TokenService } from 'src/app/services/token.service';
 
 

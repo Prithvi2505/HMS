@@ -1,6 +1,5 @@
 import { Component,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AssignStaffRoomComponent } from 'src/app/dialogs/assign-staff-room/assign-staff-room.component';
 import { ActivatedRoute } from '@angular/router';
 import { RoomService } from 'src/app/services/room.service';
 import { RoomWithStaff } from 'src/app/Model/room';

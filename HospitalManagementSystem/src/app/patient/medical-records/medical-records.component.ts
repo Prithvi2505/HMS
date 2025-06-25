@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
-import { AddMedicalRecordComponent } from 'src/app/patient/add-medical-record/add-medical-record.component';
-import { EditMedicalRecordComponent } from 'src/app/patient/edit-medical-record/edit-medical-record.component';
 import { MedicalRecordService } from 'src/app/services/medical-record.service';
 import { TokenService } from 'src/app/services/token.service';
 import { Store } from '@ngrx/store';
 import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions';
+import { MedicalRecordFormDialogComponent } from '../medical-record-form-dialog/medical-record-form-dialog.component';
 
 
 @Component({
@@ -59,9 +57,12 @@ export class MedicalRecordsComponent implements OnInit {
   }
 
   addMedicalRecord() {
-    const dialogRef = this.dialog.open(AddMedicalRecordComponent, {
+    const dialogRef = this.dialog.open(MedicalRecordFormDialogComponent, {
       width: '500px',
-      data: { patientId: this.patientId }
+      data: {
+      mode: 'add',
+      patientId: this.patientId
+    }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -76,9 +77,12 @@ export class MedicalRecordsComponent implements OnInit {
   }
 
   onUpdate(item: any) {
-    const dialogRef = this.dialog.open(EditMedicalRecordComponent, {
+    const dialogRef = this.dialog.open(MedicalRecordFormDialogComponent, {
       width: '400px',
-      data: item 
+      data: {
+      mode: 'edit',
+      initialValues: item
+    } 
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -5,12 +5,14 @@ import { PatientRoutingModule } from './patient-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MedicalRecordsComponent } from './medical-records/medical-records.component';
 import { PatientsComponent } from './patients/patients.component';
+import { MedicalRecordFormDialogComponent } from './medical-record-form-dialog/medical-record-form-dialog.component';
 
 
 @NgModule({
   declarations: [
     MedicalRecordsComponent,
     PatientsComponent,
+    MedicalRecordFormDialogComponent,
   ],
   imports: [
     CommonModule,

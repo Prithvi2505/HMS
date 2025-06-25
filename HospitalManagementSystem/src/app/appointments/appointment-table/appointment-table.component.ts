@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { AddAppointmentComponent } from 'src/app/appointments/add-appointment/add-appointment.component';
-import { EditAppointmentComponent } from 'src/app/appointments/edit-appointment/edit-appointment.component';
 import { Appointment } from 'src/app/Model/appointment';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { TokenService } from 'src/app/services/token.service';

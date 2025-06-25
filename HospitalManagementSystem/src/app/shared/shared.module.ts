@@ -27,6 +27,14 @@ import { ShowDetailComponent } from './show-detail/show-detail.component';
 import { RouterModule } from '@angular/router';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { BillFormDialogComponent } from './bill-form-dialog/bill-form-dialog.component';
+import { RoomFormDialogComponent } from './room-form-dialog/room-form-dialog.component';
+import { AssignStaffRoomDialogComponent } from './assign-staff-room-dialog/assign-staff-room-dialog.component';
+import { RoomTableComponent } from './room-table/room-table.component';
+import { BillTableComponent } from './bill-table/bill-table.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -40,6 +48,15 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     ShowDetailComponent,
     SearchBarComponent,
     DynamicFormComponent,
+    BillFormDialogComponent,
+    RoomFormDialogComponent,
+    AssignStaffRoomDialogComponent,
+    RoomTableComponent,
+    BillTableComponent,
+    EditUserComponent,
+    LoginComponent,
+    RegisterComponent,
+
   ],
   imports: [
     CommonModule,
@@ -82,6 +99,14 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     SearchBarComponent,
     FormsModule,
     DynamicFormComponent,
+    BillFormDialogComponent,
+    RoomFormDialogComponent,
+    AssignStaffRoomDialogComponent,
+    RoomTableComponent,
+    BillTableComponent,
+    EditUserComponent,
+    LoginComponent,
+    RegisterComponent,
   ]
 })
 export class SharedModule { }
