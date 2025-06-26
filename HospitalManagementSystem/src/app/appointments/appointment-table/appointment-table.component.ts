@@ -67,6 +67,10 @@ export class AppointmentTableComponent implements OnInit {
     });
   }
 
+  opencalendar(){
+    
+  }
+
   addAppointment() {
     const dialogRef = this.dialog.open(AppointmentFormDialogComponent, {
       width: '500px',

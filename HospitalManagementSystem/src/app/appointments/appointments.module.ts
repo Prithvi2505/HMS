@@ -10,7 +10,7 @@ import { AppointmentFormDialogComponent } from './appointment-form-dialog/appoin
 @NgModule({
   declarations: [
     AppointmentTableComponent,
-    AppointmentFormDialogComponent
+    AppointmentFormDialogComponent,
   ],
   imports: [
     CommonModule,
