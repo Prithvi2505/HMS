@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Appointment } from 'src/app/Model/appointment';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { TokenService } from 'src/app/services/token.service';
@@ -28,7 +28,8 @@ export class AppointmentTableComponent implements OnInit {
     private route: ActivatedRoute,
     private appointmentService: AppointmentService,
     private tokenService: TokenService,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -67,8 +68,8 @@ export class AppointmentTableComponent implements OnInit {
     });
   }
 
-  opencalendar(){
-    
+  openCalendar() {
+    this.router.navigate(['/appointments/calendar', this.user.userid]);
   }
 
   addAppointment() {
