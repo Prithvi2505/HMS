@@ -8,25 +8,30 @@
   <div class="calendar-grid-wrapper">
     <div class="calendar-header d-flex">
       <div class="time-header"></div>
-      <div class="time-slot-cell" *ngFor="let time of timeSlots">{{ time.substring(0, 5) }}</div>
+      <div class="time-slot-cell" *ngFor="let time of timeSlots">{{ time }}</div>
     </div>
 
-    <div class="calendar-body">
-      <div class="date-row" *ngFor="let day of calendarDays; let rowIndex = index">
-        <div class="date-label">{{ day.label }}</div>
+    <div class="calendar-body position-relative">
+      <div class="date-row" *ngFor="let date of calendarDates; let rowIndex = index">
+        <div class="date-label">
+          {{ date.toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' }) }}
+        </div>
         <div class="slot-row">
-          <div class="time-slot-cell empty-cell" *ngFor="let time of timeSlots; let colIndex = index"></div>
+          <div class="time-slot-cell empty-cell" *ngFor="let time of timeSlots"></div>
         </div>
       </div>
 
       <!-- Appointments -->
       <ng-container *ngFor="let app of appointments">
-        <div
-          class="appointment-block"
-          [ngStyle]="getAppointmentStyle(app)">
-          {{ getAppointmentLabel(app) }}
-        </div>
-      </ng-container>
+  <ng-container *ngIf="isPlottable(app)">
+    <div
+      class="appointment-block"
+      [ngStyle]="getAppointmentStyle(app)">
+      {{ getAppointmentLabel(app) }}
+    </div>
+  </ng-container>
+</ng-container>
+
     </div>
   </div>
 </div>

@@ -9,91 +9,130 @@ import { AppointmentService } from 'src/app/services/appointment.service';
 })
 export class AppointmentCalendarViewComponent implements OnInit {
   appointments: Appointment[] = [];
-  calendarDays: { label: string, date: string }[] = [];
+  calendarDates: Date[] = [];
   timeSlots: string[] = [];
 
-  cellWidth = 150;
-  cellHeight = 60;
+  cellWidth = 100;
+  cellHeight = 40;
 
-  constructor(private appointmentService: AppointmentService) {}
+  constructor(private appointmentService: AppointmentService) { }
 
   ngOnInit(): void {
-    this.generateCalendarDays();
+    this.generateCalendarDates();
     this.generateTimeSlots();
     this.fetchAppointments();
   }
 
-  generateCalendarDays(): void {
+  generateCalendarDates(): void {
     const today = new Date();
-    this.calendarDays = [];
+    this.calendarDates = [];
 
     for (let i = 0; i < 7; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
-      const label = date.toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' });
-      const dateStr = date.toISOString().split('T')[0];
-      this.calendarDays.push({ label, date: dateStr });
+      this.calendarDates.push(date);
     }
   }
 
   generateTimeSlots(): void {
-    this.timeSlots = [];
-    for (let hour = 8; hour <= 20; hour++) {
-      const h = hour.toString().padStart(2, '0');
-      this.timeSlots.push(`${h}:00:00`);
-    }
+  this.timeSlots = [];
+  for (let hour = 0; hour < 24; hour++) {
+    this.timeSlots.push(`${hour.toString().padStart(2, '0')}:00`);
+    this.timeSlots.push(`${hour.toString().padStart(2, '0')}:30`);
   }
+}
 
   fetchAppointments(): void {
-    this.appointmentService.getAppointmentsByDoctorId(4).subscribe(data => {
-      // Convert time string to Date object for compatibility
-      this.appointments = data.map(app => ({
-        ...app,
-        time: new Date(app.time)
-      }));
+    this.appointmentService.getAppointmentsByDoctorId(12).subscribe((appointments: Appointment[]) => {
+      this.appointments = appointments.map(app => {
+        const fullDateTimeStr = `${app.date}T${app.time}`;
+        const dateTime = new Date(fullDateTimeStr);
+
+        return {
+          ...app,
+          time: dateTime
+        };
+      });
     });
   }
 
-  getAppointmentStyle(app: Appointment) {
-    const timeStr = app.time.toTimeString().substring(0, 8);
-    const colIndex = this.timeSlots.indexOf(timeStr);
-    const rowIndex = this.calendarDays.findIndex(d => d.date === app.date);
+getAppointmentStyle(app: Appointment) {
+  const appDateStr = new Date(app.date).toLocaleDateString('en-CA');
+  const rowIndex = this.calendarDates.findIndex(d =>
+    d.toLocaleDateString('en-CA') === appDateStr
+  );
 
-    if (colIndex === -1 || rowIndex === -1) return {};
+  // Round time to nearest half-hour
+  const rawDate = app.time;
+  const hours = rawDate.getHours();
+  const minutes = rawDate.getMinutes();
+  const roundedMinutes = minutes < 15 ? 0 : (minutes < 45 ? 30 : 0);
+  const roundedHours = minutes >= 45 && hours < 23 ? hours + 1 : hours;
+  const roundedTimeStr = `${roundedHours.toString().padStart(2, '0')}:${roundedMinutes.toString().padStart(2, '0')}`;
 
-    return {
-      top: `${(rowIndex + 1) * this.cellHeight}px`,
-      left: `${(colIndex + 1) * this.cellWidth}px`,
-      width: `${this.cellWidth}px`,
-      height: `${this.cellHeight - 4}px`
-    };
+  const colIndex = this.timeSlots.findIndex(slot => slot === roundedTimeStr);
+
+  if (rowIndex === -1 || colIndex === -1) {
+    console.warn(`❌ Could not place appointment:`, {
+      date: app.date,
+      time: app.time.toLocaleTimeString(),
+      roundedTimeStr,
+      rowIndex,
+      colIndex
+    });
+    return {};
   }
+
+  return {
+    top: `${rowIndex * this.cellHeight + 2}px`,
+    left: `${colIndex * this.cellWidth + 122}px`, // adjust 122 to your left label width
+    width: `${this.cellWidth - 4}px`,
+    height: `${this.cellHeight - 4}px`
+  };
+}
+
+
 
   getAppointmentLabel(app: Appointment): string {
     return `Patient ID: ${app.patientId}`;
   }
 
-  previousWeek() {
-    const first = new Date(this.calendarDays[0].date);
-    first.setDate(first.getDate() - 7);
-    this.calendarDays = [];
+  previousWeek(): void {
+    const start = new Date(this.calendarDates[0]);
+    start.setDate(start.getDate() - 7);
+    this.calendarDates = [];
     for (let i = 0; i < 7; i++) {
-      const date = new Date(first);
-      date.setDate(first.getDate() + i);
-      const label = date.toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' });
-      this.calendarDays.push({ label, date: date.toISOString().split('T')[0] });
+      const date = new Date(start);
+      date.setDate(start.getDate() + i);
+      this.calendarDates.push(date);
     }
   }
 
-  nextWeek() {
-    const first = new Date(this.calendarDays[0].date);
-    first.setDate(first.getDate() + 7);
-    this.calendarDays = [];
+  nextWeek(): void {
+    const start = new Date(this.calendarDates[0]);
+    start.setDate(start.getDate() + 7);
+    this.calendarDates = [];
     for (let i = 0; i < 7; i++) {
-      const date = new Date(first);
-      date.setDate(first.getDate() + i);
-      const label = date.toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' });
-      this.calendarDays.push({ label, date: date.toISOString().split('T')[0] });
+      const date = new Date(start);
+      date.setDate(start.getDate() + i);
+      this.calendarDates.push(date);
     }
   }
+  isPlottable(app: Appointment): boolean {
+  const appDateStr = new Date(app.date).toLocaleDateString('en-CA');
+  const rowIndex = this.calendarDates.findIndex(d =>
+    d.toLocaleDateString('en-CA') === appDateStr
+  );
+
+  const hours = app.time.getHours();
+  const minutes = app.time.getMinutes();
+  const roundedMinutes = minutes < 15 ? 0 : (minutes < 45 ? 30 : 0);
+  const roundedHours = minutes >= 45 && hours < 23 ? hours + 1 : hours;
+  const roundedTimeStr = `${roundedHours.toString().padStart(2, '0')}:${roundedMinutes.toString().padStart(2, '0')}`;
+
+  const colIndex = this.timeSlots.findIndex(slot => slot === roundedTimeStr);
+
+  return rowIndex !== -1 && colIndex !== -1;
+}
+
 }
