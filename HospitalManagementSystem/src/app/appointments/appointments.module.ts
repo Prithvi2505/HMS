@@ -7,7 +7,17 @@ import { AppointmentTableComponent } from './appointment-table/appointment-table
 import { AppointmentFormDialogComponent } from './appointment-form-dialog/appointment-form-dialog.component';
 import { DoctorAppointmentCalendarComponent } from './doctor-appointment-calendar/doctor-appointment-calendar.component';
 import { AppointmentCalendarViewComponent } from './appointment-calendar-view/appointment-calendar-view.component';
-
+import {
+  ScheduleModule,
+  RecurrenceEditorModule,
+} from '@syncfusion/ej2-angular-schedule';
+import {
+  WeekService,
+  DayService,
+  WorkWeekService,
+  MonthService,
+  AgendaService,
+} from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
   declarations: [
@@ -19,7 +29,16 @@ import { AppointmentCalendarViewComponent } from './appointment-calendar-view/ap
   imports: [
     CommonModule,
     AppointmentsRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+    ScheduleModule,
+    RecurrenceEditorModule,
+  ],
+  providers: [
+    WeekService,
+    DayService,
+    WorkWeekService,
+    MonthService,
+    AgendaService,
+  ],
 })
-export class AppointmentsModule { }
+export class AppointmentsModule {}

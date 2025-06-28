@@ -5,13 +5,13 @@ import { DoctorAppointmentCalendarComponent } from './doctor-appointment-calenda
 import { AppointmentCalendarViewComponent } from './appointment-calendar-view/appointment-calendar-view.component';
 
 const routes: Routes = [
-  {path:'',component:AppointmentTableComponent},
-  {path:'doctor/:id',component:AppointmentTableComponent},
-  {path:'calendar/:id',component:AppointmentCalendarViewComponent}
+  { path: '', component: AppointmentTableComponent },
+  { path: 'doctor/:id', component: AppointmentTableComponent },
+  { path: 'calendar/:id', component: DoctorAppointmentCalendarComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppointmentsRoutingModule { }
+export class AppointmentsRoutingModule {}

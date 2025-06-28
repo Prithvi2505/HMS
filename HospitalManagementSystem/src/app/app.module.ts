@@ -18,36 +18,42 @@ import { StaffEffects } from './Store/staff/staff.effects';
 import { DoctorEffects } from './Store/doctor/doctor.effects';
 import { snackbarReducer } from './Store/snackbar/snackbar.reducer';
 import { SnackbarEffects } from './Store/snackbar/snackbar.effects';
-
-
-
+import {
+  ScheduleModule,
+  RecurrenceEditorModule,
+} from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    StoreModule.forRoot({auth: authReducer,
+    ScheduleModule,
+    RecurrenceEditorModule,
+    StoreModule.forRoot({
+      auth: authReducer,
       patients: patientReducer,
       doctors: doctorReducer,
-      staff: staffReducer,snackbar: snackbarReducer}),
-    EffectsModule.forRoot([DoctorEffects,
-  StaffEffects,
-  PatientEffects,
-  SnackbarEffects]),
+      staff: staffReducer,
+      snackbar: snackbarReducer,
+    }),
+    EffectsModule.forRoot([
+      DoctorEffects,
+      StaffEffects,
+      PatientEffects,
+      SnackbarEffects,
+    ]),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

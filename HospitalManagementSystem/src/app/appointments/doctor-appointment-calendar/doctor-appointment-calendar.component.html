@@ -1,0 +1,14 @@
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="text-center mt-4">
+  <p>Loading appointments...</p>
+</div>
+
+<!-- Scheduler -->
+<ejs-schedule
+  *ngIf="!loading"
+  [selectedDate]="selectedDate"
+  [eventSettings]="eventSettings"
+  [currentView]="'Week'"
+  [readonly]="true"
+  height="650px">
+</ejs-schedule>
