@@ -5,7 +5,7 @@ import { DateFilterFn } from '@angular/material/datepicker';
 export interface DynamicFormField {
   name: string;
   label: string;
-  type: 'text' | 'number' | 'date' | 'select' | 'time' | 'textarea';
+  type: 'text' | 'number' | 'date' | 'select' | 'time' | 'textarea'| 'autocomplete';
   required?: boolean;
   options?: { value: string | number; label: string }[];
 }

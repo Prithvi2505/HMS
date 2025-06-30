@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialTableComponent } from './material-table/material-table.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 import { ShowDetailComponent } from './show-detail/show-detail.component';
@@ -74,7 +75,9 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     MatNativeDateModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    MatAutocompleteModule
+  
   ],
   exports: [
     NavbarComponent,
@@ -107,6 +110,7 @@ import { RegisterComponent } from './register/register.component';
     EditUserComponent,
     LoginComponent,
     RegisterComponent,
+    MatAutocompleteModule,
   ]
 })
 export class SharedModule { }

@@ -14,7 +14,6 @@ export class DoctorAppointmentCalendarComponent implements OnInit {
   selectedDate: Date = new Date();
   loading: boolean = true;
 
-  // Keep eventSettings reference stable to prevent re-renders
   eventSettings = { dataSource: [] as any[] };
 
   constructor(
@@ -37,7 +36,6 @@ export class DoctorAppointmentCalendarComponent implements OnInit {
     this.appointmentService
       .getAppointmentsByDoctorId(this.doctorId)
       .subscribe((data) => {
-        console.log('Loaded appointments:', data); // 👈 log to verify
         this.appointments = data;
         this.mapAppointmentsToEvents();
         this.loading = false;
@@ -59,8 +57,6 @@ export class DoctorAppointmentCalendarComponent implements OnInit {
         StartTime: startTime,
         EndTime: endTime,
       };
-
-      console.log('Mapped Event:', event); // ✅ should now show correct time/date
       return event;
     });
   }

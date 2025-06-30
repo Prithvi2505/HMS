@@ -37,4 +37,16 @@ export class AppointmentService {
   deleteAppointment(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+  checkAvailability(doctorId: number, date: string, time: string) {
+  return this.http.get<boolean>(`/check-availability`,
+    {
+      params: {
+        doctorId: doctorId.toString(),
+        date,
+        time
+      }
+    }
+  );
+}
+
 }
