@@ -5,15 +5,24 @@ import { DateFilterFn } from '@angular/material/datepicker';
 export interface DynamicFormField {
   name: string;
   label: string;
-  type: 'text' | 'number' | 'date' | 'select' | 'time' | 'textarea'| 'autocomplete';
+  type:
+    | 'text'
+    | 'number'
+    | 'date'
+    | 'select'
+    | 'time'
+    | 'textarea'
+    | 'autocomplete';
   required?: boolean;
   options?: { value: string | number; label: string }[];
+  min?: string;
+  max?: string;
 }
 
 @Component({
   selector: 'app-dynamic-form',
   templateUrl: './dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.css']
+  styleUrls: ['./dynamic-form.component.css'],
 })
 export class DynamicFormComponent implements OnInit {
   @Input() formConfig!: DynamicFormField[];
@@ -37,6 +46,8 @@ export class DynamicFormComponent implements OnInit {
       );
     }
     this.form = new FormGroup(group);
+
+    this.form.patchValue(this.initialValues);
 
     this.form.valueChanges.subscribe(() => {
       if (this.onFormChange) {

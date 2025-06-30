@@ -25,4 +25,9 @@ export class DoctorService {
   getDoctorById(id: number) {
   return this.http.get<Doctor>(`${this.apiUrl}/${id}`);
 }
+getDoctorsByName(name: string): Observable<{ id: number; name: string }[]> {
+  return this.http.get<{ id: number; name: string }[]>(`${this.apiUrl}/search`, {
+    params: { name }
+  });
+}
 }

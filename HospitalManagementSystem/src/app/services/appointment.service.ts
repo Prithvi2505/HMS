@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Appointment } from '../Model/appointment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppointmentService {
   private baseUrl = 'http://localhost:8080/appointments';
@@ -27,26 +27,25 @@ export class AppointmentService {
     return this.http.post<Appointment>(`${this.baseUrl}`, appointment);
   }
   getAppointmentCount(doctorId: number, date: string): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}/count?doctorId=${doctorId}&date=${date}`);
+    return this.http.get<number>(
+      `${this.baseUrl}/count?doctorId=${doctorId}&date=${date}`
+    );
   }
 
   updateAppointment(id: number, appointment: any): Observable<Appointment> {
-  return this.http.put<Appointment>(`${this.baseUrl}/${id}`, appointment);
-}
+    return this.http.put<Appointment>(`${this.baseUrl}/${id}`, appointment);
+  }
 
   deleteAppointment(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
   checkAvailability(doctorId: number, date: string, time: string) {
-  return this.http.get<boolean>(`/check-availability`,
-    {
+    return this.http.get<boolean>(`${this.baseUrl}/check-availability`, {
       params: {
         doctorId: doctorId.toString(),
         date,
-        time
-      }
-    }
-  );
-}
-
+        time,
+      },
+    });
+  }
 }
