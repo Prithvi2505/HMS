@@ -28,6 +28,7 @@ export class AppointmentFormDialogComponent implements OnInit {
   slotAvailable: boolean | null = null;
   dayFullyBooked: boolean = false;
   availabilityMessage: string = '';
+  availableDays: string[] = [];
 
   role: string | null = '';
   userId!: number | null;
@@ -92,17 +93,30 @@ export class AppointmentFormDialogComponent implements OnInit {
             required: true,
             min: formattedToday,
           },
-          { name: 'time', label: 'Time', type: 'time', required: true },
+          {
+            name: 'time',
+            label: 'Time',
+            type: 'time',
+            required: true,
+          },
         ];
+
+        const selectedPatient = patientOptions.find(
+          (p) => p.value === this.initialValues.patientId
+        );
 
         this.formGroup.patchValue({
           doctorId: this.userId,
-          ...this.initialValues,
+          patientId: selectedPatient?.value || '',
           date: this.initialValues.date
             ? new Date(this.initialValues.date)
             : '',
+          time: this.initialValues.time || '',
         });
-        this.isFormReady = true;
+        this.doctorService.getDoctorById(this.userId!).subscribe((doctor) => {
+          this.availableDays = doctor.availableDays || [];
+          this.isFormReady = true;
+        });
       });
     } else if (this.role === 'patient') {
       this.doctorService.getAllDoctors().subscribe((doctors) => {
@@ -126,15 +140,27 @@ export class AppointmentFormDialogComponent implements OnInit {
             required: true,
             min: formattedToday,
           },
-          { name: 'time', label: 'Time', type: 'time', required: true },
+          {
+            name: 'time',
+            label: 'Time',
+            type: 'select',
+            required: true,
+            options: [],
+          },
         ];
+
+        const selectedDoctor = doctorOptions.find(
+          (d) => d.value === this.initialValues.doctorId
+        );
+        console.log(selectedDoctor);
 
         this.formGroup.patchValue({
           patientId: this.userId,
-          ...this.initialValues,
+          doctorId: selectedDoctor?.value || '',
           date: this.initialValues.date
             ? new Date(this.initialValues.date)
             : '',
+          time: this.initialValues.time || '',
         });
         this.isFormReady = true;
       });
@@ -152,51 +178,83 @@ export class AppointmentFormDialogComponent implements OnInit {
     this.dayFullyBooked = false;
     this.slotAvailable = null;
 
+    if (doctorId) {
+     this.doctorService.getDoctorById(doctorId).subscribe((doctor) => {
+          this.availableDays = doctor.availableDays || [];
+          this.isFormReady = true;
+        });
+    }
+
     if (doctorId && dateObj) {
       const formattedDate = this.formatDate(dateObj);
+      const selectedDayOfWeek = new Date(dateObj)
+        .toLocaleString('en-US', {
+          weekday: 'long',
+        })
+        .toUpperCase(); // MONDAY, TUESDAY, etc.
 
-      // First: Check total appointments for the day
-      this.appointmentService
-        .getAppointmentCount(doctorId, formattedDate)
-        .subscribe((count) => {
-          this.doctorService.getDoctorById(doctorId).subscribe((doctor) => {
+      this.doctorService.getDoctorById(doctorId).subscribe((doctor) => {
+        // 🔒 STEP 1: Check if doctor is available on this day
+        if (!doctor.availableDays.includes(selectedDayOfWeek)) {
+          this.dayFullyBooked = true;
+          this.availabilityMessage = `Doctor is not available on ${selectedDayOfWeek} ❌`;
+          const timeField = this.formConfig.find((f) => f.name === 'time');
+          if (timeField) timeField.options = [];
+          return;
+        }
+
+        // STEP 2: Check appointment count
+        this.appointmentService
+          .getAppointmentCount(doctorId, formattedDate)
+          .subscribe((count: number) => {
             if (count >= doctor.maxAppointmentsPerDay) {
               this.dayFullyBooked = true;
               this.availabilityMessage = 'All slots are full for this day ❌';
+              const timeField = this.formConfig.find((f) => f.name === 'time');
+              if (timeField) timeField.options = [];
               return;
-            } else {
-              this.dayFullyBooked = false;
-
-              // Only check specific time-slot if time is also selected
-              if (time) {
-                const formattedTime = this.formatTime(time);
-
-                this.appointmentService
-                  .checkAvailability(doctorId, formattedDate, formattedTime)
-                  .subscribe((available: boolean) => {
-                    this.slotAvailable = available;
-                    this.availabilityMessage = available
-                      ? 'Slot is available ✅'
-                      : 'Selected time is already booked ❌';
-                  });
-              } else {
-                this.availabilityMessage =
-                  'Slots are available for the selected day ✅';
-              }
             }
+
+            // STEP 3: Load available slots
+            this.appointmentService
+              .getAvailableTimeSlots(doctorId, formattedDate)
+              .subscribe((slots: string[]) => {
+                const timeField = this.formConfig.find(
+                  (f) => f.name === 'time'
+                );
+                if (timeField) {
+                  timeField.options = slots.map((t) => ({
+                    label: t,
+                    value: t,
+                  }));
+                }
+
+                this.slotAvailable = !!slots.length;
+                this.availabilityMessage = slots.length
+                  ? 'Available time slots loaded ✅'
+                  : 'No available slots found ❌';
+              });
           });
-        });
+      });
     }
   }
 
-  dateFilter: DateFilterFn<Date | null> = (d: Date | null): boolean => {
+  dateFilter: DateFilterFn<Date | null | undefined> = (
+    d: Date | null | undefined
+  ): boolean => {
     if (!d) return false;
-    const localDate = new Date(d.getTime() - d.getTimezoneOffset() * 60000)
-      .toISOString()
-      .split('T')[0];
-    const todayDate = new Date();
-    todayDate.setHours(0, 0, 0, 0);
-    return !this.bookedDates.includes(localDate) && d >= todayDate;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (d < today) return false;
+
+    if (!this.availableDays.length) return false; // doctor not selected yet
+
+    const dayName = d
+      .toLocaleDateString('en-US', { weekday: 'long' })
+      .toUpperCase();
+
+    return this.availableDays.includes(dayName);
   };
 
   onSubmit(): void {

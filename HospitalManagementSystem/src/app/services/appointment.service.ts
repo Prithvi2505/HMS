@@ -31,7 +31,11 @@ export class AppointmentService {
       `${this.baseUrl}/count?doctorId=${doctorId}&date=${date}`
     );
   }
-
+  getAvailableTimeSlots(doctorId: number, date: string): Observable<string[]> {
+  return this.http.get<string[]>(
+    `${this.baseUrl}/available-timeslots/${doctorId}/${date}`
+  );
+}
   updateAppointment(id: number, appointment: any): Observable<Appointment> {
     return this.http.put<Appointment>(`${this.baseUrl}/${id}`, appointment);
   }

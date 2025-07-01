@@ -33,7 +33,7 @@
             [matDatepicker]="picker"
             [formControlName]="field.name"
             [attr.required]="field.required ? true : null"
-            [matDatepickerFilter]="dateFilter"
+            [matDatepickerFilter]="field.dateFilter || dateFilter"
             [attr.min]="field.min || null"
             [attr.max]="field.max || null"
             [attr.required]="field.required ? true : null"
@@ -45,33 +45,43 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        
         <ng-container *ngIf="field.type === 'select'">
-        <mat-form-field
-          class="example-full-width"
-        >
-          <mat-label>{{ field.label }}</mat-label>
-          <mat-select [formControlName]="field.name">
-            <mat-option *ngFor="let opt of field.options" [value]="opt.value">
-              {{ opt.label }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <mat-select [formControlName]="field.name">
+              <mat-option *ngFor="let opt of field.options" [value]="opt.value">
+                {{ opt.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </ng-container>
 
         <ng-container *ngIf="field.type === 'auto-select'">
           <div class="custom-select-container">
             <mat-form-field appearance="fill" class="full-width">
               <mat-label>{{ field.label }}</mat-label>
-              <input matInput type="text" [formControlName]="field.name" 
-              [value]="getLabel(field.name)"
-              (input)="onInputKeyup($event, field.name)"
-                autocomplete="off" />
+              <input
+                matInput
+                type="text"
+                [formControlName]="field.name"
+                [value]="getLabel(field.name)"
+                (input)="onInputKeyup($event, field.name)"
+                autocomplete="off"
+              />
             </mat-form-field>
 
-            <div class="dropdown-panel"  *ngIf="form.get(field.name)?.value && filteredOptions[field.name]?.length">
-              <div class="dropdown-item" *ngFor="let option of filteredOptions[field.name]"
-                (click)="selectOption(field.name, option)">
+            <div
+              class="dropdown-panel"
+              *ngIf="
+                form.get(field.name)?.value &&
+                filteredOptions[field.name]?.length
+              "
+            >
+              <div
+                class="dropdown-item"
+                *ngFor="let option of filteredOptions[field.name]"
+                (click)="selectOption(field.name, option)"
+              >
                 {{ option.label }}
               </div>
             </div>
