@@ -81,7 +81,7 @@ export class AppointmentFormDialogComponent implements OnInit {
           {
             name: 'patientId',
             label: 'Select Patient',
-            type: 'select',
+            type: 'auto-select',
             required: true,
             options: patientOptions,
           },
@@ -115,7 +115,7 @@ export class AppointmentFormDialogComponent implements OnInit {
           {
             name: 'doctorId',
             label: 'Select Doctor',
-            type: 'select',
+            type: 'auto-select',
             required: true,
             options: doctorOptions,
           },

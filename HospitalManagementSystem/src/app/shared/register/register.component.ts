@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions'
 })
 export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
-
+  daysOfWeek = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
   roles = [
     { value: 'patient', viewValue: 'Patient' },
     { value: 'doctor', viewValue: 'Doctor' },
@@ -44,6 +44,20 @@ export class RegisterComponent implements OnInit {
       this.setRoleForm(role);
     });
   }
+  startTimeBeforeEndTimeValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const group = control as FormGroup;
+    const start = group.get('startTime')?.value;
+    const end = group.get('endTime')?.value;
+
+    if (!start || !end) return null;
+
+    const startTime = new Date(`2000-01-01T${start}`);
+    const endTime = new Date(`2000-01-01T${end}`);
+
+    return startTime >= endTime ? { startAfterEnd: true } : null;
+  };
+}
 
   setRoleForm(role: string) {
     const details = this.registrationForm.get('details') as FormGroup;
@@ -64,6 +78,11 @@ export class RegisterComponent implements OnInit {
       details.addControl('specialization', this.fb.control('', Validators.required));
       details.addControl('yearOfExperience', this.fb.control('', Validators.required));
       details.addControl('maxAppointmentsPerDay',this.fb.control('',Validators.required));
+      details.addControl('startTime', this.fb.control('', Validators.required));
+      details.addControl('endTime', this.fb.control('', Validators.required));
+      details.addControl('availableDays', this.fb.control([], Validators.required));
+
+      details.setValidators(this.startTimeBeforeEndTimeValidator());
     } else if (role === 'staff') {
       details.addControl('type', this.fb.control('', Validators.required));
     }
@@ -107,6 +126,7 @@ export class RegisterComponent implements OnInit {
         break;
     }
   }
+
 
   onCancel() {
     this.router.navigate(['/login']);

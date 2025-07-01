@@ -5,27 +5,61 @@
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <ng-container *ngFor="let field of formConfig">
-        <mat-form-field class="example-full-width" *ngIf="
+        <mat-form-field
+          class="example-full-width"
+          *ngIf="
             field.type !== 'textarea' &&
             field.type !== 'select' &&
+            field.type !== 'auto-select' &&
             field.type !== 'date'
-          ">
+          "
+        >
           <mat-label>{{ field.label }}</mat-label>
-          <input matInput [type]="field.type" [formControlName]="field.name"
-            [attr.required]="field.required ? true : null" />
+          <input
+            matInput
+            [type]="field.type"
+            [formControlName]="field.name"
+            [attr.required]="field.required ? true : null"
+          />
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" *ngIf="field.type === 'date'">
+        <mat-form-field
+          class="example-full-width"
+          *ngIf="field.type === 'date'"
+        >
           <mat-label>{{ field.label }}</mat-label>
-          <input matInput [matDatepicker]="picker" [formControlName]="field.name"
-            [attr.required]="field.required ? true : null" [matDatepickerFilter]="dateFilter"
-            [attr.min]="field.min || null" [attr.max]="field.max || null"
-            [attr.required]="field.required ? true : null" />
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [formControlName]="field.name"
+            [attr.required]="field.required ? true : null"
+            [matDatepickerFilter]="dateFilter"
+            [attr.min]="field.min || null"
+            [attr.max]="field.max || null"
+            [attr.required]="field.required ? true : null"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
+        
         <ng-container *ngIf="field.type === 'select'">
+        <mat-form-field
+          class="example-full-width"
+        >
+          <mat-label>{{ field.label }}</mat-label>
+          <mat-select [formControlName]="field.name">
+            <mat-option *ngFor="let opt of field.options" [value]="opt.value">
+              {{ opt.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngIf="field.type === 'auto-select'">
           <div class="custom-select-container">
             <mat-form-field appearance="fill" class="full-width">
               <mat-label>{{ field.label }}</mat-label>
@@ -44,13 +78,25 @@
           </div>
         </ng-container>
 
-        <mat-form-field class="example-full-width" *ngIf="field.type === 'textarea'">
+        <mat-form-field
+          class="example-full-width"
+          *ngIf="field.type === 'textarea'"
+        >
           <mat-label>{{ field.label }}</mat-label>
-          <textarea matInput [formControlName]="field.name" [attr.required]="field.required ? true : null"></textarea>
+          <textarea
+            matInput
+            [formControlName]="field.name"
+            [attr.required]="field.required ? true : null"
+          ></textarea>
         </mat-form-field>
       </ng-container>
 
-      <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="form.invalid"
+      >
         {{ submitButtonText || "Submit" }}
       </button>
       <button mat-flat-button color="warn" type="button" (click)="onCancel()">

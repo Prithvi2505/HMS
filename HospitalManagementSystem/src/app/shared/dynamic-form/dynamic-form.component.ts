@@ -14,7 +14,7 @@ export interface DynamicFormField {
   | 'select'
   | 'time'
   | 'textarea'
-  | 'autocomplete';
+  | 'auto-select';
   required?: boolean;
   filterable?: boolean;
   options?: { value: string | number; label: string }[];
