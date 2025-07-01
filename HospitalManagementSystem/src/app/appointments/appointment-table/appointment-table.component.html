@@ -3,7 +3,7 @@
     <button mat-flat-button color="primary" (click)="addAppointment()">
     Add Appointment
     </button>
-    <button mat-flat-button color="primary" (click)="openCalendar()">
+    <button mat-flat-button color="primary" (click)="openCalendar()" *ngIf="user.role == 'doctor'">
         Clander View
     </button>
 </div>

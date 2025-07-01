@@ -30,7 +30,7 @@ export class AppointmentTableComponent implements OnInit {
     private tokenService: TokenService,
     private store: Store,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     const urlId = Number(this.route.snapshot.paramMap.get('id'));
@@ -62,6 +62,9 @@ export class AppointmentTableComponent implements OnInit {
       const doctorId = params.get('id');
       if (this.user.role === 'doctor' && doctorId) {
         this.loadDoctorAppointments(+doctorId);
+      } else if (this.user.role === 'patient') {
+        const patientId = this.user.userid;
+        this.loadPatientAppointments(patientId);
       } else {
         this.loadAllAppointments();
       }
@@ -84,7 +87,11 @@ export class AppointmentTableComponent implements OnInit {
           const doctorId = params.get('id');
           if (this.user.role === 'doctor' && doctorId) {
             this.loadDoctorAppointments(+doctorId);
+          } else if (this.user.role === 'patient') {
+            const patientId = this.user.userid;
+            this.loadPatientAppointments(patientId);
           } else {
+            // For staff or admin roles
             this.loadAllAppointments();
           }
         });
@@ -137,7 +144,11 @@ export class AppointmentTableComponent implements OnInit {
           const doctorId = params.get('id');
           if (this.user.role === 'doctor' && doctorId) {
             this.loadDoctorAppointments(+doctorId);
+          } else if (this.user.role === 'patient') {
+            const patientId = this.user.userid;
+            this.loadPatientAppointments(patientId);
           } else {
+            // For staff or admin roles
             this.loadAllAppointments();
           }
         });
@@ -158,7 +169,11 @@ export class AppointmentTableComponent implements OnInit {
         const doctorId = this.route.snapshot.paramMap.get('id');
         if (this.user.role === 'doctor' && doctorId) {
           this.loadDoctorAppointments(+doctorId);
+        } else if (this.user.role === 'patient') {
+          const patientId = this.user.userid;
+          this.loadPatientAppointments(patientId);
         } else {
+          // For staff or admin roles
           this.loadAllAppointments();
         }
       },
