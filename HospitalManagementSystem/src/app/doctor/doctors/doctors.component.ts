@@ -35,7 +35,7 @@ export class DoctorsComponent implements OnInit {
 
   showDetails(item: Doctor | Patient | Staff): void {
     this.dialog.open(ShowDetailComponent, {
-      width: '400px',
+      width: '500px',
       data: item
     });
   }

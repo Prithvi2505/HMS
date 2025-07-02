@@ -1,6 +1,6 @@
 // edit-user.component.ts
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -19,23 +19,36 @@ import { showSuccess, showError } from 'src/app/Store/snackbar/snackbar.actions'
 })
 export class EditUserComponent implements OnInit {
   editForm!: FormGroup;
+  daysOfWeek = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
   genders: string[] = ['Male', 'Female', 'Other'];
   staffTypes: string[] = ['Receptionist', 'Nurse', 'Technician'];
-  loggedInUserRole:string= "";
+  loggedInUserRole: string = "";
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private store: Store,
-    private tokenService:TokenService,
-    private route:Router
-  ) {}
+    private tokenService: TokenService,
+    private route: Router
+  ) { }
 
   ngOnInit(): void {
     this.buildForm();
-    this.loggedInUserRole = this.tokenService.getUserRole()!; 
+    this.loggedInUserRole = this.tokenService.getUserRole()!;
   }
+  startTimeBeforeEndTimeValidator(): ValidatorFn {
+  return (group: AbstractControl): ValidationErrors | null => {
+    const start = group.get('startTime')?.value;
+    const end = group.get('endTime')?.value;
+    if (!start || !end) return null;
+
+    const startTime = new Date(`2000-01-01T${start}`);
+    const endTime = new Date(`2000-01-01T${end}`);
+    return startTime >= endTime ? { startAfterEnd: true } : null;
+  };
+}
+
 
   buildForm(): void {
     const baseControls = {
@@ -57,7 +70,10 @@ export class EditUserComponent implements OnInit {
         roleControls = {
           specialization: [this.data.specialization, Validators.required],
           yearOfExperience: [this.data.yearOfExperience, [Validators.required, Validators.min(0)]],
-          maxAppointmentsPerDay: [this.data.maxAppointmentsPerDay, [Validators.required, Validators.min(0)]]
+          maxAppointmentsPerDay: [this.data.maxAppointmentsPerDay, [Validators.required, Validators.min(0)]],
+          startTime: [this.data.startTime, Validators.required],
+          endTime: [this.data.endTime, Validators.required],
+          availableDays: [this.data.availableDays || [], Validators.required],
         };
         break;
       case 'staff':
@@ -70,7 +86,7 @@ export class EditUserComponent implements OnInit {
     this.editForm = this.fb.group({
       ...baseControls,
       ...roleControls
-    });
+    },{ validators: this.data.role === 'doctor' ? this.startTimeBeforeEndTimeValidator() : null });
   }
 
   onUpdate(): void {
@@ -94,21 +110,21 @@ export class EditUserComponent implements OnInit {
     const role = this.data.role.toUpperCase();
     const confirmDelete = confirm(`Are you sure you want to delete ${role} ID ${id}?`);
     if (!confirmDelete) return;
-    
+
 
     if (this.data.role === 'patient') {
       this.store.dispatch(deletePatient({ id }));
-      if(this.loggedInUserRole === 'patient'){
+      if (this.loggedInUserRole === 'patient') {
         this.Logout();
       }
     } else if (this.data.role === 'doctor') {
       this.store.dispatch(deleteDoctor({ id }));
-      if(this.loggedInUserRole === 'doctor'){
+      if (this.loggedInUserRole === 'doctor') {
         this.Logout();
       }
     } else if (this.data.role === 'staff') {
       this.store.dispatch(deleteStaff({ id }));
-      if(this.loggedInUserRole === 'staff'){
+      if (this.loggedInUserRole === 'staff') {
         this.Logout();
       }
     }

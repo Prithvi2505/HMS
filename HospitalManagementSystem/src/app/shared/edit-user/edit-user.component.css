@@ -20,6 +20,23 @@
     overflow: hidden;
 }
 
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+/* Half width for form fields in flex row */
+
+.half-width {
+    flex: 1;
+    min-width: 48%;
+}
+
+
 
 /* Semi-transparent overlay and center alignment */
 

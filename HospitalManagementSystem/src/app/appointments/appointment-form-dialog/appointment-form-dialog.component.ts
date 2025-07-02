@@ -152,7 +152,6 @@ export class AppointmentFormDialogComponent implements OnInit {
         const selectedDoctor = doctorOptions.find(
           (d) => d.value === this.initialValues.doctorId
         );
-        console.log(selectedDoctor);
 
         this.formGroup.patchValue({
           patientId: this.userId,
@@ -191,10 +190,9 @@ export class AppointmentFormDialogComponent implements OnInit {
         .toLocaleString('en-US', {
           weekday: 'long',
         })
-        .toUpperCase(); // MONDAY, TUESDAY, etc.
+        .toUpperCase();
 
       this.doctorService.getDoctorById(doctorId).subscribe((doctor) => {
-        // 🔒 STEP 1: Check if doctor is available on this day
         if (!doctor.availableDays.includes(selectedDayOfWeek)) {
           this.dayFullyBooked = true;
           this.availabilityMessage = `Doctor is not available on ${selectedDayOfWeek} ❌`;
@@ -202,8 +200,6 @@ export class AppointmentFormDialogComponent implements OnInit {
           if (timeField) timeField.options = [];
           return;
         }
-
-        // STEP 2: Check appointment count
         this.appointmentService
           .getAppointmentCount(doctorId, formattedDate)
           .subscribe((count: number) => {
@@ -214,8 +210,6 @@ export class AppointmentFormDialogComponent implements OnInit {
               if (timeField) timeField.options = [];
               return;
             }
-
-            // STEP 3: Load available slots
             this.appointmentService
               .getAvailableTimeSlots(doctorId, formattedDate)
               .subscribe((slots: string[]) => {

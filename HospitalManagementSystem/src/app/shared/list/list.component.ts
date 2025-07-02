@@ -36,7 +36,7 @@ export class ListComponent {
   }
   openEditDialog() {
   const dialogRef = this.dialog.open(EditUserComponent, {
-    width: '400px',
+    width: '500px',
     data: { ...this.showList, role: this.listType} 
   });
 

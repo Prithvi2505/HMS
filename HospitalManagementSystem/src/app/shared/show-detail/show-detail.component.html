@@ -72,6 +72,34 @@
                 <span>{{data.specialization}}</span>
             </div>
         </div>
+        <div class="detail-row">
+            <i class="bi bi-clock"></i>
+            <div class="detail-content">
+                <strong>Time of Arrival:</strong>
+                <span>{{data.startTime}}</span>
+            </div>
+        </div>
+        <div class="detail-row">
+            <i class="bi bi-clock-history"></i>
+            <div class="detail-content">
+                <strong>Time of Leave:</strong>
+                <span>{{data.endTime}}</span>
+            </div>
+        </div>
+        <div class="detail-row">
+           <i class="bi bi-calendar3"></i>
+            <div class="detail-content">
+                <strong>Available Days:</strong>
+                <span>{{data.availableDays}}</span>
+            </div>
+        </div>
+        <div class="detail-row">
+            <i class="bi bi-clipboard-minus-fill"></i>
+            <div class="detail-content">
+                <strong>Maximum Appointment Per Day:</strong>
+                <span>{{data.maxAppointmentsPerDay}}</span>
+            </div>
+        </div>
     </ng-container>
     <ng-container *ngIf="isStaff(data)">
         <div class="detail-row">

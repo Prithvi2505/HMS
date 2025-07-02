@@ -34,18 +34,45 @@
       </ng-container>
 
       <ng-container *ngIf="data.role === 'doctor'">
-        <mat-form-field class="example-full-width">
-          <mat-label>Specialization</mat-label>
-          <input matInput formControlName="specialization" required />
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Years of Experience</mat-label>
-          <input matInput type="number" formControlName="yearOfExperience" required />
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Max Appointments Per Day</mat-label>
-          <input matInput type="number" formControlName="maxAppointmentsPerDay" required />
-        </mat-form-field>
+         <div class="form-row">
+                <mat-form-field class="half-width" appearance="fill">
+                  <mat-label>Specialization</mat-label>
+                  <input matInput formControlName="specialization" placeholder="Specialization" />
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="half-width">
+                  <mat-label>Available Days</mat-label>
+                  <mat-select formControlName="availableDays" multiple>
+                    <mat-option *ngFor="let day of daysOfWeek" [value]="day">{{ day }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="form-row">
+                <mat-form-field class="half-width" appearance="fill">
+                  <mat-label>Start Time</mat-label>
+                  <input matInput type="time" formControlName="startTime" />
+                </mat-form-field>
+
+                <mat-form-field class="half-width" appearance="fill">
+                  <mat-label>End Time</mat-label>
+                  <input matInput type="time" formControlName="endTime" />
+                </mat-form-field>
+              </div>
+              <div *ngIf="editForm.get('details')?.errors?.['startAfterEnd'] &&
+            (editForm.get('details')?.get('startTime')?.touched || 
+             editForm.get('details')?.get('endTime')?.touched)" style="color: red;">
+                Start Time must be before End Time.
+              </div>
+              <div class="form-row">
+                <mat-form-field class="half-width" appearance="fill">
+                  <mat-label>Years of Experience</mat-label>
+                  <input matInput type="number" formControlName="yearOfExperience" placeholder="Years of Experience" min="0"/>
+                </mat-form-field>
+                <mat-form-field class="half-width" appearance="fill">
+                  <mat-label>Appointments Per Day</mat-label>
+                  <input matInput type="number" formControlName="maxAppointmentsPerDay"
+                    placeholder="Appointments Per Day"  min="0"/>
+                </mat-form-field>
+              </div>
       </ng-container>
 
       <ng-container *ngIf="data.role === 'staff'">
