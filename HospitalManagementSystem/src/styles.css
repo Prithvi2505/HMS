@@ -74,10 +74,10 @@ body {
 }
 
 /* ========================================== */
-/* IMPROVED SEARCH BAR AND INPUT STYLING */
+/* FIXED SEARCH BAR AND INPUT STYLING */
 /* ========================================== */
 
-/* Search bar improvements - more specific selectors */
+/* Search bar improvements - most specific selectors */
 .dark-theme input[type="text"],
 .dark-theme input[type="search"],
 .dark-theme input[type="email"],
@@ -87,6 +87,36 @@ body {
   border: 2px solid var(--input-border) !important;
   color: var(--input-text) !important;
   border-radius: 6px !important;
+}
+
+/* Force search text to be visible */
+.dark-theme input[type="text"]::placeholder,
+.dark-theme input[type="search"]::placeholder,
+.dark-theme input::placeholder,
+.dark-theme textarea::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 1 !important;
+}
+
+/* Override any placeholder text styling */
+.dark-theme input::-webkit-input-placeholder {
+  color: var(--text-muted) !important;
+  opacity: 1 !important;
+}
+
+.dark-theme input::-moz-placeholder {
+  color: var(--text-muted) !important;
+  opacity: 1 !important;
+}
+
+.dark-theme input:-ms-input-placeholder {
+  color: var(--text-muted) !important;
+  opacity: 1 !important;
+}
+
+.dark-theme input:-moz-placeholder {
+  color: var(--text-muted) !important;
+  opacity: 1 !important;
 }
 
 /* Number inputs without borders */
@@ -120,12 +150,6 @@ body {
   outline: none !important;
 }
 
-.dark-theme input::placeholder,
-.dark-theme textarea::placeholder {
-  color: var(--text-muted) !important;
-  opacity: 0.8 !important;
-}
-
 /* Bootstrap form controls */
 .dark-theme .form-control {
   background-color: var(--input-bg) !important;
@@ -157,17 +181,29 @@ body {
 
 .dark-theme .form-control::placeholder {
   color: var(--text-muted) !important;
-  opacity: 0.8 !important;
+  opacity: 1 !important;
 }
 
-/* Search bar specific fixes */
+/* Search bar specific fixes - more aggressive */
 .dark-theme .search-bar,
 .dark-theme [placeholder*="Search"],
-.dark-theme [placeholder*="search"] {
+.dark-theme [placeholder*="search"],
+.dark-theme [placeholder*="ID"],
+.dark-theme [placeholder*="Name"],
+.dark-theme [placeholder*="Email"] {
   background-color: var(--input-bg) !important;
   border: 2px solid var(--input-border) !important;
   color: var(--input-text) !important;
   border-radius: 6px !important;
+}
+
+.dark-theme [placeholder*="Search"]::placeholder,
+.dark-theme [placeholder*="search"]::placeholder,
+.dark-theme [placeholder*="ID"]::placeholder,
+.dark-theme [placeholder*="Name"]::placeholder,
+.dark-theme [placeholder*="Email"]::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 1 !important;
 }
 
 /* ========================================== */
@@ -223,26 +259,55 @@ body {
 }
 
 /* ========================================== */
-/* IMPROVED BUTTON STYLING */
+/* FIXED BUTTON STYLING */
 /* ========================================== */
 
-/* Primary buttons */
-.dark-theme .btn-primary {
+/* Primary buttons - Show Detail button fix */
+.dark-theme .btn-primary,
+.dark-theme .btn.btn-primary,
+.dark-theme button.btn-primary {
   background-color: #42a5f5 !important;
   border-color: #42a5f5 !important;
   color: white !important;
 }
 
-.dark-theme .btn-primary:hover {
+.dark-theme .btn-primary:hover,
+.dark-theme .btn.btn-primary:hover,
+.dark-theme button.btn-primary:hover {
   background-color: #1976d2 !important;
   border-color: #1976d2 !important;
   color: white !important;
 }
 
-/* Secondary/Cancel buttons - better visibility */
+/* Ensure Show Detail buttons are primary colored */
+.dark-theme button:contains("Show Detail"),
+.dark-theme .btn:contains("Show Detail"),
+.dark-theme [value*="Show Detail"] {
+  background-color: #42a5f5 !important;
+  border-color: #42a5f5 !important;
+  color: white !important;
+}
+
+/* Secondary/Cancel buttons - much more specific */
 .dark-theme .btn-secondary,
+.dark-theme .btn.btn-secondary,
+.dark-theme button.btn-secondary,
 .dark-theme .btn-light,
-.dark-theme .btn:not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-warning):not(.btn-info) {
+.dark-theme .btn.btn-light,
+.dark-theme button.btn-light {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Cancel button - most specific selectors */
+.dark-theme button:contains("Cancel"),
+.dark-theme .btn:contains("Cancel"),
+.dark-theme .btn[value="Cancel"],
+.dark-theme .btn[type="button"]:contains("Cancel"),
+.dark-theme button[type="button"]:contains("Cancel"),
+.dark-theme .btn-cancel,
+.dark-theme button.btn-cancel {
   background-color: #6c757d !important;
   border-color: #6c757d !important;
   color: white !important;
@@ -306,13 +371,18 @@ body {
   color: white !important;
 }
 
-/* Cancel button specific fix */
-.dark-theme button:contains("Cancel"),
-.dark-theme .btn[value="Cancel"],
-.dark-theme .btn-cancel {
-  background-color: #6c757d !important;
-  border-color: #6c757d !important;
+/* Generic button text fix - catch all */
+.dark-theme button,
+.dark-theme .btn {
   color: white !important;
+}
+
+/* Override for buttons that should have specific colors */
+.dark-theme .btn-outline-primary,
+.dark-theme .btn-outline-secondary,
+.dark-theme .btn-outline-danger,
+.dark-theme .btn-outline-success {
+  color: inherit !important;
 }
 
 /* ========================================== */
