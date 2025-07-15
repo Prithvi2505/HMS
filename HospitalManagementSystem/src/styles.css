@@ -109,6 +109,256 @@ body {
   color: var(--body-text) !important;
 }
 
+/* ========================================== */
+/* CSS-ONLY ANGULAR MATERIAL DARK MODE SUPPORT */
+/* ========================================== */
+
+/* Material Cards */
+.dark-theme .mat-mdc-card {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-card-header {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-card-content {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-card-title {
+  color: var(--body-text) !important;
+}
+
+/* Material Form Fields */
+.dark-theme .mat-mdc-form-field {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-text-field-wrapper {
+  background-color: var(--card-bg) !important;
+}
+
+.dark-theme .mat-mdc-form-field-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.dark-theme .mat-mdc-form-field-label.mdc-floating-label--float-above {
+  color: #42a5f5 !important;
+}
+
+.dark-theme .mat-mdc-input-element {
+  color: var(--body-text) !important;
+  caret-color: var(--body-text) !important;
+}
+
+.dark-theme .mdc-text-field--filled {
+  background-color: var(--card-bg) !important;
+}
+
+.dark-theme .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--card-bg) !important;
+}
+
+.dark-theme .mdc-text-field--filled .mdc-line-ripple::before {
+  border-bottom-color: var(--border-color) !important;
+}
+
+.dark-theme .mdc-text-field--filled .mdc-line-ripple::after {
+  border-bottom-color: #42a5f5 !important;
+}
+
+/* Material Select */
+.dark-theme .mat-mdc-select {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-select-value {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-select-arrow {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-option {
+  color: var(--body-text) !important;
+  background-color: var(--dropdown-bg) !important;
+}
+
+.dark-theme .mat-mdc-option:hover {
+  background-color: var(--dropdown-hover) !important;
+}
+
+.dark-theme .mat-mdc-option.mdc-list-item--selected {
+  background-color: rgba(66, 165, 245, 0.2) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-option.mat-mdc-option-active {
+  background-color: var(--dropdown-hover) !important;
+}
+
+/* Material Select Panel/Dropdown */
+.dark-theme .mat-mdc-select-panel {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Material Table */
+.dark-theme .mat-mdc-table {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-header-cell {
+  color: var(--body-text) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-cell {
+  color: var(--body-text) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-row:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.dark-theme .mat-mdc-header-row {
+  background-color: var(--card-bg) !important;
+}
+
+/* Material Paginator */
+.dark-theme .mat-mdc-paginator {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-paginator .mat-mdc-select {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-paginator .mat-mdc-select-value {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-paginator .mat-mdc-icon-button {
+  color: var(--body-text) !important;
+}
+
+/* Material Buttons */
+.dark-theme .mat-mdc-raised-button.mat-primary {
+  background-color: #42a5f5 !important;
+  color: white !important;
+}
+
+.dark-theme .mat-mdc-outlined-button.mat-primary {
+  border-color: #42a5f5 !important;
+  color: #42a5f5 !important;
+}
+
+.dark-theme .mat-mdc-button.mat-primary {
+  color: #42a5f5 !important;
+}
+
+.dark-theme .mat-mdc-fab.mat-warn {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+.dark-theme .mat-mdc-icon-button {
+  color: var(--body-text) !important;
+}
+
+/* Material Dialog */
+.dark-theme .mat-mdc-dialog-container {
+  background-color: var(--card-bg) !important;
+}
+
+.dark-theme .mat-mdc-dialog-surface {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-dialog-title {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-dialog-content {
+  color: var(--body-text) !important;
+}
+
+/* Material Menu */
+.dark-theme .mat-mdc-menu-panel {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-menu-item {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-menu-item:hover {
+  background-color: var(--dropdown-hover) !important;
+}
+
+/* Material Snackbar */
+.dark-theme .mat-mdc-snack-bar-container {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Material Date Picker */
+.dark-theme .mat-datepicker-popup {
+  background-color: var(--card-bg) !important;
+}
+
+.dark-theme .mat-calendar {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-header {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-table-header {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-body-cell {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-body-cell:hover {
+  background-color: var(--dropdown-hover) !important;
+}
+
+.dark-theme .mat-calendar-body-selected {
+  background-color: #42a5f5 !important;
+  color: white !important;
+}
+
+/* Material Icons */
+.dark-theme .mat-icon {
+  color: var(--body-text) !important;
+}
+
+/* CDK Overlay (for dropdowns, dialogs, etc.) */
+.dark-theme .cdk-overlay-backdrop {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .cdk-overlay-pane {
+  color: var(--body-text) !important;
+}
+
 /* Syncfusion Component Dark Theme Support */
 .dark-theme .e-schedule {
   background-color: var(--card-bg) !important;
@@ -163,28 +413,6 @@ body {
 
 .dark-theme .e-list-item:hover {
   background-color: var(--dropdown-hover) !important;
-}
-
-/* Additional Material Component Fixes */
-.dark-theme .mat-mdc-snack-bar-container {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
-}
-
-.dark-theme .mat-mdc-menu-panel {
-  background-color: var(--dropdown-bg) !important;
-}
-
-.dark-theme .mat-mdc-menu-item {
-  color: var(--body-text) !important;
-}
-
-.dark-theme .mat-mdc-menu-item:hover {
-  background-color: var(--dropdown-hover) !important;
-}
-
-.dark-theme .cdk-overlay-backdrop {
-  background-color: rgba(0, 0, 0, 0.6) !important;
 }
 
 /* Bootstrap Dark Theme Enhancements */
