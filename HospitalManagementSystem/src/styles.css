@@ -9,12 +9,103 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 .snackbar-success {
     background-color: #4caf50 !important; /* Green */
     color: white;
-  }
-  .snackbar-error {
+}
+
+.snackbar-error {
     background-color: #f44336 !important; /* Red */
     color: white;
-  }
+}
+
+/* Theme Variables */
+:root {
+  /* Light theme colors */
+  --navbar-bg: #42a5f5;
+  --navbar-text: #ffffff;
+  --navbar-hover: #1976d2;
+  --body-bg: #ffffff;
+  --body-text: #333333;
+  --card-bg: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-hover: #e3f2fd;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Dark theme colors */
+.dark-theme {
+  --navbar-bg: #1a1a1a;
+  --navbar-text: #ffffff;
+  --navbar-hover: #333333;
+  --body-bg: #121212;
+  --body-text: #ffffff;
+  --card-bg: #1e1e1e;
+  --dropdown-bg: #2c2c2c;
+  --dropdown-hover: #404040;
+  --border-color: #404040;
+  --shadow-color: rgba(0, 0, 0, 0.25);
+}
+
+/* Apply theme variables to body */
+body {
+  background-color: var(--body-bg) !important;
+  color: var(--body-text) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark theme for cards and components */
+.dark-theme .card {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .modal-content {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .table {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .table th,
+.dark-theme .table td {
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .form-control {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .form-control:focus {
+  background-color: var(--card-bg) !important;
+  border-color: var(--navbar-bg) !important;
+  color: var(--body-text) !important;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
+}
+
+.dark-theme .btn-primary {
+  background-color: var(--navbar-bg) !important;
+  border-color: var(--navbar-bg) !important;
+}
+
+.dark-theme .btn-secondary {
+  background-color: var(--border-color) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .alert {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
 

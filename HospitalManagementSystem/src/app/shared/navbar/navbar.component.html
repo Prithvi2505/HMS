@@ -68,6 +68,18 @@
             </li>
           </ng-container>
 
+          <!-- Dark Mode Toggle Button -->
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <button 
+              class="btn btn-sm btn-outline-light rounded-pill px-3" 
+              (click)="toggleTheme()"
+              [attr.aria-label]="isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'"
+              title="Toggle dark mode">
+              <i [class]="isDarkTheme ? 'bi bi-sun-fill' : 'bi bi-moon-fill'" class="me-1"></i>
+              {{ isDarkTheme ? 'Light' : 'Dark' }}
+            </button>
+          </li>
+
           <!-- Logout Button -->
           <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
             <button class="btn btn-sm btn-outline-light rounded-pill px-3" (click)="onLogout()">
