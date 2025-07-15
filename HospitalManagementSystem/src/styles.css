@@ -59,7 +59,7 @@ body {
   --dropdown-hover: #30363d;
   --border-color: #30363d;
   --shadow-color: rgba(0, 0, 0, 0.4);
-  --text-muted: #c9d1d9;
+  --text-muted: #a8b3c1;
   --section-bg: #0d1117;
   --input-bg: #21262d;
   --input-border: #444c56;
@@ -77,6 +77,37 @@ body {
 /* FIXED SEARCH BAR AND INPUT STYLING */
 /* ========================================== */
 
+/* ULTIMATE PLACEHOLDER FIX - applies to ALL inputs in dark mode */
+.dark-theme *::placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+.dark-theme *::-webkit-input-placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+.dark-theme *::-moz-placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+.dark-theme *:-ms-input-placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+.dark-theme *:-moz-placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
 /* Search bar improvements - most specific selectors */
 .dark-theme input[type="text"],
 .dark-theme input[type="search"],
@@ -89,34 +120,39 @@ body {
   border-radius: 6px !important;
 }
 
-/* Force search text to be visible */
+/* Force search text to be visible - much brighter */
 .dark-theme input[type="text"]::placeholder,
 .dark-theme input[type="search"]::placeholder,
 .dark-theme input::placeholder,
 .dark-theme textarea::placeholder {
-  color: var(--text-muted) !important;
+  color: #a8b3c1 !important;
   opacity: 1 !important;
+  font-weight: 400 !important;
 }
 
-/* Override any placeholder text styling */
+/* Override any placeholder text styling - all browsers */
 .dark-theme input::-webkit-input-placeholder {
-  color: var(--text-muted) !important;
+  color: #a8b3c1 !important;
   opacity: 1 !important;
+  font-weight: 400 !important;
 }
 
 .dark-theme input::-moz-placeholder {
-  color: var(--text-muted) !important;
+  color: #a8b3c1 !important;
   opacity: 1 !important;
+  font-weight: 400 !important;
 }
 
 .dark-theme input:-ms-input-placeholder {
-  color: var(--text-muted) !important;
+  color: #a8b3c1 !important;
   opacity: 1 !important;
+  font-weight: 400 !important;
 }
 
 .dark-theme input:-moz-placeholder {
-  color: var(--text-muted) !important;
+  color: #a8b3c1 !important;
   opacity: 1 !important;
+  font-weight: 400 !important;
 }
 
 /* Number inputs without borders */
@@ -180,8 +216,9 @@ body {
 }
 
 .dark-theme .form-control::placeholder {
-  color: var(--text-muted) !important;
+  color: #a8b3c1 !important;
   opacity: 1 !important;
+  font-weight: 400 !important;
 }
 
 /* Search bar specific fixes - more aggressive */
@@ -197,13 +234,35 @@ body {
   border-radius: 6px !important;
 }
 
+/* Force search bar placeholder visibility - ultimate fix */
+.dark-theme input[placeholder="Search by ID, Name or Email"],
+.dark-theme input[placeholder*="Search by ID"],
+.dark-theme input[placeholder*="Search by"],
+.dark-theme input[placeholder*="search by"],
+.dark-theme input.form-control {
+  background-color: var(--input-bg) !important;
+  border: 2px solid var(--input-border) !important;
+  color: var(--input-text) !important;
+}
+
+.dark-theme input[placeholder="Search by ID, Name or Email"]::placeholder,
+.dark-theme input[placeholder*="Search by ID"]::placeholder,
+.dark-theme input[placeholder*="Search by"]::placeholder,
+.dark-theme input[placeholder*="search by"]::placeholder,
+.dark-theme input.form-control::placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
 .dark-theme [placeholder*="Search"]::placeholder,
 .dark-theme [placeholder*="search"]::placeholder,
 .dark-theme [placeholder*="ID"]::placeholder,
 .dark-theme [placeholder*="Name"]::placeholder,
 .dark-theme [placeholder*="Email"]::placeholder {
-  color: var(--text-muted) !important;
+  color: #a8b3c1 !important;
   opacity: 1 !important;
+  font-weight: 400 !important;
 }
 
 /* ========================================== */
