@@ -77,17 +77,25 @@ body {
 /* IMPROVED SEARCH BAR AND INPUT STYLING */
 /* ========================================== */
 
-/* Search bar improvements */
+/* Search bar improvements - more specific selectors */
 .dark-theme input[type="text"],
 .dark-theme input[type="search"],
 .dark-theme input[type="email"],
-.dark-theme input[type="number"],
 .dark-theme input[type="tel"],
 .dark-theme textarea {
   background-color: var(--input-bg) !important;
   border: 2px solid var(--input-border) !important;
   color: var(--input-text) !important;
   border-radius: 6px !important;
+}
+
+/* Number inputs without borders */
+.dark-theme input[type="number"] {
+  background-color: var(--input-bg) !important;
+  border: none !important;
+  color: var(--input-text) !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
 }
 
 .dark-theme input[type="text"]:focus,
@@ -103,6 +111,15 @@ body {
   outline: none !important;
 }
 
+/* Number input focus without border */
+.dark-theme input[type="number"]:focus {
+  background-color: var(--input-bg) !important;
+  border: 2px solid #42a5f5 !important;
+  color: var(--input-text) !important;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
+  outline: none !important;
+}
+
 .dark-theme input::placeholder,
 .dark-theme textarea::placeholder {
   color: var(--text-muted) !important;
@@ -112,9 +129,19 @@ body {
 /* Bootstrap form controls */
 .dark-theme .form-control {
   background-color: var(--input-bg) !important;
-  border: 2px solid var(--input-border) !important;
   color: var(--input-text) !important;
   border-radius: 6px !important;
+}
+
+/* Regular form controls with borders */
+.dark-theme .form-control:not([type="number"]) {
+  border: 2px solid var(--input-border) !important;
+}
+
+/* Number form controls without borders */
+.dark-theme .form-control[type="number"] {
+  border: none !important;
+  padding: 8px 12px !important;
 }
 
 .dark-theme .form-control:focus {
@@ -124,9 +151,23 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
 }
 
+.dark-theme .form-control[type="number"]:focus {
+  border: 2px solid #42a5f5 !important;
+}
+
 .dark-theme .form-control::placeholder {
   color: var(--text-muted) !important;
   opacity: 0.8 !important;
+}
+
+/* Search bar specific fixes */
+.dark-theme .search-bar,
+.dark-theme [placeholder*="Search"],
+.dark-theme [placeholder*="search"] {
+  background-color: var(--input-bg) !important;
+  border: 2px solid var(--input-border) !important;
+  color: var(--input-text) !important;
+  border-radius: 6px !important;
 }
 
 /* ========================================== */
@@ -179,6 +220,155 @@ body {
 
 .dark-theme .modal-body .text-muted {
   color: var(--text-muted) !important;
+}
+
+/* ========================================== */
+/* IMPROVED BUTTON STYLING */
+/* ========================================== */
+
+/* Primary buttons */
+.dark-theme .btn-primary {
+  background-color: #42a5f5 !important;
+  border-color: #42a5f5 !important;
+  color: white !important;
+}
+
+.dark-theme .btn-primary:hover {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+  color: white !important;
+}
+
+/* Secondary/Cancel buttons - better visibility */
+.dark-theme .btn-secondary,
+.dark-theme .btn-light,
+.dark-theme .btn:not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-warning):not(.btn-info) {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+.dark-theme .btn-secondary:hover,
+.dark-theme .btn-light:hover {
+  background-color: #545b62 !important;
+  border-color: #545b62 !important;
+  color: white !important;
+}
+
+/* Outline buttons */
+.dark-theme .btn-outline-primary {
+  color: #42a5f5 !important;
+  border-color: #42a5f5 !important;
+  background-color: transparent !important;
+}
+
+.dark-theme .btn-outline-primary:hover {
+  background-color: #42a5f5 !important;
+  border-color: #42a5f5 !important;
+  color: white !important;
+}
+
+.dark-theme .btn-outline-secondary {
+  color: #6c757d !important;
+  border-color: #6c757d !important;
+  background-color: transparent !important;
+}
+
+.dark-theme .btn-outline-secondary:hover {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Danger buttons */
+.dark-theme .btn-danger {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  color: white !important;
+}
+
+.dark-theme .btn-danger:hover {
+  background-color: #c82333 !important;
+  border-color: #bd2130 !important;
+  color: white !important;
+}
+
+/* Success buttons */
+.dark-theme .btn-success {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+  color: white !important;
+}
+
+.dark-theme .btn-success:hover {
+  background-color: #218838 !important;
+  border-color: #1e7e34 !important;
+  color: white !important;
+}
+
+/* Cancel button specific fix */
+.dark-theme button:contains("Cancel"),
+.dark-theme .btn[value="Cancel"],
+.dark-theme .btn-cancel {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+/* ========================================== */
+/* IMPROVED CARD STYLING */
+/* ========================================== */
+
+/* Custom card improvements */
+.dark-theme .card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: 0 4px 15px var(--shadow-color) !important;
+  border-radius: 8px !important;
+}
+
+.dark-theme .card:hover {
+  box-shadow: 0 6px 20px var(--shadow-color) !important;
+  transform: translateY(-2px) !important;
+}
+
+.dark-theme .card-body {
+  background-color: var(--card-header-bg) !important;
+  color: white !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.dark-theme .card-title {
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+.dark-theme .card-subtitle {
+  color: #d1e7ff !important;
+}
+
+/* Card content areas */
+.dark-theme .list-group-item {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border-color: var(--card-border) !important;
+}
+
+.dark-theme .list-group-item:first-child {
+  background-color: var(--dropdown-hover) !important;
+  color: #42a5f5 !important;
+  font-weight: 500 !important;
+}
+
+.dark-theme .list-group-item:last-child {
+  color: var(--text-muted) !important;
+}
+
+.dark-theme .card > div:last-child {
+  background-color: var(--card-bg) !important;
+  border-top: 1px solid var(--card-border) !important;
+  border-radius: 0 0 8px 8px !important;
+  padding: 15px !important;
 }
 
 /* ========================================== */
@@ -251,99 +441,6 @@ body {
 
 .dark-theme .overview-card i {
   color: #42a5f5 !important;
-}
-
-/* List Component Cards (Patient/Doctor/Staff) */
-.dark-theme .basic-card,
-.dark-theme .card {
-  background-color: var(--card-bg) !important;
-  border: 1px solid var(--card-border) !important;
-  box-shadow: 0 3px 10px var(--shadow-color) !important;
-}
-
-.dark-theme .card:hover {
-  box-shadow: 0 5px 15px var(--shadow-color) !important;
-}
-
-.dark-theme .card-body {
-  background-color: var(--card-header-bg) !important;
-  color: white !important;
-}
-
-.dark-theme .card-title {
-  color: white !important;
-}
-
-.dark-theme .card-subtitle {
-  color: #d1e7ff !important;
-}
-
-.dark-theme .list-group-item {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
-  border-color: var(--card-border) !important;
-}
-
-.dark-theme .list-group-item:first-child {
-  background-color: var(--dropdown-hover) !important;
-  color: #42a5f5 !important;
-}
-
-.dark-theme .list-group-item:last-child {
-  color: var(--text-muted) !important;
-}
-
-.dark-theme .card > div:last-child {
-  background-color: var(--dropdown-hover) !important;
-  border-top: 1px solid var(--card-border) !important;
-}
-
-/* Button improvements for dark mode */
-.dark-theme .btn-primary {
-  background-color: #42a5f5 !important;
-  border-color: #42a5f5 !important;
-  color: white !important;
-}
-
-.dark-theme .btn-primary:hover {
-  background-color: #1976d2 !important;
-  border-color: #1976d2 !important;
-  color: white !important;
-}
-
-.dark-theme .btn-outline-primary {
-  color: #42a5f5 !important;
-  border-color: #42a5f5 !important;
-}
-
-.dark-theme .btn-outline-primary:hover {
-  background-color: #42a5f5 !important;
-  border-color: #42a5f5 !important;
-  color: white !important;
-}
-
-.dark-theme .btn-secondary {
-  background-color: var(--border-color) !important;
-  border-color: var(--border-color) !important;
-  color: var(--body-text) !important;
-}
-
-.dark-theme .btn-danger {
-  background-color: #dc3545 !important;
-  border-color: #dc3545 !important;
-  color: white !important;
-}
-
-.dark-theme .btn-success {
-  background-color: #28a745 !important;
-  border-color: #28a745 !important;
-  color: white !important;
-}
-
-.dark-theme .btn-light {
-  background-color: var(--dropdown-hover) !important;
-  border-color: var(--card-border) !important;
-  color: var(--body-text) !important;
 }
 
 /* ========================================== */
