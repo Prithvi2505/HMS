@@ -1,0 +1,88 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+
+/* Mat-card container */
+
+mat-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #b6cde4;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+
+
+mat-card-header {
+    justify-content: center;
+    text-align: center;
+    color: rgb(120, 120, 179);
+}
+
+
+form {
+    width: 100%;
+}
+
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+.half-width {
+    flex: 1;
+    min-width: 48%;
+}
+
+
+
+
+.example-full-width {
+    width: 100%;
+    display: block;
+}
+
+
+
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #b6cde4;
+}
+
+
+button {
+    margin: 10px 5px 0 0;
+    padding: 0.25rem;
+}
+
+mat-form-field .mat-form-field {
+    padding: 4px 0;
+}
+
+.mat-select-trigger {
+    padding: 10px;
+}

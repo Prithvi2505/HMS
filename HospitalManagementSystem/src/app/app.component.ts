@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectAuthState } from './Store/auth.seletor';
-import { login } from './Store/auth.action';
+import { selectAuthState } from './Ngrx/auth.seletor';
+import { login } from './Ngrx/auth.action';
 
 @Component({
   selector: 'app-root',

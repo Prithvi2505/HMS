@@ -1,0 +1,107 @@
+/* Reset and layout fixes */
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+.bg {
+    background-image: url("https://assets.clevelandclinic.org/transform/LargeFeatureImage/e9afdf49-b178-4936-92ee-5a15281b90b4/doctors-television-drama-1409487455");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+
+
+mat-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #b6cde4;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+
+mat-card-header {
+    justify-content: center;
+    text-align: center;
+    color: rgb(120, 120, 179);
+}
+
+
+
+
+form {
+    width: 100%;
+}
+
+
+
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+
+
+.half-width {
+    flex: 1;
+    min-width: 48%;
+}
+
+
+
+.example-full-width {
+    width: 100%;
+    display: block;
+}
+
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #b6cde4;
+}
+
+
+
+button {
+    margin: 10px 5px 0 0;
+    padding: 0.25rem;
+}
+
+mat-form-field.mat-form-field {
+    padding: 4px 0;
+}
+
+.mat-select-trigger {
+    padding: 10px;
+}

@@ -1,0 +1,40 @@
+<div class="card basic-card" *ngIf="showList">
+  <div class="card-body position-relative">
+    <h5 class="card-title">
+      <i class="bi bi-person-lines-fill"></i> {{ showList.name }}
+    </h5>
+
+    <!-- Edit Icon -->
+    <button 
+      *ngIf="shouldShowEditIcon()" 
+      class="btn btn-sm position-absolute top-0 end-0 m-2" 
+      (click)="openEditDialog()" aria-label="Edit">
+      <i class="bi bi-pencil-square"></i>
+    </button>
+
+    <h6 class="card-subtitle mb-2">ID: {{ showList.id }}</h6>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ showList.email }}</li>
+    <li class="list-group-item">{{ showList.gender }}</li>
+  </ul>
+
+  <div class="btn-group-bottom px-3 pb-3">
+    <button class="btn btn-sm btn-primary" (click)="onButtonClick()">Show Detail</button>
+
+    <button 
+      *ngIf="listType === 'patient'" 
+      class="btn btn-sm btn-outline-info" 
+      (click)="navToMed(showList.id)">
+      Medical Records
+    </button>
+
+    <button 
+      *ngIf="listType === 'staff'" 
+      class="btn btn-sm btn-outline-info" 
+      (click)="staffAssignedToRoom(showList.id)">
+      Assigned Room
+    </button>
+  </div>
+</div>

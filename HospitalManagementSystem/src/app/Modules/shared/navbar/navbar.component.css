@@ -1,0 +1,94 @@
+
+.custom-navbar {
+  background-color: #42a5f5;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: #ffffff !important;
+}
+
+
+.nav-link {
+  position: relative;
+  font-weight: 500;
+  color: #f0f8ff !important;
+  margin-right: 12px;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: white;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+
+.nav-link:hover::after {
+  width: 100%;
+  background-color: white;
+}
+
+
+.nav-link.active::after {
+  width: 100%;
+  background-color: white;
+}
+
+
+.active-parent > .nav-link::after {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+.nav-link:hover {
+  color: #ffffff !important;
+}
+
+
+.dropdown-menu {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: none;
+  min-width: 180px;
+}
+
+.dropdown-item {
+  font-weight: 500;
+  color: #333;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  padding: 8px 16px;
+}
+
+.dropdown-item:hover {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+
+.btn-logout {
+  background-color: #f44336;
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: #d32f2f;
+}
