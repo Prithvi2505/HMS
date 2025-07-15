@@ -115,44 +115,10 @@ body {
 .dark-theme input[type="tel"],
 .dark-theme textarea {
   background-color: var(--input-bg) !important;
-  border: 2px solid var(--input-border) !important;
+  border: none !important;
   color: var(--input-text) !important;
   border-radius: 6px !important;
-}
-
-/* Force search text to be visible - much brighter */
-.dark-theme input[type="text"]::placeholder,
-.dark-theme input[type="search"]::placeholder,
-.dark-theme input::placeholder,
-.dark-theme textarea::placeholder {
-  color: #a8b3c1 !important;
-  opacity: 1 !important;
-  font-weight: 400 !important;
-}
-
-/* Override any placeholder text styling - all browsers */
-.dark-theme input::-webkit-input-placeholder {
-  color: #a8b3c1 !important;
-  opacity: 1 !important;
-  font-weight: 400 !important;
-}
-
-.dark-theme input::-moz-placeholder {
-  color: #a8b3c1 !important;
-  opacity: 1 !important;
-  font-weight: 400 !important;
-}
-
-.dark-theme input:-ms-input-placeholder {
-  color: #a8b3c1 !important;
-  opacity: 1 !important;
-  font-weight: 400 !important;
-}
-
-.dark-theme input:-moz-placeholder {
-  color: #a8b3c1 !important;
-  opacity: 1 !important;
-  font-weight: 400 !important;
+  padding: 8px 12px !important;
 }
 
 /* Number inputs without borders */
@@ -171,48 +137,26 @@ body {
 .dark-theme input[type="tel"]:focus,
 .dark-theme textarea:focus {
   background-color: var(--input-bg) !important;
-  border-color: #42a5f5 !important;
-  color: var(--input-text) !important;
-  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
-  outline: none !important;
-}
-
-/* Number input focus without border */
-.dark-theme input[type="number"]:focus {
-  background-color: var(--input-bg) !important;
   border: 2px solid #42a5f5 !important;
   color: var(--input-text) !important;
   box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
   outline: none !important;
 }
 
-/* Bootstrap form controls */
+/* Bootstrap form controls - remove borders */
 .dark-theme .form-control {
   background-color: var(--input-bg) !important;
   color: var(--input-text) !important;
   border-radius: 6px !important;
-}
-
-/* Regular form controls with borders */
-.dark-theme .form-control:not([type="number"]) {
-  border: 2px solid var(--input-border) !important;
-}
-
-/* Number form controls without borders */
-.dark-theme .form-control[type="number"] {
   border: none !important;
   padding: 8px 12px !important;
 }
 
 .dark-theme .form-control:focus {
   background-color: var(--input-bg) !important;
-  border-color: #42a5f5 !important;
+  border: 2px solid #42a5f5 !important;
   color: var(--input-text) !important;
   box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
-}
-
-.dark-theme .form-control[type="number"]:focus {
-  border: 2px solid #42a5f5 !important;
 }
 
 .dark-theme .form-control::placeholder {
@@ -229,9 +173,10 @@ body {
 .dark-theme [placeholder*="Name"],
 .dark-theme [placeholder*="Email"] {
   background-color: var(--input-bg) !important;
-  border: 2px solid var(--input-border) !important;
+  border: none !important;
   color: var(--input-text) !important;
   border-radius: 6px !important;
+  padding: 8px 12px !important;
 }
 
 /* Force search bar placeholder visibility - ultimate fix */
@@ -241,8 +186,9 @@ body {
 .dark-theme input[placeholder*="search by"],
 .dark-theme input.form-control {
   background-color: var(--input-bg) !important;
-  border: 2px solid var(--input-border) !important;
+  border: none !important;
   color: var(--input-text) !important;
+  padding: 8px 12px !important;
 }
 
 .dark-theme input[placeholder="Search by ID, Name or Email"]::placeholder,
@@ -263,6 +209,123 @@ body {
   color: #a8b3c1 !important;
   opacity: 1 !important;
   font-weight: 400 !important;
+}
+
+/* ========================================== */
+/* IMPROVED DROPDOWN AND AUTOCOMPLETE STYLING */
+/* ========================================== */
+
+/* Dropdown lists and autocomplete - dark background with light text */
+.dark-theme .dropdown-menu,
+.dark-theme .autocomplete-dropdown,
+.dark-theme .mat-autocomplete-panel,
+.dark-theme .cdk-overlay-pane,
+.dark-theme ul[role="listbox"],
+.dark-theme .suggestions,
+.dark-theme .typeahead-dropdown {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--body-text) !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+}
+
+.dark-theme .dropdown-item,
+.dark-theme .autocomplete-item,
+.dark-theme .mat-option,
+.dark-theme li[role="option"],
+.dark-theme .suggestion-item,
+.dark-theme .typeahead-item {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+  padding: 8px 16px !important;
+}
+
+.dark-theme .dropdown-item:hover,
+.dark-theme .autocomplete-item:hover,
+.dark-theme .mat-option:hover,
+.dark-theme li[role="option"]:hover,
+.dark-theme .suggestion-item:hover,
+.dark-theme .typeahead-item:hover {
+  background-color: var(--dropdown-hover) !important;
+  color: var(--body-text) !important;
+}
+
+/* Patient list dropdown specific */
+.dark-theme .patient-list,
+.dark-theme .patient-dropdown,
+.dark-theme .patient-suggestions {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+/* Additional dropdown/autocomplete catches */
+.dark-theme .ng-dropdown-panel,
+.dark-theme .ng-option,
+.dark-theme .autocomplete-panel,
+.dark-theme .suggestion-panel,
+.dark-theme .select-dropdown,
+.dark-theme .list-group {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .ng-option,
+.dark-theme .autocomplete-option,
+.dark-theme .suggestion-option,
+.dark-theme .select-option,
+.dark-theme .list-group-item {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .ng-option:hover,
+.dark-theme .autocomplete-option:hover,
+.dark-theme .suggestion-option:hover,
+.dark-theme .select-option:hover,
+.dark-theme .list-group-item:hover {
+  background-color: var(--dropdown-hover) !important;
+  color: var(--body-text) !important;
+}
+
+/* Force all white backgrounds in dropdowns to be dark */
+.dark-theme [style*="background-color: white"],
+.dark-theme [style*="background-color: #fff"],
+.dark-theme [style*="background-color: #ffffff"] {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+/* Remove all input borders in dark mode (comprehensive) */
+.dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+.dark-theme select,
+.dark-theme textarea {
+  border: none !important;
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+}
+
+.dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):focus,
+.dark-theme select:focus,
+.dark-theme textarea:focus {
+  border: 2px solid #42a5f5 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
+}
+
+/* Select dropdown styling */
+.dark-theme select {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border: none !important;
+}
+
+.dark-theme select option {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
 }
 
 /* ========================================== */
@@ -315,6 +378,70 @@ body {
 
 .dark-theme .modal-body .text-muted {
   color: var(--text-muted) !important;
+}
+
+/* ========================================== */
+/* IMPROVED CALENDAR STYLING */
+/* ========================================== */
+
+/* Calendar dark mode improvements */
+.dark-theme .mat-calendar,
+.dark-theme .mat-datepicker-popup,
+.dark-theme .calendar,
+.dark-theme .datepicker {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+.dark-theme .mat-calendar-header,
+.dark-theme .calendar-header {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-table-header th,
+.dark-theme .calendar-table-header th {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-body-cell,
+.dark-theme .calendar-day {
+  color: var(--body-text) !important;
+  background-color: transparent !important;
+}
+
+.dark-theme .mat-calendar-body-cell:hover,
+.dark-theme .calendar-day:hover {
+  background-color: var(--dropdown-hover) !important;
+}
+
+.dark-theme .mat-calendar-body-selected,
+.dark-theme .calendar-day.selected {
+  background-color: #42a5f5 !important;
+  color: white !important;
+}
+
+/* Disabled calendar dates - much more visible */
+.dark-theme .mat-calendar-body-disabled,
+.dark-theme .calendar-day.disabled,
+.dark-theme .mat-calendar-body-cell[aria-disabled="true"] {
+  color: #4a5568 !important;
+  background-color: #2d3748 !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Calendar navigation buttons */
+.dark-theme .mat-calendar-previous-button,
+.dark-theme .mat-calendar-next-button,
+.dark-theme .calendar-nav-button {
+  color: var(--body-text) !important;
+}
+
+/* Month/year selector */
+.dark-theme .mat-calendar-period-button {
+  color: var(--body-text) !important;
 }
 
 /* ========================================== */
@@ -491,19 +618,19 @@ body {
 }
 
 /* Card content areas */
-.dark-theme .list-group-item {
+.dark-theme .card .list-group-item {
   background-color: var(--card-bg) !important;
   color: var(--body-text) !important;
   border-color: var(--card-border) !important;
 }
 
-.dark-theme .list-group-item:first-child {
+.dark-theme .card .list-group-item:first-child {
   background-color: var(--dropdown-hover) !important;
   color: #42a5f5 !important;
   font-weight: 500 !important;
 }
 
-.dark-theme .list-group-item:last-child {
+.dark-theme .card .list-group-item:last-child {
   color: var(--text-muted) !important;
 }
 
@@ -609,11 +736,13 @@ body {
 
 .dark-theme .dropdown-menu {
   background-color: var(--dropdown-bg) !important;
-  border-color: var(--border-color) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
 }
 
 .dark-theme .dropdown-item {
   color: var(--body-text) !important;
+  background-color: var(--dropdown-bg) !important;
 }
 
 .dark-theme .dropdown-item:hover {
@@ -858,9 +987,10 @@ body {
   border: 1px solid var(--border-color) !important;
 }
 
-/* Material Date Picker */
+/* Material Date Picker - Enhanced */
 .dark-theme .mat-datepicker-popup {
   background-color: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
 }
 
 .dark-theme .mat-calendar {
@@ -879,6 +1009,7 @@ body {
 
 .dark-theme .mat-calendar-body-cell {
   color: var(--body-text) !important;
+  background-color: transparent !important;
 }
 
 .dark-theme .mat-calendar-body-cell:hover {
@@ -888,6 +1019,30 @@ body {
 .dark-theme .mat-calendar-body-selected {
   background-color: #42a5f5 !important;
   color: white !important;
+}
+
+/* Enhanced disabled date styling */
+.dark-theme .mat-calendar-body-disabled {
+  color: #4a5568 !important;
+  background-color: #2d3748 !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+.dark-theme .mat-calendar-body-cell[aria-disabled="true"] {
+  color: #4a5568 !important;
+  background-color: #2d3748 !important;
+  opacity: 0.6 !important;
+}
+
+/* Calendar navigation */
+.dark-theme .mat-calendar-previous-button,
+.dark-theme .mat-calendar-next-button {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-period-button {
+  color: var(--body-text) !important;
 }
 
 /* Material Icons */
