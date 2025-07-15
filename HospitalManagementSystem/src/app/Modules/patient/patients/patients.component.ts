@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Patient } from 'src/app/Model/patient';
 import { Doctor } from 'src/app/Model/doctor';
 import { Staff } from 'src/app/Model/staff';
-import { ShowDetailComponent } from '../../shared/show-detail/show-detail.component'; 
+import { ShowDetailComponent } from 'src/app/shared/show-detail/show-detail.component'; 
 import { selectPatientList } from 'src/app/Ngrx/patient/patient.selector';
 import { loadPatients } from 'src/app/Ngrx/patient/patient.action';
 import { TokenService } from 'src/app/services/token.service';

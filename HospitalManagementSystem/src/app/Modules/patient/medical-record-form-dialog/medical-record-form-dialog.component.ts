@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { MedicalRecordService } from 'src/app/services/medical-record.service';
 import { showError, showSuccess } from 'src/app/Ngrx/snackbar/snackbar.actions';
-import { DynamicFormField } from '../../shared/dynamic-form/dynamic-form.component'; 
+import { DynamicFormField } from 'src/app/shared/dynamic-form/dynamic-form.component';
 
 @Component({
   selector: 'app-medical-record-form-dialog',

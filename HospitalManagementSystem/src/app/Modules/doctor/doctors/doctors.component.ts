@@ -5,7 +5,7 @@ import { Doctor } from 'src/app/Model/doctor';
 import { MatDialog } from '@angular/material/dialog';
 import { Patient } from 'src/app/Model/patient';
 import { Staff } from 'src/app/Model/staff';
-import { ShowDetailComponent } from '../../shared/show-detail/show-detail.component'; 
+import { ShowDetailComponent } from 'src/app/shared/show-detail/show-detail.component';  
 import { selectDoctorList } from 'src/app/Ngrx/doctor/doctor.selector';
 import { loadDoctors } from 'src/app/Ngrx/doctor/doctor.action';
 

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { logout } from 'src/app/Ngrx/auth.action';
+import { logout } from 'src/app/Ngrx/auth/auth.action';
 import { TokenService } from 'src/app/services/token.service';
 import {
   selectisAuthenticated,
   selectrole,
   selectUserId,
-} from 'src/app/Ngrx/auth.seletor';
+} from 'src/app/Ngrx/auth/auth.seletor';
 
 @Component({
   selector: 'app-navbar',

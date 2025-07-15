@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { login } from 'src/app/Ngrx/auth.action';
+import { login } from 'src/app/Ngrx/auth/auth.action';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service'; 
 import { TokenService } from 'src/app/services/token.service';

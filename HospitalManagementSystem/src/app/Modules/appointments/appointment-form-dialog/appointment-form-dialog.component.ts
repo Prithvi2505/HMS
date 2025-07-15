@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DynamicFormField } from '../../shared/dynamic-form/dynamic-form.component'; 
+import { DynamicFormField } from 'src/app/shared/dynamic-form/dynamic-form.component'; 
 import { DoctorService } from 'src/app/services/doctor.service';
 import { PatientService } from 'src/app/services/patient.service';
 import { TokenService } from 'src/app/services/token.service';

@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TokenService } from 'src/app/services/token.service';
-import { logout } from 'src/app/Ngrx/auth.action';
+import { logout } from 'src/app/Ngrx/auth/auth.action';
 import { deleteDoctor, updateDoctor } from 'src/app/Ngrx/doctor/doctor.action';
 import { deletePatient, updatePatient } from 'src/app/Ngrx/patient/patient.action';
 import { deleteStaff, updateStaff } from 'src/app/Ngrx/staff/staff.action';

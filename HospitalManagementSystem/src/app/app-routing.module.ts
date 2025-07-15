@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './Modules/shared/home/home.component'; 
-import { LoginComponent } from './Modules/shared/login/login.component'; 
-import { RegisterComponent } from './Modules/shared/register/register.component'; 
+import { HomeComponent } from './shared/home/home.component';  
+import { LoginComponent } from './shared/login/login.component';  
+import { RegisterComponent } from './shared/register/register.component'; 
 import { authGuard } from './guard/auth.guard';
-import { BillTableComponent } from './Modules/shared/bill-table/bill-table.component'; 
-import { RoomTableComponent } from './Modules/shared/room-table/room-table.component'; 
+import { BillTableComponent } from './shared/bill-table/bill-table.component'; 
+import { RoomTableComponent } from './shared/room-table/room-table.component'; 
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
