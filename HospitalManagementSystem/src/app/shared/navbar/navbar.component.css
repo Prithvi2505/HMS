@@ -1,25 +1,27 @@
 
 .custom-navbar {
-  background-color: #42a5f5;
+  background-color: var(--navbar-bg);
   padding: 0.5rem 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px var(--shadow-color);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 
 .navbar-brand {
   font-weight: 600;
   font-size: 1.4rem;
-  color: #ffffff !important;
+  color: var(--navbar-text) !important;
 }
 
 
 .nav-link {
   position: relative;
   font-weight: 500;
-  color: #f0f8ff !important;
+  color: var(--navbar-text) !important;
   margin-right: 12px;
   padding-bottom: 5px;
   transition: color 0.3s ease;
+  opacity: 0.9;
 }
 
 
@@ -30,20 +32,20 @@
   bottom: 0;
   height: 2px;
   width: 0;
-  background-color: white;
+  background-color: var(--navbar-text);
   transition: width 0.3s ease, background-color 0.3s ease;
 }
 
 
 .nav-link:hover::after {
   width: 100%;
-  background-color: white;
+  background-color: var(--navbar-text);
 }
 
 
 .nav-link.active::after {
   width: 100%;
-  background-color: white;
+  background-color: var(--navbar-text);
 }
 
 
@@ -54,30 +56,31 @@
 
 
 .nav-link:hover {
-  color: #ffffff !important;
+  color: var(--navbar-text) !important;
+  opacity: 1;
 }
 
 
 .dropdown-menu {
-  background-color: #ffffff;
+  background-color: var(--dropdown-bg);
   border-radius: 10px;
   padding: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border: none;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  border: 1px solid var(--border-color);
   min-width: 180px;
 }
 
 .dropdown-item {
   font-weight: 500;
-  color: #333;
+  color: var(--body-text);
   border-radius: 6px;
   transition: background-color 0.2s ease;
   padding: 8px 16px;
 }
 
 .dropdown-item:hover {
-  background-color: #e3f2fd;
-  color: #1976d2;
+  background-color: var(--dropdown-hover);
+  color: var(--body-text);
 }
 
 
@@ -91,4 +94,20 @@
 
 .btn-logout:hover {
   background-color: #d32f2f;
+}
+
+/* Theme toggle button specific styling */
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Dark theme adjustments */
+.dark-theme .btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.dark-theme .btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
 }

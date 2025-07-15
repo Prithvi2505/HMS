@@ -9,12 +9,1534 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 .snackbar-success {
     background-color: #4caf50 !important; /* Green */
     color: white;
-  }
-  .snackbar-error {
+}
+
+.snackbar-error {
     background-color: #f44336 !important; /* Red */
     color: white;
-  }
+}
+
+/* ========================================== */
+/* IMPROVED THEME VARIABLES */
+/* ========================================== */
+
+:root {
+  /* Light theme colors */
+  --navbar-bg: #42a5f5;
+  --navbar-text: #ffffff;
+  --navbar-hover: #1976d2;
+  --body-bg: #f9fbfc;
+  --body-text: #333333;
+  --card-bg: #ffffff;
+  --card-header-bg: #4e73df;
+  --card-border: #e3e6f0;
+  --dropdown-bg: #ffffff;
+  --dropdown-hover: #e3f2fd;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --text-muted: #666666;
+  --section-bg: #f8f9fa;
+  --input-bg: #ffffff;
+  --input-border: #ced4da;
+  --input-text: #495057;
+}
+
+/* Improved Dark theme colors with better contrast */
+.dark-theme {
+  --navbar-bg: #1a1a1a;
+  --navbar-text: #ffffff;
+  --navbar-hover: #333333;
+  --body-bg: #0d1117;
+  --body-text: #f0f6fc;
+  --card-bg: #161b22;
+  --card-header-bg: #2d3748;
+  --card-border: #30363d;
+  --dropdown-bg: #21262d;
+  --dropdown-hover: #30363d;
+  --border-color: #30363d;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --text-muted: #e2e8f0;
+  --section-bg: #0d1117;
+  --input-bg: #21262d;
+  --input-border: #444c56;
+  --input-text: #f0f6fc;
+}
+
+/* Apply theme variables to body */
+body {
+  background-color: var(--body-bg) !important;
+  color: var(--body-text) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========================================== */
+/* FIXED SEARCH BAR AND INPUT STYLING */
+/* ========================================== */
+
+/* ULTIMATE PLACEHOLDER FIX - applies to ALL inputs in dark mode */
+.dark-theme *::placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+.dark-theme *::-webkit-input-placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+.dark-theme *::-moz-placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+.dark-theme *:-ms-input-placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+.dark-theme *:-moz-placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+/* Search bar improvements - most specific selectors */
+.dark-theme input[type="text"],
+.dark-theme input[type="search"],
+.dark-theme input[type="email"],
+.dark-theme input[type="tel"],
+.dark-theme textarea {
+  background-color: var(--input-bg) !important;
+  border: none !important;
+  color: var(--input-text) !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+}
+
+/* Number inputs without borders */
+.dark-theme input[type="number"] {
+  background-color: var(--input-bg) !important;
+  border: none !important;
+  color: var(--input-text) !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+}
+
+.dark-theme input[type="text"]:focus,
+.dark-theme input[type="search"]:focus,
+.dark-theme input[type="email"]:focus,
+.dark-theme input[type="number"]:focus,
+.dark-theme input[type="tel"]:focus,
+.dark-theme textarea:focus {
+  background-color: var(--input-bg) !important;
+  border: 2px solid #42a5f5 !important;
+  color: var(--input-text) !important;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
+  outline: none !important;
+}
+
+/* Bootstrap form controls - remove borders */
+.dark-theme .form-control {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border-radius: 6px !important;
+  border: none !important;
+  padding: 8px 12px !important;
+}
+
+.dark-theme .form-control:focus {
+  background-color: var(--input-bg) !important;
+  border: 2px solid #42a5f5 !important;
+  color: var(--input-text) !important;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
+}
+
+.dark-theme .form-control::placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+/* Search bar specific fixes - more aggressive */
+.dark-theme .search-bar,
+.dark-theme [placeholder*="Search"],
+.dark-theme [placeholder*="search"],
+.dark-theme [placeholder*="ID"],
+.dark-theme [placeholder*="Name"],
+.dark-theme [placeholder*="Email"] {
+  background-color: var(--input-bg) !important;
+  border: none !important;
+  color: var(--input-text) !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+}
+
+/* Force search bar placeholder visibility - ultimate fix */
+.dark-theme input[placeholder="Search by ID, Name or Email"],
+.dark-theme input[placeholder*="Search by ID"],
+.dark-theme input[placeholder*="Search by"],
+.dark-theme input[placeholder*="search by"],
+.dark-theme input.form-control {
+  background-color: var(--input-bg) !important;
+  border: none !important;
+  color: var(--input-text) !important;
+  padding: 8px 12px !important;
+}
+
+.dark-theme input[placeholder="Search by ID, Name or Email"]::placeholder,
+.dark-theme input[placeholder*="Search by ID"]::placeholder,
+.dark-theme input[placeholder*="Search by"]::placeholder,
+.dark-theme input[placeholder*="search by"]::placeholder,
+.dark-theme input.form-control::placeholder {
+  color: #a8b3c1 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+.dark-theme [placeholder*="Search"]::placeholder,
+.dark-theme [placeholder*="search"]::placeholder,
+.dark-theme [placeholder*="ID"]::placeholder,
+.dark-theme [placeholder*="Name"]::placeholder,
+.dark-theme [placeholder*="Email"]::placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+/* ULTIMATE SEARCH PLACEHOLDER VISIBILITY FIX */
+.dark-theme input::placeholder,
+.dark-theme textarea::placeholder,
+.dark-theme [placeholder]::placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+}
+
+.dark-theme input::-webkit-input-placeholder,
+.dark-theme textarea::-webkit-input-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+}
+
+.dark-theme input::-moz-placeholder,
+.dark-theme textarea::-moz-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+}
+
+.dark-theme input:-ms-input-placeholder,
+.dark-theme textarea:-ms-input-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+}
+
+/* ========================================== */
+/* IMPROVED DROPDOWN AND AUTOCOMPLETE STYLING */
+/* ========================================== */
+
+/* Dropdown lists and autocomplete - dark background with light text */
+.dark-theme .dropdown-menu,
+.dark-theme .autocomplete-dropdown,
+.dark-theme .mat-autocomplete-panel,
+.dark-theme .cdk-overlay-pane,
+.dark-theme ul[role="listbox"],
+.dark-theme .suggestions,
+.dark-theme .typeahead-dropdown {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--body-text) !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+}
+
+.dark-theme .dropdown-item,
+.dark-theme .autocomplete-item,
+.dark-theme .mat-option,
+.dark-theme li[role="option"],
+.dark-theme .suggestion-item,
+.dark-theme .typeahead-item {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+  padding: 8px 16px !important;
+}
+
+.dark-theme .dropdown-item:hover,
+.dark-theme .autocomplete-item:hover,
+.dark-theme .mat-option:hover,
+.dark-theme li[role="option"]:hover,
+.dark-theme .suggestion-item:hover,
+.dark-theme .typeahead-item:hover {
+  background-color: var(--dropdown-hover) !important;
+  color: var(--body-text) !important;
+}
+
+/* Patient list dropdown specific */
+.dark-theme .patient-list,
+.dark-theme .patient-dropdown,
+.dark-theme .patient-suggestions {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+/* Additional dropdown/autocomplete catches */
+.dark-theme .ng-dropdown-panel,
+.dark-theme .ng-option,
+.dark-theme .autocomplete-panel,
+.dark-theme .suggestion-panel,
+.dark-theme .select-dropdown,
+.dark-theme .list-group {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .ng-option,
+.dark-theme .autocomplete-option,
+.dark-theme .suggestion-option,
+.dark-theme .select-option,
+.dark-theme .list-group-item {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .ng-option:hover,
+.dark-theme .autocomplete-option:hover,
+.dark-theme .suggestion-option:hover,
+.dark-theme .select-option:hover,
+.dark-theme .list-group-item:hover {
+  background-color: var(--dropdown-hover) !important;
+  color: var(--body-text) !important;
+}
+
+/* Force all white backgrounds in dropdowns to be dark */
+.dark-theme [style*="background-color: white"],
+.dark-theme [style*="background-color: #fff"],
+.dark-theme [style*="background-color: #ffffff"] {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+/* Remove all input borders in dark mode (comprehensive) */
+.dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+.dark-theme select,
+.dark-theme textarea {
+  border: none !important;
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
+}
+
+.dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):focus,
+.dark-theme select:focus,
+.dark-theme textarea:focus {
+  border: 2px solid #42a5f5 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
+}
+
+/* Select dropdown styling */
+.dark-theme select {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border: none !important;
+}
+
+.dark-theme select option {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+/* ========================================== */
+/* IMPROVED MODAL AND DIALOG STYLING */
+/* ========================================== */
+
+/* Better modal text contrast */
+.dark-theme .modal-content {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+.dark-theme .modal-header {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border-bottom: 1px solid var(--card-border) !important;
+}
+
+.dark-theme .modal-title {
+  color: var(--body-text) !important;
+  font-weight: 600 !important;
+}
+
+.dark-theme .modal-body {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .modal-footer {
+  background-color: var(--card-bg) !important;
+  border-top: 1px solid var(--card-border) !important;
+}
+
+/* Detail view improvements */
+.dark-theme .modal-body h1,
+.dark-theme .modal-body h2,
+.dark-theme .modal-body h3,
+.dark-theme .modal-body h4,
+.dark-theme .modal-body h5,
+.dark-theme .modal-body h6 {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .modal-body p,
+.dark-theme .modal-body span,
+.dark-theme .modal-body div {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .modal-body .text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* ========================================== */
+/* IMPROVED CALENDAR STYLING */
+/* ========================================== */
+
+/* ========================================== */
+/* ULTIMATE SEARCH BAR FIX */
+/* ========================================== */
+
+/* MOST AGGRESSIVE PLACEHOLDER FIX - overrides everything */
+.dark-theme input,
+.dark-theme input[type="text"],
+.dark-theme input[type="search"],
+.dark-theme textarea,
+.dark-theme .form-control {
+  background-color: var(--input-bg) !important;
+  border: none !important;
+  color: var(--input-text) !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+}
+
+.dark-theme input:focus,
+.dark-theme input[type="text"]:focus,
+.dark-theme input[type="search"]:focus,
+.dark-theme textarea:focus,
+.dark-theme .form-control:focus {
+  background-color: var(--input-bg) !important;
+  border: 2px solid #42a5f5 !important;
+  color: var(--input-text) !important;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
+  outline: none !important;
+}
+
+/* ULTIMATE PLACEHOLDER OVERRIDE - all browsers, all elements */
+.dark-theme *::placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+.dark-theme *::-webkit-input-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+.dark-theme *::-moz-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+.dark-theme *:-ms-input-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+.dark-theme *:-moz-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+/* Force override any specific search inputs */
+.dark-theme input[placeholder*="search" i],
+.dark-theme input[placeholder*="Search" i],
+.dark-theme input[placeholder*="SEARCH" i] {
+  background-color: var(--input-bg) !important;
+  border: none !important;
+  color: var(--input-text) !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
+}
+
+.dark-theme input[placeholder*="search" i]::placeholder,
+.dark-theme input[placeholder*="Search" i]::placeholder,
+.dark-theme input[placeholder*="SEARCH" i]::placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+/* ========================================== */
+/* ULTIMATE MODERN CALENDAR STYLING */
+/* ========================================== */
+
+/* Calendar container and background */
+.dark-theme .mat-calendar,
+.dark-theme .mat-datepicker-popup,
+.dark-theme .calendar,
+.dark-theme .datepicker {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #4a5568 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4) !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Calendar header styling */
+.dark-theme .mat-calendar-header,
+.dark-theme .calendar-header {
+  background: linear-gradient(90deg, #2d3748 0%, #1a202c 100%) !important;
+  color: #e2e8f0 !important;
+  padding: 20px !important;
+  border-bottom: 1px solid #4a5568 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Month/year selector button */
+.dark-theme .mat-calendar-period-button {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  padding: 12px 20px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.dark-theme .mat-calendar-period-button:hover {
+  background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4) !important;
+}
+
+/* Navigation arrows */
+.dark-theme .mat-calendar-previous-button,
+.dark-theme .mat-calendar-next-button,
+.dark-theme .calendar-nav-button {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%) !important;
+  color: #e2e8f0 !important;
+  border-radius: 50% !important;
+  width: 44px !important;
+  height: 44px !important;
+  border: 1px solid #4a5568 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.dark-theme .mat-calendar-previous-button:hover,
+.dark-theme .mat-calendar-next-button:hover {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%) !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3) !important;
+}
+
+/* Calendar table styling */
+.dark-theme .mat-calendar-table {
+  background-color: transparent !important;
+  border-collapse: separate !important;
+  border-spacing: 4px !important;
+}
+
+/* Day headers (S M T W T F S) */
+.dark-theme .mat-calendar-table-header th,
+.dark-theme .calendar-table-header th {
+  color: #4299e1 !important;
+  font-weight: 700 !important;
+  padding: 16px 8px !important;
+  text-align: center !important;
+  font-size: 13px !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+}
+
+/* Regular calendar days */
+.dark-theme .mat-calendar-body-cell,
+.dark-theme .calendar-day {
+  color: #e2e8f0 !important;
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%) !important;
+  border-radius: 12px !important;
+  margin: 2px !important;
+  min-height: 44px !important;
+  min-width: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid transparent !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Hover effect for calendar days */
+.dark-theme .mat-calendar-body-cell:hover:not(.mat-calendar-body-disabled),
+.dark-theme .calendar-day:hover:not(.disabled) {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%) !important;
+  color: white !important;
+  transform: scale(1.1) translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4) !important;
+  border: 1px solid #4299e1 !important;
+}
+
+/* Selected date styling */
+.dark-theme .mat-calendar-body-selected,
+.dark-theme .calendar-day.selected {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  border: 2px solid #63b3ed !important;
+  box-shadow: 0 8px 20px rgba(66, 153, 225, 0.5) !important;
+  transform: scale(1.05) !important;
+}
+
+/* Today's date */
+.dark-theme .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border: 2px solid #4299e1 !important;
+  background: linear-gradient(135deg, rgba(66, 153, 225, 0.1) 0%, rgba(49, 130, 206, 0.1) 100%) !important;
+  color: #4299e1 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.2) !important;
+}
+
+/* SUPER VISIBLE DISABLED DATES */
+.dark-theme .mat-calendar-body-disabled,
+.dark-theme .calendar-day.disabled,
+.dark-theme .mat-calendar-body-cell[aria-disabled="true"] {
+  background: linear-gradient(135deg, #2a2e3a 0%, #1e2126 100%) !important;
+  color: #4a5568 !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  border-radius: 12px !important;
+  position: relative !important;
+  border: 1px solid #2d3748 !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-theme .mat-calendar-body-disabled:hover,
+.dark-theme .calendar-day.disabled:hover,
+.dark-theme .mat-calendar-body-cell[aria-disabled="true"]:hover {
+  transform: none !important;
+  background: linear-gradient(135deg, #2a2e3a 0%, #1e2126 100%) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Add multiple visual indicators for disabled dates */
+.dark-theme .mat-calendar-body-disabled::after,
+.dark-theme .calendar-day.disabled::after,
+.dark-theme .mat-calendar-body-cell[aria-disabled="true"]::after {
+  content: '✗' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  color: #e53e3e !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  opacity: 0.7 !important;
+}
+
+/* Previous/next month dates */
+.dark-theme .mat-calendar-body-cell.mat-calendar-body-other-month {
+  color: #4a5568 !important;
+  opacity: 0.4 !important;
+  background: linear-gradient(135deg, rgba(45, 55, 72, 0.3) 0%, rgba(26, 32, 44, 0.3) 100%) !important;
+}
+
+/* Calendar body container */
+.dark-theme .mat-calendar-body {
+  background-color: transparent !important;
+  padding: 20px !important;
+}
+
+/* Month view styling */
+.dark-theme .mat-calendar-content {
+  background-color: transparent !important;
+}
+
+/* Week days row */
+.dark-theme .mat-calendar-table-header {
+  background: linear-gradient(90deg, rgba(66, 153, 225, 0.1) 0%, rgba(49, 130, 206, 0.1) 100%) !important;
+  border-bottom: 2px solid #4299e1 !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+/* ========================================== */
+/* IMPROVED DROPDOWN AND AUTOCOMPLETE STYLING */
+/* ========================================== */
+
+/* Dropdown lists and autocomplete - dark background with light text */
+.dark-theme .dropdown-menu,
+.dark-theme .autocomplete-dropdown,
+.dark-theme .mat-autocomplete-panel,
+.dark-theme .cdk-overlay-pane,
+.dark-theme ul[role="listbox"],
+.dark-theme .suggestions,
+.dark-theme .typeahead-dropdown {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--body-text) !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+}
+
+.dark-theme .dropdown-item,
+.dark-theme .autocomplete-item,
+.dark-theme .mat-option,
+.dark-theme li[role="option"],
+.dark-theme .suggestion-item,
+.dark-theme .typeahead-item {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+  padding: 8px 16px !important;
+}
+
+.dark-theme .dropdown-item:hover,
+.dark-theme .autocomplete-item:hover,
+.dark-theme .mat-option:hover,
+.dark-theme li[role="option"]:hover,
+.dark-theme .suggestion-item:hover,
+.dark-theme .typeahead-item:hover {
+  background-color: var(--dropdown-hover) !important;
+  color: var(--body-text) !important;
+}
+
+/* Patient list dropdown specific */
+.dark-theme .patient-list,
+.dark-theme .patient-dropdown,
+.dark-theme .patient-suggestions {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+/* Additional dropdown/autocomplete catches */
+.dark-theme .ng-dropdown-panel,
+.dark-theme .ng-option,
+.dark-theme .autocomplete-panel,
+.dark-theme .suggestion-panel,
+.dark-theme .select-dropdown,
+.dark-theme .list-group {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .ng-option,
+.dark-theme .autocomplete-option,
+.dark-theme .suggestion-option,
+.dark-theme .select-option,
+.dark-theme .list-group-item {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .ng-option:hover,
+.dark-theme .autocomplete-option:hover,
+.dark-theme .suggestion-option:hover,
+.dark-theme .select-option:hover,
+.dark-theme .list-group-item:hover {
+  background-color: var(--dropdown-hover) !important;
+  color: var(--body-text) !important;
+}
+
+/* Force all white backgrounds in dropdowns to be dark */
+.dark-theme [style*="background-color: white"],
+.dark-theme [style*="background-color: #fff"],
+.dark-theme [style*="background-color: #ffffff"] {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+/* Remove all input borders in dark mode (comprehensive) */
+.dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+.dark-theme select,
+.dark-theme textarea {
+  border: none !important;
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
+}
+
+.dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):focus,
+.dark-theme select:focus,
+.dark-theme textarea:focus {
+  border: 2px solid #42a5f5 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
+}
+
+/* Select dropdown styling */
+.dark-theme select {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border: none !important;
+}
+
+.dark-theme select option {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+/* ========================================== */
+/* IMPROVED MODAL AND DIALOG STYLING */
+/* ========================================== */
+
+/* Better modal text contrast */
+.dark-theme .modal-content {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+.dark-theme .modal-header {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border-bottom: 1px solid var(--card-border) !important;
+}
+
+.dark-theme .modal-title {
+  color: var(--body-text) !important;
+  font-weight: 600 !important;
+}
+
+.dark-theme .modal-body {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .modal-footer {
+  background-color: var(--card-bg) !important;
+  border-top: 1px solid var(--card-border) !important;
+}
+
+/* Detail view improvements */
+.dark-theme .modal-body h1,
+.dark-theme .modal-body h2,
+.dark-theme .modal-body h3,
+.dark-theme .modal-body h4,
+.dark-theme .modal-body h5,
+.dark-theme .modal-body h6 {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .modal-body p,
+.dark-theme .modal-body span,
+.dark-theme .modal-body div {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .modal-body .text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* ========================================== */
+/* IMPROVED CALENDAR STYLING */
+/* ========================================== */
+
+/* ========================================== */
+/* FIXED BUTTON STYLING */
+/* ========================================== */
+
+/* Primary buttons - Show Detail button fix */
+.dark-theme .btn-primary,
+.dark-theme .btn.btn-primary,
+.dark-theme button.btn-primary {
+  background-color: #42a5f5 !important;
+  border-color: #42a5f5 !important;
+  color: white !important;
+}
+
+.dark-theme .btn-primary:hover,
+.dark-theme .btn.btn-primary:hover,
+.dark-theme button.btn-primary:hover {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+  color: white !important;
+}
+
+/* Secondary/Cancel buttons - proper CSS selectors */
+.dark-theme .btn-secondary,
+.dark-theme .btn.btn-secondary,
+.dark-theme button.btn-secondary,
+.dark-theme .btn-light,
+.dark-theme .btn.btn-light,
+.dark-theme button.btn-light {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Cancel button - using valid CSS selectors */
+.dark-theme .btn[value="Cancel"],
+.dark-theme button[value="Cancel"],
+.dark-theme .btn-cancel,
+.dark-theme button.btn-cancel,
+.dark-theme .modal-footer .btn:not(.btn-primary):not(.btn-danger):not(.btn-success),
+.dark-theme .modal-footer button:not(.btn-primary):not(.btn-danger):not(.btn-success) {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Default button styling for any unspecified buttons */
+.dark-theme .btn:not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-warning):not(.btn-info):not(.btn-outline-primary):not(.btn-outline-secondary):not(.btn-outline-danger):not(.btn-outline-success) {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Additional catch for modal footer buttons */
+.dark-theme .modal-footer button:last-child:not(.btn-primary):not(.btn-danger):not(.btn-success) {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Force cancel button styling - multiple approaches */
+.dark-theme button[type="button"]:not(.btn-primary):not(.btn-danger):not(.btn-success) {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+.dark-theme .btn-secondary:hover,
+.dark-theme .btn-light:hover {
+  background-color: #545b62 !important;
+  border-color: #545b62 !important;
+  color: white !important;
+}
+
+/* Outline buttons */
+.dark-theme .btn-outline-primary {
+  color: #42a5f5 !important;
+  border-color: #42a5f5 !important;
+  background-color: transparent !important;
+}
+
+.dark-theme .btn-outline-primary:hover {
+  background-color: #42a5f5 !important;
+  border-color: #42a5f5 !important;
+  color: white !important;
+}
+
+.dark-theme .btn-outline-secondary {
+  color: #6c757d !important;
+  border-color: #6c757d !important;
+  background-color: transparent !important;
+}
+
+.dark-theme .btn-outline-secondary:hover {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+/* Danger buttons */
+.dark-theme .btn-danger {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  color: white !important;
+}
+
+.dark-theme .btn-danger:hover {
+  background-color: #c82333 !important;
+  border-color: #bd2130 !important;
+  color: white !important;
+}
+
+/* Success buttons */
+.dark-theme .btn-success {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+  color: white !important;
+}
+
+.dark-theme .btn-success:hover {
+  background-color: #218838 !important;
+  border-color: #1e7e34 !important;
+  color: white !important;
+}
+
+/* Specific button text colors */
+.dark-theme .btn-outline-primary {
+  color: #42a5f5 !important;
+}
+
+.dark-theme .btn-outline-secondary {
+  color: #6c757d !important;
+}
+
+.dark-theme .btn-outline-danger {
+  color: #dc3545 !important;
+}
+
+.dark-theme .btn-outline-success {
+  color: #28a745 !important;
+}
+
+/* ========================================== */
+/* IMPROVED CARD STYLING */
+/* ========================================== */
+
+/* Custom card improvements */
+.dark-theme .card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: 0 4px 15px var(--shadow-color) !important;
+  border-radius: 8px !important;
+}
+
+.dark-theme .card:hover {
+  box-shadow: 0 6px 20px var(--shadow-color) !important;
+  transform: translateY(-2px) !important;
+}
+
+.dark-theme .card-body {
+  background-color: var(--card-header-bg) !important;
+  color: white !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.dark-theme .card-title {
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+.dark-theme .card-subtitle {
+  color: #d1e7ff !important;
+}
+
+/* Card content areas */
+.dark-theme .card .list-group-item {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border-color: var(--card-border) !important;
+}
+
+.dark-theme .card .list-group-item:first-child {
+  background-color: var(--dropdown-hover) !important;
+  color: #42a5f5 !important;
+  font-weight: 500 !important;
+}
+
+.dark-theme .card .list-group-item:last-child {
+  color: var(--text-muted) !important;
+}
+
+.dark-theme .card > div:last-child {
+  background-color: var(--card-bg) !important;
+  border-top: 1px solid var(--card-border) !important;
+  border-radius: 0 0 8px 8px !important;
+  padding: 15px !important;
+}
+
+/* ========================================== */
+/* CUSTOM COMPONENT DARK THEME SUPPORT */
+/* ========================================== */
+
+/* Home Component Styling */
+.dark-theme .home-container {
+  background: var(--body-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .banner {
+  background: linear-gradient(135deg, #1f2937, #374151) !important;
+  box-shadow: 0 8px 20px var(--shadow-color) !important;
+}
+
+.dark-theme .section-title h2 {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .card-grid .card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+}
+
+.dark-theme .card-grid .card:hover {
+  box-shadow: 0 8px 20px var(--shadow-color) !important;
+}
+
+.dark-theme .card-grid .card h3 {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .card-grid .card p {
+  color: var(--text-muted) !important;
+}
+
+.dark-theme .card-grid .card i {
+  color: #42a5f5 !important;
+}
+
+.dark-theme .overview-section {
+  background: var(--section-bg) !important;
+  border-top: 2px solid var(--border-color) !important;
+}
+
+.dark-theme .overview-section h2 {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .overview-section p {
+  color: var(--text-muted) !important;
+}
+
+.dark-theme .overview-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+}
+
+.dark-theme .overview-card h4 {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .overview-card p {
+  color: var(--text-muted) !important;
+}
+
+.dark-theme .overview-card i {
+  color: #42a5f5 !important;
+}
+
+/* ========================================== */
+/* BOOTSTRAP DARK THEME SUPPORT */
+/* ========================================== */
+
+.dark-theme .table {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .table th,
+.dark-theme .table td {
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .alert {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .dropdown-menu {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+}
+
+.dark-theme .dropdown-item {
+  color: var(--body-text) !important;
+  background-color: var(--dropdown-bg) !important;
+}
+
+.dark-theme .dropdown-item:hover {
+  background-color: var(--dropdown-hover) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .nav-tabs .nav-link {
+  color: var(--body-text) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .nav-tabs .nav-link.active {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+/* Label improvements */
+.dark-theme label {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .form-label {
+  color: var(--body-text) !important;
+}
+
+/* Text improvements */
+.dark-theme h1, .dark-theme h2, .dark-theme h3, 
+.dark-theme h4, .dark-theme h5, .dark-theme h6 {
+  color: var(--body-text) !important;
+}
+
+.dark-theme p, .dark-theme span, .dark-theme div {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* ========================================== */
+/* ANGULAR MATERIAL DARK THEME SUPPORT */
+/* ========================================== */
+
+/* Material Cards */
+.dark-theme .mat-mdc-card {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-card-header {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-card-content {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-card-title {
+  color: var(--body-text) !important;
+}
+
+/* Material Form Fields */
+.dark-theme .mat-mdc-form-field {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-text-field-wrapper {
+  background-color: var(--input-bg) !important;
+}
+
+.dark-theme .mat-mdc-form-field-label {
+  color: var(--text-muted) !important;
+}
+
+.dark-theme .mat-mdc-form-field-label.mdc-floating-label--float-above {
+  color: #42a5f5 !important;
+}
+
+.dark-theme .mat-mdc-input-element {
+  color: var(--input-text) !important;
+  caret-color: var(--input-text) !important;
+}
+
+.dark-theme .mdc-text-field--filled {
+  background-color: var(--input-bg) !important;
+}
+
+.dark-theme .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--input-bg) !important;
+}
+
+.dark-theme .mdc-text-field--filled .mdc-line-ripple::before {
+  border-bottom-color: var(--input-border) !important;
+}
+
+.dark-theme .mdc-text-field--filled .mdc-line-ripple::after {
+  border-bottom-color: #42a5f5 !important;
+}
+
+/* Material Select */
+.dark-theme .mat-mdc-select {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-select-value {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-select-arrow {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-option {
+  color: var(--body-text) !important;
+  background-color: var(--dropdown-bg) !important;
+}
+
+.dark-theme .mat-mdc-option:hover {
+  background-color: var(--dropdown-hover) !important;
+}
+
+.dark-theme .mat-mdc-option.mdc-list-item--selected {
+  background-color: rgba(66, 165, 245, 0.2) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-option.mat-mdc-option-active {
+  background-color: var(--dropdown-hover) !important;
+}
+
+.dark-theme .mat-mdc-select-panel {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Material Table */
+.dark-theme .mat-mdc-table {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-header-cell {
+  color: var(--body-text) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-cell {
+  color: var(--body-text) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-row:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.dark-theme .mat-mdc-header-row {
+  background-color: var(--card-bg) !important;
+}
+
+/* Material Paginator */
+.dark-theme .mat-mdc-paginator {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-paginator .mat-mdc-select {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-paginator .mat-mdc-select-value {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-paginator .mat-mdc-icon-button {
+  color: var(--body-text) !important;
+}
+
+/* Material Buttons */
+.dark-theme .mat-mdc-raised-button.mat-primary {
+  background-color: #42a5f5 !important;
+  color: white !important;
+}
+
+.dark-theme .mat-mdc-outlined-button.mat-primary {
+  border-color: #42a5f5 !important;
+  color: #42a5f5 !important;
+}
+
+.dark-theme .mat-mdc-button.mat-primary {
+  color: #42a5f5 !important;
+}
+
+.dark-theme .mat-mdc-fab.mat-warn {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+.dark-theme .mat-mdc-icon-button {
+  color: var(--body-text) !important;
+}
+
+/* Material Dialog */
+.dark-theme .mat-mdc-dialog-container {
+  background-color: var(--card-bg) !important;
+}
+
+.dark-theme .mat-mdc-dialog-surface {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-dialog-title {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-dialog-content {
+  color: var(--body-text) !important;
+}
+
+/* Material Menu */
+.dark-theme .mat-mdc-menu-panel {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-menu-item {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-menu-item:hover {
+  background-color: var(--dropdown-hover) !important;
+}
+
+/* Material Snackbar */
+.dark-theme .mat-mdc-snack-bar-container {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Material Date Picker - Enhanced */
+.dark-theme .mat-datepicker-popup {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+.dark-theme .mat-calendar {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-header {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-table-header {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-body-cell {
+  color: var(--body-text) !important;
+  background-color: transparent !important;
+}
+
+.dark-theme .mat-calendar-body-cell:hover {
+  background-color: var(--dropdown-hover) !important;
+}
+
+.dark-theme .mat-calendar-body-selected {
+  background-color: #42a5f5 !important;
+  color: white !important;
+}
+
+/* Enhanced disabled date styling */
+.dark-theme .mat-calendar-body-disabled {
+  color: #4a5568 !important;
+  background-color: #2d3748 !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+.dark-theme .mat-calendar-body-cell[aria-disabled="true"] {
+  color: #4a5568 !important;
+  background-color: #2d3748 !important;
+  opacity: 0.6 !important;
+}
+
+/* Calendar navigation */
+.dark-theme .mat-calendar-previous-button,
+.dark-theme .mat-calendar-next-button {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-calendar-period-button {
+  color: var(--body-text) !important;
+}
+
+/* Material Icons */
+.dark-theme .mat-icon {
+  color: var(--body-text) !important;
+}
+
+/* CDK Overlay */
+.dark-theme .cdk-overlay-backdrop {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .cdk-overlay-pane {
+  color: var(--body-text) !important;
+}
+
+/* ========================================== */
+/* SYNCFUSION DARK THEME SUPPORT */
+/* ========================================== */
+
+.dark-theme .e-schedule {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .e-schedule .e-schedule-toolbar {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .e-schedule .e-content-wrap {
+  background-color: var(--card-bg) !important;
+}
+
+.dark-theme .e-schedule .e-work-cells {
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .e-schedule .e-header-cells {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .e-popup {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .e-input-group {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .e-input-group input {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .e-dropdownlist {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .e-list-item {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .e-list-item:hover {
+  background-color: var(--dropdown-hover) !important;
+}
 
