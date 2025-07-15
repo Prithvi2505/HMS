@@ -1,7 +1,7 @@
 <div class="search-bar-container">
     <mat-form-field appearance="outline" class="search-input">
       <mat-label>Search by ID, Name or Email</mat-label>
-      <input matInput [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Enter search term">
+      <input matInput [(ngModel)]="searchTerm" (input)="onSearch()">
       <button mat-icon-button *ngIf="searchTerm" matSuffix (click)="searchTerm=''; onSearch()">
         <mat-icon>close</mat-icon>
       </button>
