@@ -59,7 +59,7 @@ body {
   --dropdown-hover: #30363d;
   --border-color: #30363d;
   --shadow-color: rgba(0, 0, 0, 0.4);
-  --text-muted: #a8b3c1;
+  --text-muted: #e2e8f0;
   --section-bg: #0d1117;
   --input-bg: #21262d;
   --input-border: #444c56;
@@ -304,8 +304,8 @@ body {
   border: none !important;
   background-color: var(--input-bg) !important;
   color: var(--input-text) !important;
-  padding: 8px 12px !important;
-  border-radius: 6px !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
 }
 
 .dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):focus,
@@ -384,7 +384,96 @@ body {
 /* IMPROVED CALENDAR STYLING */
 /* ========================================== */
 
-/* Calendar dark mode improvements */
+/* ========================================== */
+/* ULTIMATE SEARCH BAR FIX */
+/* ========================================== */
+
+/* MOST AGGRESSIVE PLACEHOLDER FIX - overrides everything */
+.dark-theme input,
+.dark-theme input[type="text"],
+.dark-theme input[type="search"],
+.dark-theme textarea,
+.dark-theme .form-control {
+  background-color: var(--input-bg) !important;
+  border: none !important;
+  color: var(--input-text) !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+}
+
+.dark-theme input:focus,
+.dark-theme input[type="text"]:focus,
+.dark-theme input[type="search"]:focus,
+.dark-theme textarea:focus,
+.dark-theme .form-control:focus {
+  background-color: var(--input-bg) !important;
+  border: 2px solid #42a5f5 !important;
+  color: var(--input-text) !important;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
+  outline: none !important;
+}
+
+/* ULTIMATE PLACEHOLDER OVERRIDE - all browsers, all elements */
+.dark-theme *::placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+.dark-theme *::-webkit-input-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+.dark-theme *::-moz-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+.dark-theme *:-ms-input-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+.dark-theme *:-moz-placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+/* Force override any specific search inputs */
+.dark-theme input[placeholder*="search" i],
+.dark-theme input[placeholder*="Search" i],
+.dark-theme input[placeholder*="SEARCH" i] {
+  background-color: var(--input-bg) !important;
+  border: none !important;
+  color: var(--input-text) !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
+}
+
+.dark-theme input[placeholder*="search" i]::placeholder,
+.dark-theme input[placeholder*="Search" i]::placeholder,
+.dark-theme input[placeholder*="SEARCH" i]::placeholder {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+/* ========================================== */
+/* ENHANCED CALENDAR STYLING */
+/* ========================================== */
+
+/* Calendar container and background */
 .dark-theme .mat-calendar,
 .dark-theme .mat-datepicker-popup,
 .dark-theme .calendar,
@@ -392,57 +481,321 @@ body {
   background-color: var(--card-bg) !important;
   color: var(--body-text) !important;
   border: 1px solid var(--card-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 25px var(--shadow-color) !important;
+  overflow: hidden !important;
 }
 
+/* Calendar header styling */
 .dark-theme .mat-calendar-header,
 .dark-theme .calendar-header {
-  background-color: var(--card-bg) !important;
+  background-color: #2d3748 !important;
   color: var(--body-text) !important;
+  padding: 16px !important;
+  border-bottom: 1px solid var(--card-border) !important;
 }
 
+/* Month/year selector button */
+.dark-theme .mat-calendar-period-button {
+  background-color: #4a5568 !important;
+  color: white !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
+  font-weight: 500 !important;
+}
+
+/* Navigation arrows */
+.dark-theme .mat-calendar-previous-button,
+.dark-theme .mat-calendar-next-button,
+.dark-theme .calendar-nav-button {
+  background-color: #4a5568 !important;
+  color: white !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.dark-theme .mat-calendar-previous-button:hover,
+.dark-theme .mat-calendar-next-button:hover {
+  background-color: #2d3748 !important;
+}
+
+/* Calendar table styling */
+.dark-theme .mat-calendar-table {
+  background-color: var(--card-bg) !important;
+}
+
+/* Day headers (S M T W T F S) */
 .dark-theme .mat-calendar-table-header th,
 .dark-theme .calendar-table-header th {
-  color: var(--body-text) !important;
+  color: #a0aec0 !important;
+  font-weight: 600 !important;
+  padding: 12px 8px !important;
+  text-align: center !important;
 }
 
+/* Regular calendar days */
 .dark-theme .mat-calendar-body-cell,
 .dark-theme .calendar-day {
   color: var(--body-text) !important;
   background-color: transparent !important;
+  border-radius: 8px !important;
+  margin: 2px !important;
+  min-height: 40px !important;
+  min-width: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
 }
 
+/* Hover effect for calendar days */
 .dark-theme .mat-calendar-body-cell:hover,
 .dark-theme .calendar-day:hover {
-  background-color: var(--dropdown-hover) !important;
+  background-color: #4a5568 !important;
+  color: white !important;
+  transform: scale(1.05) !important;
 }
 
+/* Selected date styling */
 .dark-theme .mat-calendar-body-selected,
 .dark-theme .calendar-day.selected {
   background-color: #42a5f5 !important;
   color: white !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
 }
 
-/* Disabled calendar dates - much more visible */
+/* Today's date */
+.dark-theme .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border: 2px solid #42a5f5 !important;
+  background-color: transparent !important;
+  color: #42a5f5 !important;
+  font-weight: 600 !important;
+}
+
+/* ENHANCED DISABLED DATES - Much more visible */
 .dark-theme .mat-calendar-body-disabled,
 .dark-theme .calendar-day.disabled,
 .dark-theme .mat-calendar-body-cell[aria-disabled="true"] {
+  background-color: #1a202c !important;
   color: #4a5568 !important;
-  background-color: #2d3748 !important;
-  opacity: 0.6 !important;
+  opacity: 0.7 !important;
   cursor: not-allowed !important;
+  border-radius: 8px !important;
+  position: relative !important;
 }
 
-/* Calendar navigation buttons */
-.dark-theme .mat-calendar-previous-button,
-.dark-theme .mat-calendar-next-button,
-.dark-theme .calendar-nav-button {
+/* Add diagonal line effect for disabled dates */
+.dark-theme .mat-calendar-body-disabled::after,
+.dark-theme .calendar-day.disabled::after,
+.dark-theme .mat-calendar-body-cell[aria-disabled="true"]::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 10% !important;
+  right: 10% !important;
+  height: 1px !important;
+  background-color: #4a5568 !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Previous/next month dates */
+.dark-theme .mat-calendar-body-cell.mat-calendar-body-other-month {
+  color: #4a5568 !important;
+  opacity: 0.5 !important;
+}
+
+/* Calendar body container */
+.dark-theme .mat-calendar-body {
+  background-color: var(--card-bg) !important;
+  padding: 16px !important;
+}
+
+/* Month view styling */
+.dark-theme .mat-calendar-content {
+  background-color: var(--card-bg) !important;
+}
+
+/* Week days row */
+.dark-theme .mat-calendar-table-header {
+  background-color: var(--card-bg) !important;
+  border-bottom: 1px solid var(--card-border) !important;
+}
+
+/* ========================================== */
+/* IMPROVED DROPDOWN AND AUTOCOMPLETE STYLING */
+/* ========================================== */
+
+/* Dropdown lists and autocomplete - dark background with light text */
+.dark-theme .dropdown-menu,
+.dark-theme .autocomplete-dropdown,
+.dark-theme .mat-autocomplete-panel,
+.dark-theme .cdk-overlay-pane,
+.dark-theme ul[role="listbox"],
+.dark-theme .suggestions,
+.dark-theme .typeahead-dropdown {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--body-text) !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+}
+
+.dark-theme .dropdown-item,
+.dark-theme .autocomplete-item,
+.dark-theme .mat-option,
+.dark-theme li[role="option"],
+.dark-theme .suggestion-item,
+.dark-theme .typeahead-item {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+  padding: 8px 16px !important;
+}
+
+.dark-theme .dropdown-item:hover,
+.dark-theme .autocomplete-item:hover,
+.dark-theme .mat-option:hover,
+.dark-theme li[role="option"]:hover,
+.dark-theme .suggestion-item:hover,
+.dark-theme .typeahead-item:hover {
+  background-color: var(--dropdown-hover) !important;
   color: var(--body-text) !important;
 }
 
-/* Month/year selector */
-.dark-theme .mat-calendar-period-button {
+/* Patient list dropdown specific */
+.dark-theme .patient-list,
+.dark-theme .patient-dropdown,
+.dark-theme .patient-suggestions {
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
   color: var(--body-text) !important;
 }
+
+/* Additional dropdown/autocomplete catches */
+.dark-theme .ng-dropdown-panel,
+.dark-theme .ng-option,
+.dark-theme .autocomplete-panel,
+.dark-theme .suggestion-panel,
+.dark-theme .select-dropdown,
+.dark-theme .list-group {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .ng-option,
+.dark-theme .autocomplete-option,
+.dark-theme .suggestion-option,
+.dark-theme .select-option,
+.dark-theme .list-group-item {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .ng-option:hover,
+.dark-theme .autocomplete-option:hover,
+.dark-theme .suggestion-option:hover,
+.dark-theme .select-option:hover,
+.dark-theme .list-group-item:hover {
+  background-color: var(--dropdown-hover) !important;
+  color: var(--body-text) !important;
+}
+
+/* Force all white backgrounds in dropdowns to be dark */
+.dark-theme [style*="background-color: white"],
+.dark-theme [style*="background-color: #fff"],
+.dark-theme [style*="background-color: #ffffff"] {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+/* Remove all input borders in dark mode (comprehensive) */
+.dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+.dark-theme select,
+.dark-theme textarea {
+  border: none !important;
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
+}
+
+.dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):focus,
+.dark-theme select:focus,
+.dark-theme textarea:focus {
+  border: 2px solid #42a5f5 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25) !important;
+}
+
+/* Select dropdown styling */
+.dark-theme select {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border: none !important;
+}
+
+.dark-theme select option {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--body-text) !important;
+}
+
+/* ========================================== */
+/* IMPROVED MODAL AND DIALOG STYLING */
+/* ========================================== */
+
+/* Better modal text contrast */
+.dark-theme .modal-content {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+.dark-theme .modal-header {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border-bottom: 1px solid var(--card-border) !important;
+}
+
+.dark-theme .modal-title {
+  color: var(--body-text) !important;
+  font-weight: 600 !important;
+}
+
+.dark-theme .modal-body {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .modal-footer {
+  background-color: var(--card-bg) !important;
+  border-top: 1px solid var(--card-border) !important;
+}
+
+/* Detail view improvements */
+.dark-theme .modal-body h1,
+.dark-theme .modal-body h2,
+.dark-theme .modal-body h3,
+.dark-theme .modal-body h4,
+.dark-theme .modal-body h5,
+.dark-theme .modal-body h6 {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .modal-body p,
+.dark-theme .modal-body span,
+.dark-theme .modal-body div {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .modal-body .text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* ========================================== */
+/* IMPROVED CALENDAR STYLING */
+/* ========================================== */
 
 /* ========================================== */
 /* FIXED BUTTON STYLING */
