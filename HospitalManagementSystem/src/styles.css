@@ -109,3 +109,107 @@ body {
   color: var(--body-text) !important;
 }
 
+/* Syncfusion Component Dark Theme Support */
+.dark-theme .e-schedule {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .e-schedule .e-schedule-toolbar {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .e-schedule .e-content-wrap {
+  background-color: var(--card-bg) !important;
+}
+
+.dark-theme .e-schedule .e-work-cells {
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .e-schedule .e-header-cells {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .e-popup {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .e-input-group {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .e-input-group input {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .e-dropdownlist {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .e-list-item {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .e-list-item:hover {
+  background-color: var(--dropdown-hover) !important;
+}
+
+/* Additional Material Component Fixes */
+.dark-theme .mat-mdc-snack-bar-container {
+  background-color: var(--card-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-menu-panel {
+  background-color: var(--dropdown-bg) !important;
+}
+
+.dark-theme .mat-mdc-menu-item {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .mat-mdc-menu-item:hover {
+  background-color: var(--dropdown-hover) !important;
+}
+
+.dark-theme .cdk-overlay-backdrop {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Bootstrap Dark Theme Enhancements */
+.dark-theme .dropdown-menu {
+  background-color: var(--dropdown-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .dropdown-item {
+  color: var(--body-text) !important;
+}
+
+.dark-theme .dropdown-item:hover {
+  background-color: var(--dropdown-hover) !important;
+  color: var(--body-text) !important;
+}
+
+.dark-theme .nav-tabs .nav-link {
+  color: var(--body-text) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .nav-tabs .nav-link.active {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--body-text) !important;
+}
+
