@@ -497,197 +497,111 @@ body {
 }
 
 /* ========================================== */
-/* MODERN DARK THEME DATEPICKER STYLING */
+/* SIMPLE DARK THEME DATEPICKER */
 /* ========================================== */
 
-/* Calendar container and background - Clean dark theme */
+/* Basic dark datepicker container */
 .dark-theme .mat-calendar,
-.dark-theme .mat-datepicker-popup,
-.dark-theme .calendar,
-.dark-theme .datepicker {
+.dark-theme .mat-datepicker-popup {
   background: #2a2d3a !important;
   color: #ffffff !important;
-  border: 1px solid #3e4651 !important;
+  border: 1px solid #444 !important;
   border-radius: 8px !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-  overflow: hidden !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Calendar header styling */
-.dark-theme .mat-calendar-header,
-.dark-theme .calendar-header {
-  background: #1e212b !important;
+/* Header */
+.dark-theme .mat-calendar-header {
+  background: #2a2d3a !important;
   color: #ffffff !important;
-  padding: 16px !important;
-  border-bottom: 1px solid #3e4651 !important;
 }
 
-/* Month/year selector button */
-.dark-theme .mat-calendar-period-button {
-  background: #4a90e2 !important;
-  color: white !important;
-  border-radius: 6px !important;
-  padding: 8px 16px !important;
-  font-weight: 500 !important;
-  border: none !important;
-  transition: all 0.2s ease !important;
-}
-
-.dark-theme .mat-calendar-period-button:hover {
-  background: #357abd !important;
-}
-
-/* Navigation arrows */
+/* Navigation buttons */
+.dark-theme .mat-calendar-period-button,
 .dark-theme .mat-calendar-previous-button,
-.dark-theme .mat-calendar-next-button,
-.dark-theme .calendar-nav-button {
-  background: #3e4651 !important;
+.dark-theme .mat-calendar-next-button {
   color: #ffffff !important;
-  border-radius: 50% !important;
-  width: 36px !important;
-  height: 36px !important;
-  border: none !important;
-  transition: all 0.2s ease !important;
 }
 
-.dark-theme .mat-calendar-previous-button:hover,
-.dark-theme .mat-calendar-next-button:hover {
-  background: #4a90e2 !important;
-}
-
-/* Calendar table styling */
-.dark-theme .mat-calendar-table {
-  background-color: transparent !important;
-  border-collapse: separate !important;
-  border-spacing: 2px !important;
-}
-
-/* Day headers (S M T W T F S) */
-.dark-theme .mat-calendar-table-header th,
-.dark-theme .calendar-table-header th {
-  color: #b8c5d1 !important;
-  font-weight: 600 !important;
-  padding: 12px 8px !important;
-  text-align: center !important;
-  font-size: 12px !important;
-  text-transform: uppercase !important;
-}
-
-/* Regular calendar days - Available dates */
-.dark-theme .mat-calendar-body-cell,
-.dark-theme .calendar-day {
+/* Calendar cells - available dates */
+.dark-theme .mat-calendar-body-cell {
+  background: #2a2d3a !important;
   color: #ffffff !important;
-  background: #3e4651 !important;
-  border-radius: 6px !important;
-  margin: 1px !important;
-  min-height: 36px !important;
-  min-width: 36px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-weight: 400 !important;
-  transition: all 0.2s ease !important;
-  border: 1px solid transparent !important;
-  cursor: pointer !important;
+  border-radius: 4px !important;
 }
 
-/* Hover effect for available calendar days */
-.dark-theme .mat-calendar-body-cell:hover:not(.mat-calendar-body-disabled),
-.dark-theme .calendar-day:hover:not(.disabled) {
+/* Hover effect */
+.dark-theme .mat-calendar-body-cell:hover:not(.mat-calendar-body-disabled) {
   background: #4a90e2 !important;
   color: white !important;
-  border: 1px solid #4a90e2 !important;
 }
 
-/* Selected date styling */
-.dark-theme .mat-calendar-body-selected,
-.dark-theme .calendar-day.selected {
+/* Selected date */
+.dark-theme .mat-calendar-body-selected {
   background: #4a90e2 !important;
   color: white !important;
-  border-radius: 6px !important;
-  font-weight: 600 !important;
-  border: 2px solid #6bb3ff !important;
 }
 
 /* Today's date */
 .dark-theme .mat-calendar-body-today:not(.mat-calendar-body-selected) {
-  border: 2px solid #4a90e2 !important;
-  background: rgba(74, 144, 226, 0.1) !important;
   color: #4a90e2 !important;
-  font-weight: 600 !important;
+  border: 1px solid #4a90e2 !important;
 }
 
-/* CLEARLY VISIBLE DISABLED DATES */
-.dark-theme .mat-calendar-body-disabled,
-.dark-theme .calendar-day.disabled,
-.dark-theme .mat-calendar-body-cell[aria-disabled="true"] {
-  background: #252836 !important;
-  color: #6b7280 !important;
-  opacity: 1 !important;
+/* Disabled dates */
+.dark-theme .mat-calendar-body-disabled {
+  background: #1a1d23 !important;
+  color: #666 !important;
+  opacity: 0.6 !important;
   cursor: not-allowed !important;
-  border-radius: 6px !important;
-  position: relative !important;
-  border: 1px solid #374151 !important;
-  text-decoration: line-through !important;
 }
 
-.dark-theme .mat-calendar-body-disabled:hover,
-.dark-theme .calendar-day.disabled:hover,
-.dark-theme .mat-calendar-body-cell[aria-disabled="true"]:hover {
-  transform: none !important;
-  background: #252836 !important;
-  color: #6b7280 !important;
+/* Day headers */
+.dark-theme .mat-calendar-table-header th {
+  color: #ccc !important;
 }
 
-/* Previous/next month dates */
-.dark-theme .mat-calendar-body-cell.mat-calendar-body-other-month {
-  color: #6b7280 !important;
-  opacity: 0.5 !important;
-  background: rgba(62, 70, 81, 0.3) !important;
+/* Datepicker toggle icon */
+.dark-theme .mat-datepicker-toggle {
+  color: #4a90e2 !important;
 }
 
-/* Calendar body container */
-.dark-theme .mat-calendar-body {
-  background-color: transparent !important;
-  padding: 16px !important;
-}
+/* ========================================== */
+/* SMALLER INPUT FIELDS FOR ALL FORM FIELDS */
+/* ========================================== */
 
-/* Month view styling */
-.dark-theme .mat-calendar-content {
-  background-color: transparent !important;
-}
-
-/* Week days row */
-.dark-theme .mat-calendar-table-header {
-  background: rgba(74, 144, 226, 0.1) !important;
-  border-bottom: 1px solid #3e4651 !important;
-  border-radius: 6px 6px 0 0 !important;
-}
-
-/* Compact Datepicker Input Field */
-.dark-theme .mat-mdc-form-field[class*="date"] .mat-mdc-text-field-wrapper,
-.dark-theme .mat-mdc-form-field:has(input[matDatepicker]) .mat-mdc-text-field-wrapper {
+/* Make ALL input fields smaller */
+.dark-theme .mat-mdc-form-field .mat-mdc-text-field-wrapper {
   height: 48px !important;
 }
 
-.dark-theme .mat-mdc-form-field[class*="date"] input,
-.dark-theme .mat-mdc-form-field:has(input[matDatepicker]) input {
+.dark-theme .mat-mdc-form-field input,
+.dark-theme .mat-mdc-form-field textarea {
   height: 20px !important;
   padding: 10px 12px !important;
   font-size: 14px !important;
 }
 
-.dark-theme .mat-mdc-form-field[class*="date"] .mat-mdc-floating-label,
-.dark-theme .mat-mdc-form-field:has(input[matDatepicker]) .mat-mdc-floating-label {
+.dark-theme .mat-mdc-form-field .mat-mdc-floating-label {
   font-size: 14px !important;
 }
 
-.dark-theme .mat-datepicker-toggle {
-  color: #4a90e2 !important;
+.dark-theme .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading,
+.dark-theme .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__notch,
+.dark-theme .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-width: 1px !important;
 }
 
-.dark-theme .mat-datepicker-toggle:hover {
-  color: #357abd !important;
+/* Select fields */
+.dark-theme .mat-mdc-select .mat-mdc-select-trigger {
+  height: 48px !important;
+  font-size: 14px !important;
+}
+
+/* Textarea specific */
+.dark-theme .mat-mdc-form-field textarea {
+  height: auto !important;
+  min-height: 60px !important;
 }
 
 /* ========================================== */
