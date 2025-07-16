@@ -1,29 +1,28 @@
-
 /* You can add global styles to this file, and also import other style files */
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .snackbar-success {
-    background-color: #4caf50 !important; /* Green */
-    color: white;
+  background-color: #4caf50 !important;
+  /* Green */
+  color: white;
 }
 
 .snackbar-error {
-    background-color: #f44336 !important; /* Red */
-    color: white;
+  background-color: #f44336 !important;
+  /* Red */
+  color: white;
 }
 
-/* ========================================== */
-/* IMPROVED THEME VARIABLES */
-/* ========================================== */
+
 
 :root {
   /* Light theme colors */
@@ -46,7 +45,7 @@ body {
   --input-text: #495057;
 }
 
-/* Improved Dark theme colors with better contrast */
+
 .dark-theme {
   --navbar-bg: #1a1a1a;
   --navbar-text: #ffffff;
@@ -74,11 +73,9 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ========================================== */
-/* FIXED SEARCH BAR AND INPUT STYLING */
-/* ========================================== */
 
-/* ULTIMATE PLACEHOLDER FIX - applies to ALL inputs in dark mode */
+
+/*  inputs in dark mode */
 .dark-theme *::placeholder {
   color: #a8b3c1 !important;
   opacity: 1 !important;
@@ -109,7 +106,7 @@ body {
   font-weight: 400 !important;
 }
 
-/* Search bar improvements - most specific selectors */
+/* Search bar improvements */
 .dark-theme input[type="text"],
 .dark-theme input[type="search"],
 .dark-theme input[type="email"],
@@ -122,7 +119,7 @@ body {
   padding: 8px 12px !important;
 }
 
-/* Number inputs without borders */
+/* Number inputs */
 .dark-theme input[type="number"] {
   background-color: var(--input-bg) !important;
   border: none !important;
@@ -144,7 +141,7 @@ body {
   outline: none !important;
 }
 
-/* Bootstrap form controls - remove borders */
+/* Bootstrap form controls*/
 .dark-theme .form-control {
   background-color: var(--input-bg) !important;
   color: var(--input-text) !important;
@@ -166,7 +163,7 @@ body {
   font-weight: 400 !important;
 }
 
-/* Search bar specific fixes - more aggressive */
+/* Search bar */
 .dark-theme .search-bar,
 .dark-theme [placeholder*="Search"],
 .dark-theme [placeholder*="search"],
@@ -180,7 +177,7 @@ body {
   padding: 8px 12px !important;
 }
 
-/* Force search bar placeholder visibility - ultimate fix */
+/* search bar placeholder visibility*/
 .dark-theme input[placeholder="Search by ID, Name or Email"],
 .dark-theme input[placeholder*="Search by ID"],
 .dark-theme input[placeholder*="Search by"],
@@ -212,7 +209,6 @@ body {
   font-weight: 400 !important;
 }
 
-/* ULTIMATE SEARCH PLACEHOLDER VISIBILITY FIX */
 .dark-theme input::placeholder,
 .dark-theme textarea::placeholder,
 .dark-theme [placeholder]::placeholder {
@@ -238,9 +234,7 @@ body {
   opacity: 1 !important;
 }
 
-/* ========================================== */
-/* IMPROVED DROPDOWN AND AUTOCOMPLETE STYLING */
-/* ========================================== */
+
 
 /* Dropdown lists and autocomplete - dark background with light text */
 .dark-theme .dropdown-menu,
@@ -316,7 +310,7 @@ body {
   color: var(--body-text) !important;
 }
 
-/* Force all white backgrounds in dropdowns to be dark */
+/*  dropdowns to be dark */
 .dark-theme [style*="background-color: white"],
 .dark-theme [style*="background-color: #fff"],
 .dark-theme [style*="background-color: #ffffff"] {
@@ -324,7 +318,7 @@ body {
   color: var(--body-text) !important;
 }
 
-/* Remove all input borders in dark mode (comprehensive) */
+/* Remove all input borders in dark mode  */
 .dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
 .dark-theme select,
 .dark-theme textarea {
@@ -355,9 +349,6 @@ body {
   color: var(--body-text) !important;
 }
 
-/* ========================================== */
-/* IMPROVED MODAL AND DIALOG STYLING */
-/* ========================================== */
 
 /* Better modal text contrast */
 .dark-theme .modal-content {
@@ -407,15 +398,7 @@ body {
   color: var(--text-muted) !important;
 }
 
-/* ========================================== */
-/* IMPROVED CALENDAR STYLING */
-/* ========================================== */
 
-/* ========================================== */
-/* ULTIMATE SEARCH BAR FIX */
-/* ========================================== */
-
-/* MOST AGGRESSIVE PLACEHOLDER FIX - overrides everything */
 .dark-theme input,
 .dark-theme input[type="text"],
 .dark-theme input[type="search"],
@@ -441,7 +424,7 @@ body {
   outline: none !important;
 }
 
-/* ULTIMATE PLACEHOLDER OVERRIDE - all browsers, all elements */
+
 .dark-theme *::placeholder {
   color: #e2e8f0 !important;
   opacity: 1 !important;
@@ -477,7 +460,7 @@ body {
   font-size: 14px !important;
 }
 
-/* Force override any specific search inputs */
+
 .dark-theme input[placeholder*="search" i],
 .dark-theme input[placeholder*="Search" i],
 .dark-theme input[placeholder*="SEARCH" i] {
@@ -496,207 +479,121 @@ body {
   font-weight: 400 !important;
 }
 
-/* ========================================== */
-/* ULTIMATE MODERN CALENDAR STYLING */
-/* ========================================== */
 
-/* Calendar container and background */
+/* Basic dark datepicker container */
 .dark-theme .mat-calendar,
-.dark-theme .mat-datepicker-popup,
-.dark-theme .calendar,
-.dark-theme .datepicker {
-  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%) !important;
-  color: #e2e8f0 !important;
-  border: 1px solid #4a5568 !important;
-  border-radius: 16px !important;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4) !important;
-  overflow: hidden !important;
-  backdrop-filter: blur(10px) !important;
+.dark-theme .mat-datepicker-popup {
+  background: #2a2d3a !important;
+  color: #ffffff !important;
+  border: 1px solid #444 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Calendar header styling */
-.dark-theme .mat-calendar-header,
-.dark-theme .calendar-header {
-  background: linear-gradient(90deg, #2d3748 0%, #1a202c 100%) !important;
-  color: #e2e8f0 !important;
-  padding: 20px !important;
-  border-bottom: 1px solid #4a5568 !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+/* Header */
+.dark-theme .mat-calendar-header {
+  background: #2a2d3a !important;
+  color: #ffffff !important;
 }
 
-/* Month/year selector button */
-.dark-theme .mat-calendar-period-button {
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%) !important;
-  color: white !important;
-  border-radius: 12px !important;
-  padding: 12px 20px !important;
-  font-weight: 600 !important;
-  border: none !important;
-  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3) !important;
-  transition: all 0.3s ease !important;
-}
-
-.dark-theme .mat-calendar-period-button:hover {
-  background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4) !important;
-}
-
-/* Navigation arrows */
+/* Navigation buttons */
+.dark-theme .mat-calendar-period-button,
 .dark-theme .mat-calendar-previous-button,
-.dark-theme .mat-calendar-next-button,
-.dark-theme .calendar-nav-button {
-  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%) !important;
-  color: #e2e8f0 !important;
-  border-radius: 50% !important;
-  width: 44px !important;
-  height: 44px !important;
-  border: 1px solid #4a5568 !important;
-  transition: all 0.3s ease !important;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2) !important;
+.dark-theme .mat-calendar-next-button {
+  color: #ffffff !important;
 }
 
-.dark-theme .mat-calendar-previous-button:hover,
-.dark-theme .mat-calendar-next-button:hover {
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%) !important;
-  transform: scale(1.1) !important;
-  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3) !important;
+/* Calendar cells - available dates */
+.dark-theme .mat-calendar-body-cell {
+  background: #2a2d3a !important;
+  color: #ffffff !important;
+  border-radius: 0px !important;
 }
 
-/* Calendar table styling */
-.dark-theme .mat-calendar-table {
-  background-color: transparent !important;
-  border-collapse: separate !important;
-  border-spacing: 4px !important;
-}
-
-/* Day headers (S M T W T F S) */
-.dark-theme .mat-calendar-table-header th,
-.dark-theme .calendar-table-header th {
-  color: #4299e1 !important;
-  font-weight: 700 !important;
-  padding: 16px 8px !important;
-  text-align: center !important;
-  font-size: 13px !important;
-  letter-spacing: 1px !important;
-  text-transform: uppercase !important;
-}
-
-/* Regular calendar days */
-.dark-theme .mat-calendar-body-cell,
-.dark-theme .calendar-day {
-  color: #e2e8f0 !important;
-  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%) !important;
-  border-radius: 12px !important;
-  margin: 2px !important;
-  min-height: 44px !important;
-  min-width: 44px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-weight: 500 !important;
-  transition: all 0.3s ease !important;
-  border: 1px solid transparent !important;
-  cursor: pointer !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* Hover effect for calendar days */
-.dark-theme .mat-calendar-body-cell:hover:not(.mat-calendar-body-disabled),
-.dark-theme .calendar-day:hover:not(.disabled) {
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%) !important;
+/* Hover effect */
+.dark-theme .mat-calendar-body-cell:hover:not(.mat-calendar-body-disabled) {
+  background: #4a90e2 !important;
   color: white !important;
-  transform: scale(1.1) translateY(-2px) !important;
-  box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4) !important;
-  border: 1px solid #4299e1 !important;
 }
 
-/* Selected date styling */
-.dark-theme .mat-calendar-body-selected,
-.dark-theme .calendar-day.selected {
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%) !important;
+/* Selected date */
+.dark-theme .mat-calendar-body-selected {
+  background: #4a90e2 !important;
   color: white !important;
-  border-radius: 12px !important;
-  font-weight: 700 !important;
-  border: 2px solid #63b3ed !important;
-  box-shadow: 0 8px 20px rgba(66, 153, 225, 0.5) !important;
-  transform: scale(1.05) !important;
 }
 
 /* Today's date */
 .dark-theme .mat-calendar-body-today:not(.mat-calendar-body-selected) {
-  border: 2px solid #4299e1 !important;
-  background: linear-gradient(135deg, rgba(66, 153, 225, 0.1) 0%, rgba(49, 130, 206, 0.1) 100%) !important;
-  color: #4299e1 !important;
-  font-weight: 700 !important;
-  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.2) !important;
+  color: #4a90e2 !important;
+  border: 1px solid #4a90e2 !important;
 }
 
-/* SUPER VISIBLE DISABLED DATES */
-.dark-theme .mat-calendar-body-disabled,
-.dark-theme .calendar-day.disabled,
-.dark-theme .mat-calendar-body-cell[aria-disabled="true"] {
-  background: linear-gradient(135deg, #2a2e3a 0%, #1e2126 100%) !important;
-  color: #4a5568 !important;
+/* Disabled dates */
+.dark-theme .mat-calendar-body-disabled {
+  background: #1a1d23 !important;
+  color: #666 !important;
   opacity: 0.6 !important;
   cursor: not-allowed !important;
-  border-radius: 12px !important;
-  position: relative !important;
-  border: 1px solid #2d3748 !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
 }
 
-.dark-theme .mat-calendar-body-disabled:hover,
-.dark-theme .calendar-day.disabled:hover,
-.dark-theme .mat-calendar-body-cell[aria-disabled="true"]:hover {
-  transform: none !important;
-  background: linear-gradient(135deg, #2a2e3a 0%, #1e2126 100%) !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+/* Day headers */
+.dark-theme .mat-calendar-table-header th {
+  color: #ccc !important;
 }
 
-/* Add multiple visual indicators for disabled dates */
-.dark-theme .mat-calendar-body-disabled::after,
-.dark-theme .calendar-day.disabled::after,
-.dark-theme .mat-calendar-body-cell[aria-disabled="true"]::after {
-  content: '✗' !important;
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  color: #e53e3e !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  opacity: 0.7 !important;
+/* Datepicker toggle icon */
+.dark-theme .mat-datepicker-toggle {
+  color: #4a90e2 !important;
 }
 
-/* Previous/next month dates */
-.dark-theme .mat-calendar-body-cell.mat-calendar-body-other-month {
-  color: #4a5568 !important;
-  opacity: 0.4 !important;
-  background: linear-gradient(135deg, rgba(45, 55, 72, 0.3) 0%, rgba(26, 32, 44, 0.3) 100%) !important;
+
+
+/* Make ALL input fields smaller with square edges */
+.dark-theme .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  height: 56px !important;
+  border-radius: 0px !important;
 }
 
-/* Calendar body container */
-.dark-theme .mat-calendar-body {
-  background-color: transparent !important;
-  padding: 20px !important;
+.dark-theme .mat-mdc-form-field input,
+.dark-theme .mat-mdc-form-field textarea {
+  height: 24px !important;
+  padding: 10px 12px !important;
+  font-size: 14px !important;
 }
 
-/* Month view styling */
-.dark-theme .mat-calendar-content {
-  background-color: transparent !important;
+.dark-theme .mat-mdc-form-field .mat-mdc-floating-label {
+  font-size: 14px !important;
 }
 
-/* Week days row */
-.dark-theme .mat-calendar-table-header {
-  background: linear-gradient(90deg, rgba(66, 153, 225, 0.1) 0%, rgba(49, 130, 206, 0.1) 100%) !important;
-  border-bottom: 2px solid #4299e1 !important;
-  border-radius: 8px 8px 0 0 !important;
+.dark-theme .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading,
+.dark-theme .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__notch,
+.dark-theme .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-width: 1px !important;
+  border-radius: 0px !important;
 }
 
-/* ========================================== */
-/* IMPROVED DROPDOWN AND AUTOCOMPLETE STYLING */
-/* ========================================== */
+/* Select fields */
+
+
+/* Textarea specific */
+.dark-theme .mat-mdc-form-field textarea {
+  height: auto !important;
+  min-height: 60px !important;
+}
+
+/* Ensure square corners for all form field states */
+.dark-theme .mat-mdc-form-field .mdc-text-field--outlined {
+  border-radius: 0px !important;
+}
+
+.dark-theme .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline {
+  border-radius: 0px !important;
+}
+
+.dark-theme .mat-mdc-select .mdc-select__anchor {
+  border-radius: 0px !important;
+}
+
 
 /* Dropdown lists and autocomplete - dark background with light text */
 .dark-theme .dropdown-menu,
@@ -772,7 +669,7 @@ body {
   color: var(--body-text) !important;
 }
 
-/* Force all white backgrounds in dropdowns to be dark */
+/*  dropdowns to be dark */
 .dark-theme [style*="background-color: white"],
 .dark-theme [style*="background-color: #fff"],
 .dark-theme [style*="background-color: #ffffff"] {
@@ -780,7 +677,7 @@ body {
   color: var(--body-text) !important;
 }
 
-/* Remove all input borders in dark mode (comprehensive) */
+/* Remove all input borders in dark mode */
 .dark-theme input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
 .dark-theme select,
 .dark-theme textarea {
@@ -811,9 +708,7 @@ body {
   color: var(--body-text) !important;
 }
 
-/* ========================================== */
-/* IMPROVED MODAL AND DIALOG STYLING */
-/* ========================================== */
+
 
 /* Better modal text contrast */
 .dark-theme .modal-content {
@@ -863,20 +758,14 @@ body {
   color: var(--text-muted) !important;
 }
 
-/* ========================================== */
-/* IMPROVED CALENDAR STYLING */
-/* ========================================== */
 
-/* ========================================== */
-/* FIXED BUTTON STYLING */
-/* ========================================== */
 
-/* Primary buttons - Show Detail button fix */
+/* Primary buttons */
 .dark-theme .btn-primary,
 .dark-theme .btn.btn-primary,
 .dark-theme button.btn-primary {
-  background-color: #42a5f5 !important;
-  border-color: #42a5f5 !important;
+  background-color: #3f51b5!important;
+  border-color: #3f51b5 !important;
   color: white !important;
 }
 
@@ -888,7 +777,7 @@ body {
   color: white !important;
 }
 
-/* Secondary/Cancel buttons - proper CSS selectors */
+/* Secondary/Cancel buttons */
 .dark-theme .btn-secondary,
 .dark-theme .btn.btn-secondary,
 .dark-theme button.btn-secondary,
@@ -900,7 +789,7 @@ body {
   color: white !important;
 }
 
-/* Cancel button - using valid CSS selectors */
+/* Cancel button  */
 .dark-theme .btn[value="Cancel"],
 .dark-theme button[value="Cancel"],
 .dark-theme .btn-cancel,
@@ -912,7 +801,7 @@ body {
   color: white !important;
 }
 
-/* Default button styling for any unspecified buttons */
+/* Default button  */
 .dark-theme .btn:not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-warning):not(.btn-info):not(.btn-outline-primary):not(.btn-outline-secondary):not(.btn-outline-danger):not(.btn-outline-success) {
   background-color: #6c757d !important;
   border-color: #6c757d !important;
@@ -926,7 +815,7 @@ body {
   color: white !important;
 }
 
-/* Force cancel button styling - multiple approaches */
+/*  cancel button styling */
 .dark-theme button[type="button"]:not(.btn-primary):not(.btn-danger):not(.btn-success) {
   background-color: #6c757d !important;
   border-color: #6c757d !important;
@@ -1008,9 +897,6 @@ body {
   color: #28a745 !important;
 }
 
-/* ========================================== */
-/* IMPROVED CARD STYLING */
-/* ========================================== */
 
 /* Custom card improvements */
 .dark-theme .card {
@@ -1057,16 +943,14 @@ body {
   color: var(--text-muted) !important;
 }
 
-.dark-theme .card > div:last-child {
+.dark-theme .card>div:last-child {
   background-color: var(--card-bg) !important;
   border-top: 1px solid var(--card-border) !important;
   border-radius: 0 0 8px 8px !important;
   padding: 15px !important;
 }
 
-/* ========================================== */
-/* CUSTOM COMPONENT DARK THEME SUPPORT */
-/* ========================================== */
+
 
 /* Home Component Styling */
 .dark-theme .home-container {
@@ -1136,9 +1020,6 @@ body {
   color: #42a5f5 !important;
 }
 
-/* ========================================== */
-/* BOOTSTRAP DARK THEME SUPPORT */
-/* ========================================== */
 
 .dark-theme .table {
   background-color: var(--card-bg) !important;
@@ -1184,7 +1065,7 @@ body {
   color: var(--body-text) !important;
 }
 
-/* Label improvements */
+/* Label  */
 .dark-theme label {
   color: var(--body-text) !important;
 }
@@ -1193,13 +1074,19 @@ body {
   color: var(--body-text) !important;
 }
 
-/* Text improvements */
-.dark-theme h1, .dark-theme h2, .dark-theme h3, 
-.dark-theme h4, .dark-theme h5, .dark-theme h6 {
+/* Text  */
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6 {
   color: var(--body-text) !important;
 }
 
-.dark-theme p, .dark-theme span, .dark-theme div {
+.dark-theme p,
+.dark-theme span,
+.dark-theme div {
   color: var(--body-text) !important;
 }
 
@@ -1207,9 +1094,7 @@ body {
   color: var(--text-muted) !important;
 }
 
-/* ========================================== */
-/* ANGULAR MATERIAL DARK THEME SUPPORT */
-/* ========================================== */
+
 
 /* Material Cards */
 .dark-theme .mat-mdc-card {
@@ -1410,63 +1295,6 @@ body {
   border: 1px solid var(--border-color) !important;
 }
 
-/* Material Date Picker - Enhanced */
-.dark-theme .mat-datepicker-popup {
-  background-color: var(--card-bg) !important;
-  border: 1px solid var(--card-border) !important;
-}
-
-.dark-theme .mat-calendar {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
-}
-
-.dark-theme .mat-calendar-header {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
-}
-
-.dark-theme .mat-calendar-table-header {
-  color: var(--body-text) !important;
-}
-
-.dark-theme .mat-calendar-body-cell {
-  color: var(--body-text) !important;
-  background-color: transparent !important;
-}
-
-.dark-theme .mat-calendar-body-cell:hover {
-  background-color: var(--dropdown-hover) !important;
-}
-
-.dark-theme .mat-calendar-body-selected {
-  background-color: #42a5f5 !important;
-  color: white !important;
-}
-
-/* Enhanced disabled date styling */
-.dark-theme .mat-calendar-body-disabled {
-  color: #4a5568 !important;
-  background-color: #2d3748 !important;
-  opacity: 0.6 !important;
-  cursor: not-allowed !important;
-}
-
-.dark-theme .mat-calendar-body-cell[aria-disabled="true"] {
-  color: #4a5568 !important;
-  background-color: #2d3748 !important;
-  opacity: 0.6 !important;
-}
-
-/* Calendar navigation */
-.dark-theme .mat-calendar-previous-button,
-.dark-theme .mat-calendar-next-button {
-  color: var(--body-text) !important;
-}
-
-.dark-theme .mat-calendar-period-button {
-  color: var(--body-text) !important;
-}
 
 /* Material Icons */
 .dark-theme .mat-icon {
@@ -1482,62 +1310,195 @@ body {
   color: var(--body-text) !important;
 }
 
-/* ========================================== */
-/* SYNCFUSION DARK THEME SUPPORT */
-/* ========================================== */
+
+/* Main calendar container */
+
 
 .dark-theme .e-schedule {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
+  background-color: #1c1c1e !important;
+  color: #ffffff !important;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.dark-theme .e-schedule .e-schedule-toolbar {
-  background-color: var(--card-bg) !important;
-  border-color: var(--border-color) !important;
+/* Toolbar (Today, Week, etc.) */
+.dark-theme .e-schedule .e-toolbar .e-btn {
+  background-color: #2c2c2c !important;
+  border: 1px solid #444 !important;
+  color: #ffffff !important;
+  padding: 6px 12px !important;
+  font-weight: 500;
+  border-radius: 6px !important;
 }
 
-.dark-theme .e-schedule .e-content-wrap {
-  background-color: var(--card-bg) !important;
+.dark-theme .e-schedule .e-toolbar .e-btn:hover {
+  background-color: #3a3a3a !important;
 }
 
-.dark-theme .e-schedule .e-work-cells {
-  border-color: var(--border-color) !important;
+.dark-theme .e-schedule .e-toolbar .e-btn.e-active {
+  background-color: #6c75f8 !important;
+  color: #ffffff !important;
 }
 
+.dark-theme .e-toolbar-items {
+  background-color: #6c757d !important;
+}
+
+/* Header cells (Sun, Mon...) */
 .dark-theme .e-schedule .e-header-cells {
-  background-color: var(--card-bg) !important;
-  border-color: var(--border-color) !important;
-  color: var(--body-text) !important;
+  background-color: #2a2d3a !important;
+  color: #e0e0e0 !important;
+  font-weight: 600 !important;
+  border-color: #444 !important;
 }
 
-.dark-theme .e-popup {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
-  border-color: var(--border-color) !important;
+
+/* Date header wrap (bar above grid) */
+.dark-theme .e-schedule .e-date-header-wrap {
+  background-color: #2a2d3a !important;
+  border-color: #444 !important;
 }
 
-.dark-theme .e-input-group {
-  background-color: var(--card-bg) !important;
-  border-color: var(--border-color) !important;
+/* Calendar grid background */
+.dark-theme .e-schedule .e-content-wrap,
+.dark-theme .e-schedule .e-work-cells {
+  background-color: #1c1c1e !important;
+  border-color: #444 !important;
+  color: #ffffff !important;
 }
 
-.dark-theme .e-input-group input {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
+/* Time labels */
+.dark-theme .e-schedule .e-time-cells-wrap .e-time-cells {
+  background-color: #1c1c1e !important;
+  color: black !important;
+  border-color: #444 !important;
+  font-weight: 500;
 }
 
+.dark-theme .e-time-slots {
+  background-color: #1c1c1e !important;
+  color: black !important;
+  border-color: #444 !important;
+  font-weight: 500;
+}
+
+/* Time slot vertical border lines */
+.dark-theme .e-schedule .e-schedule-table td {
+  border-color: #444 !important;
+}
+
+
+/* Appointments */
+.dark-theme .appointment-bar {
+  background-color: #6c75f8 !important;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dark-theme .e-schedule .e-vertical-view .e-appointment {
+  border-color: #1c1c1e;
+}
+.dark-theme .e-schedule .e-month-view .e-appointment {
+  border-color: #1c1c1e;
+}
+.dark-theme .e-schedule .e-agenda-view {
+  background-color: #1c1c1e;
+}
+
+.dark-theme .e-schedule .e-agenda-view :hover {
+  background-color: #424247;
+}
+
+/* Current time indicator */
+.dark-theme .e-schedule .e-current-time {
+  color: #6c75f8 !important;
+}
+
+/* Work hours and disabled dates */
+.dark-theme .e-schedule .e-work-hours {
+  background-color: #1e1e20 !important;
+}
+
+.dark-theme .e-schedule .e-disable-dates {
+  background-color: #111114 !important;
+  opacity: 0.5;
+}
+
+/* Navigation arrows (left/right) */
+.dark-theme .e-schedule .e-icon-prev,
+.dark-theme .e-schedule .e-icon-next {
+  color: #ffffff !important;
+}
+
+
+.dark-theme .e-popup.e-datepicker,
+.dark-theme .e-datepicker,
+.dark-theme .e-calendar,
+.dark-theme .e-calendar .e-content,
+.dark-theme .e-calendar .e-header {
+  background-color: #2c2c2c !important;
+  color: #ffffff !important;
+  border-color: #444 !important;
+}
+
+.dark-theme .e-calendar td span {
+  color: #e0e0e0 !important;
+}
+.dark-theme .e-calendar-content-table th {
+  color: white;
+}
+.dark-theme .e-footer-container {
+  background-color: #2c2c2c;
+}
+
+.dark-theme .e-calendar td.e-today span,
+.dark-theme .e-calendar td.e-selected span {
+  background-color: #6c75f8 !important;
+  color: #ffffff !important;
+  border-radius: 50%;
+}
+
+.dark-theme .e-calendar td:hover span {
+  background-color: #3a3a3a !important;
+}
+.dark-theme .e-popup-content {
+  background-color: #3a3a3a !important;
+}
+.dark-theme .e-quick-popup-wrapper{
+  border: #1c1c1e;
+}
+
+
+.dark-theme .e-input-group,
 .dark-theme .e-dropdownlist {
-  background-color: var(--card-bg) !important;
-  border-color: var(--border-color) !important;
-  color: var(--body-text) !important;
+  background-color: #2c2c2c !important;
+  border-color: #444 !important;
+  color: #ffffff !important;
 }
 
+.dark-theme .e-input-group input,
+.dark-theme .e-dropdownlist input {
+  background-color: #2c2c2c !important;
+  color: #ffffff !important;
+}
+
+/* List items in dropdowns */
 .dark-theme .e-list-item {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
+  background-color: #2c2c2c !important;
+  color: #ffffff !important;
 }
 
 .dark-theme .e-list-item:hover {
-  background-color: var(--dropdown-hover) !important;
+  background-color: #4a90e2 !important;
+  color: #fff !important;
+}
+
+/* Today button in date picker */
+.dark-theme .e-calendar .e-footer .e-btn.e-flat {
+  background-color: #4a90e2 !important;
+  color: #ffffff !important;
 }
 

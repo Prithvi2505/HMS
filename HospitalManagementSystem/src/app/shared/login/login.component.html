@@ -8,11 +8,11 @@
                 <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="example-form">
                     <mat-form-field class="example-full-width">
                         <mat-label>User Email </mat-label>
-                        <input matInput placeholder="User Email " id="email" type="email" formControlName="email">
+                        <input matInput  id="email" type="email" formControlName="email">
                     </mat-form-field>
                     <mat-form-field class="example-full-width">
                         <mat-label>Password</mat-label>
-                        <input matInput placeholder="Password" id="password" type="password" formControlName="password">
+                        <input matInput  id="password" type="password" formControlName="password">
                     </mat-form-field>
                     <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
                     <button mat-flat-button color="primary" (click)="newUser()">New User</button>
