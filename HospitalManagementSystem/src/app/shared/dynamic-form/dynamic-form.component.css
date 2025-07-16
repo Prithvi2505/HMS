@@ -5,39 +5,26 @@
   box-sizing: border-box;
 }
 
+/* Dark theme for mat-card */
 mat-card {
   width: 100%;
   max-width: 500px;
   padding: 20px;
-  background-color: #b6cde4;
-  color: white;
+  background-color: #23272f;
+  color: #f1f1f1;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 2;
 }
 
 mat-card-header {
   justify-content: center;
   text-align: center;
-  color: rgb(120, 120, 179);
+  color: #8fa2c9;
 }
 
 form {
   width: 100%;
-}
-
-
-.form-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.half-width {
-  flex: 1;
-  min-width: 48%;
 }
 
 .example-full-width {
@@ -45,59 +32,89 @@ form {
   display: block;
 }
 
-.mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #b6cde4;
+mat-form-field {
+  margin-bottom: 12px;
 }
 
-mat-form-field .mat-form-field {
-  padding: 4px 0;
+/* Smaller input field */
+input[matInput], .mat-input-element {
+  height: 32px !important;
+  font-size: 0.95rem !important;
+  background: #23272f !important;
+  color: #f1f1f1 !important;
+  border-radius: 4px;
 }
 
-.mat-select-trigger {
-  padding: 10px;
+textarea[matInput] {
+  background: #23272f !important;
+  color: #f1f1f1 !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #23272f !important;
+}
+
+.mat-form-field-label {
+  color: #8fa2c9 !important;
+}
+
+.mat-select-value, .mat-select-arrow {
+  color: #f1f1f1 !important;
 }
 
 button {
   margin: 10px 5px 0 0;
-  padding: 0.25rem;
+  padding: 0.25rem 1.2rem;
+  font-size: 0.95rem;
 }
 
-
-.availability-info {
-  margin-bottom: 10px;
-  margin-top: -10px;
+/* Datepicker dark theme overrides */
+.mat-datepicker-content, .mat-calendar {
+  background: #23272f !important;
+  color: #f1f1f1 !important;
+}
+.mat-calendar-table-header {
+  color: #8fa2c9 !important;
+}
+.mat-calendar-body-cell-content {
+  background: transparent !important;
+  color: #f1f1f1 !important;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.mat-calendar-body-selected .mat-calendar-body-cell-content {
+  background: #4f46e5 !important;
+  color: #fff !important;
+}
+.mat-calendar-body-disabled .mat-calendar-body-cell-content {
+  color: #888 !important;
+  opacity: 0.5 !important;
+  background: #23272f !important;
+}
+.mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover .mat-calendar-body-cell-content {
+  background: #353b48 !important;
+  color: #fff !important;
+}
+.mat-calendar-body-today:not(.mat-calendar-body-selected) .mat-calendar-body-cell-content {
+  border: 1.5px solid #4f46e5 !important;
 }
 
-.text-danger {
-  color: #e53935;
-  font-weight: 500;
+/* Remove unused/redundant styles */
+.form-row, .half-width, .mdc-text-field--filled:not(.mdc-text-field--disabled), .mat-select-trigger, .availability-info, .text-danger, .custom-select-container, .dropdown-panel, .dropdown-item, .dropdown-item:hover {
+  /* Removed or overridden for dark theme and minimalism */
+  all: unset;
 }
 
-.custom-select-container {
-  position: relative;
-  width: 100%;
-}
-
+/* Dropdown for auto-select (dark) */
 .dropdown-panel {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  max-height: 200px;
-  overflow-y: auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  color: #000; 
-  background: #fff;
+  background: #23272f !important;
+  color: #f1f1f1 !important;
+  border: 1px solid #444 !important;
 }
-
 .dropdown-item {
   padding: 10px;
   cursor: pointer;
 }
-
 .dropdown-item:hover {
-  background-color: #e3f2fd;
+  background-color: #353b48 !important;
 }

@@ -2,25 +2,30 @@
   display: grid;
   grid-template-columns: 120px repeat(24, 1fr);
   overflow-x: auto;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
+  background: #23272f;
 }
 .row { display: contents; }
 .cell {
-  border: 1px solid #eee;
+  border: 1px solid #353b48;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #f1f1f1;
+  background: #23272f;
 }
 .header {
-  background: #f0f4f8;
+  background: #353b48;
   font-weight: bold;
+  color: #8fa2c9;
 }
 .date-label {
-  background: #fafbfd;
+  background: #23272f;
   font-weight: bold;
   padding-left: 8px;
   justify-content: flex-start;
+  color: #8fa2c9;
 }
 .appointment-bar {
   background: #4f46e5;
@@ -33,5 +38,17 @@
   text-overflow: ellipsis;
 }
 .cell:hover {
-  background: #f5f7fa;
+  background: #353b48;
+}
+/* Available date cell (add this class dynamically if needed) */
+.cell.available {
+  background: #2d3a4a;
+  color: #b6fcd5;
+  font-weight: bold;
+}
+/* Disabled date cell (add this class dynamically if needed) */
+.cell.disabled {
+  background: #23272f;
+  color: #888;
+  opacity: 0.5;
 }
