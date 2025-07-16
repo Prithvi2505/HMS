@@ -506,7 +506,7 @@ body {
   background: #2a2d3a !important;
   color: #ffffff !important;
   border: 1px solid #444 !important;
-  border-radius: 8px !important;
+  border-radius: 12px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
 }
 
@@ -527,7 +527,7 @@ body {
 .dark-theme .mat-calendar-body-cell {
   background: #2a2d3a !important;
   color: #ffffff !important;
-  border-radius: 4px !important;
+  border-radius: 6px !important;
 }
 
 /* Hover effect */
@@ -570,14 +570,15 @@ body {
 /* SMALLER INPUT FIELDS FOR ALL FORM FIELDS */
 /* ========================================== */
 
-/* Make ALL input fields smaller */
+/* Make ALL input fields smaller with rounded edges */
 .dark-theme .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-  height: 48px !important;
+  height: 52px !important;
+  border-radius: 8px !important;
 }
 
 .dark-theme .mat-mdc-form-field input,
 .dark-theme .mat-mdc-form-field textarea {
-  height: 20px !important;
+  height: 24px !important;
   padding: 10px 12px !important;
   font-size: 14px !important;
 }
@@ -590,18 +591,33 @@ body {
 .dark-theme .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__notch,
 .dark-theme .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing {
   border-width: 1px !important;
+  border-radius: 8px !important;
 }
 
 /* Select fields */
 .dark-theme .mat-mdc-select .mat-mdc-select-trigger {
-  height: 48px !important;
+  height: 52px !important;
   font-size: 14px !important;
+  border-radius: 8px !important;
 }
 
 /* Textarea specific */
 .dark-theme .mat-mdc-form-field textarea {
   height: auto !important;
   min-height: 60px !important;
+}
+
+/* Ensure rounded corners for all form field states */
+.dark-theme .mat-mdc-form-field .mdc-text-field--outlined {
+  border-radius: 8px !important;
+}
+
+.dark-theme .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline {
+  border-radius: 8px !important;
+}
+
+.dark-theme .mat-mdc-select .mdc-select__anchor {
+  border-radius: 8px !important;
 }
 
 /* ========================================== */
