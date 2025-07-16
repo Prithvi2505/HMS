@@ -1353,61 +1353,134 @@ body {
 }
 
 /* ========================================== */
-/* SYNCFUSION DARK THEME SUPPORT */
+/* SYNCFUSION CALENDAR DARK THEME */
 /* ========================================== */
 
+/* Main calendar container */
 .dark-theme .e-schedule {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
+  background-color: #2a2d3a !important;
+  color: #ffffff !important;
 }
 
+/* Calendar toolbar */
 .dark-theme .e-schedule .e-schedule-toolbar {
-  background-color: var(--card-bg) !important;
-  border-color: var(--border-color) !important;
+  background-color: #2a2d3a !important;
+  border-color: #444 !important;
+  color: #ffffff !important;
 }
 
+/* Calendar content wrapper */
 .dark-theme .e-schedule .e-content-wrap {
-  background-color: var(--card-bg) !important;
+  background-color: #2a2d3a !important;
 }
 
+/* Work cells (calendar body) */
 .dark-theme .e-schedule .e-work-cells {
-  border-color: var(--border-color) !important;
+  background-color: #2a2d3a !important;
+  border-color: #444 !important;
+  color: #ffffff !important;
 }
 
+/* Header cells (day names) */
 .dark-theme .e-schedule .e-header-cells {
-  background-color: var(--card-bg) !important;
-  border-color: var(--border-color) !important;
-  color: var(--body-text) !important;
+  background-color: #1e212b !important;
+  border-color: #444 !important;
+  color: #ffffff !important;
 }
 
+/* Time slots on the left side - CRITICAL FIX */
+.dark-theme .e-schedule .e-time-cells-wrap .e-schedule-table .e-time-cells {
+  background-color: #1e212b !important;
+  color: #ffffff !important;
+  border-color: #444 !important;
+}
+
+.dark-theme .e-schedule .e-time-slots .e-time-cells .e-time-slots-text {
+  color: #ffffff !important;
+}
+
+/* Date header row */
+.dark-theme .e-schedule .e-date-header-wrap {
+  background-color: #1e212b !important;
+  border-color: #444 !important;
+}
+
+.dark-theme .e-schedule .e-date-header-wrap .e-schedule-table .e-header-cells {
+  background-color: #1e212b !important;
+  color: #ffffff !important;
+}
+
+/* Current time indicator */
+.dark-theme .e-schedule .e-current-time {
+  color: #4a90e2 !important;
+}
+
+/* Appointments */
+.dark-theme .e-schedule .e-appointment {
+  border-color: #4a90e2 !important;
+}
+
+/* All cells general styling */
+.dark-theme .e-schedule .e-schedule-table td {
+  border-color: #444 !important;
+}
+
+/* Work hours */
+.dark-theme .e-schedule .e-work-hours {
+  background-color: #2a2d3a !important;
+}
+
+/* Non-work hours */
+.dark-theme .e-schedule .e-schedule-table .e-work-cells.e-disable-dates {
+  background-color: #1a1d23 !important;
+  opacity: 0.6 !important;
+}
+
+/* Popup and dialogs */
 .dark-theme .e-popup {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
-  border-color: var(--border-color) !important;
+  background-color: #2a2d3a !important;
+  color: #ffffff !important;
+  border-color: #444 !important;
 }
 
+/* Input groups */
 .dark-theme .e-input-group {
-  background-color: var(--card-bg) !important;
-  border-color: var(--border-color) !important;
+  background-color: #2a2d3a !important;
+  border-color: #444 !important;
 }
 
 .dark-theme .e-input-group input {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
+  background-color: #2a2d3a !important;
+  color: #ffffff !important;
 }
 
+/* Dropdown lists */
 .dark-theme .e-dropdownlist {
-  background-color: var(--card-bg) !important;
-  border-color: var(--border-color) !important;
-  color: var(--body-text) !important;
+  background-color: #2a2d3a !important;
+  border-color: #444 !important;
+  color: #ffffff !important;
 }
 
+/* List items */
 .dark-theme .e-list-item {
-  background-color: var(--card-bg) !important;
-  color: var(--body-text) !important;
+  background-color: #2a2d3a !important;
+  color: #ffffff !important;
 }
 
 .dark-theme .e-list-item:hover {
-  background-color: var(--dropdown-hover) !important;
+  background-color: #4a90e2 !important;
+}
+
+/* Navigation arrows */
+.dark-theme .e-schedule .e-icon-prev,
+.dark-theme .e-schedule .e-icon-next {
+  color: #ffffff !important;
+}
+
+/* Today button */
+.dark-theme .e-schedule .e-today {
+  background-color: #4a90e2 !important;
+  color: #ffffff !important;
+  border-color: #4a90e2 !important;
 }
 
