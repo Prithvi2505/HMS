@@ -1,3 +1,8 @@
+<div *ngIf="isLoading; else formReady" class="form-spinner">
+  <mat-spinner diameter="50" color="accent"></mat-spinner>
+</div>
+
+<ng-template #formReady>
 <mat-card>
   <mat-card-header>
     <h1>{{ formTitle }}</h1>
@@ -116,3 +121,4 @@
     </form>
   </mat-card-content>
 </mat-card>
+</ng-template>

@@ -18,7 +18,7 @@ export class DoctorAppointmentCalendarComponent implements OnInit {
 
   constructor(
     private appointmentService: AppointmentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {

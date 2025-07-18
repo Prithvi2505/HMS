@@ -1,8 +1,9 @@
+import { loadPatients } from 'src/app/Ngrx/patient/patient.action';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { PatientService } from 'src/app/services/patient.service';
 import { catchError, map, mergeMap, of } from 'rxjs';
-import { deletePatient, deletePatientFailure, deletePatientSuccess, loadPatients, loadPatientsFailure, loadPatientsSuccess, updatePatient, updatePatientFailure, updatePatientSuccess } from './patient.action';
+import { deletePatient, deletePatientFailure, deletePatientSuccess, loadPatientsFailure, loadPatientsSuccess, updatePatient, updatePatientFailure, updatePatientSuccess } from './patient.action';
 
 @Injectable()
 export class PatientEffects {

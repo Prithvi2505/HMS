@@ -1,3 +1,4 @@
+import { SpinnerService } from './../../../services/spinner.service';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Staff } from 'src/app/Model/staff';
@@ -21,13 +22,19 @@ export class StaffComponent implements OnInit {
   loggedInUserId: number | null = null;
   role!: string;
 
-  constructor(private store: Store, private dialog: MatDialog,private tokenService:TokenService) {}
+  constructor(private store: Store, 
+    private dialog: MatDialog,
+    private tokenService:TokenService,
+    private spinnerService:SpinnerService
+  ) {}
 
   ngOnInit(): void {
+    this.spinnerService.show();
     this.role = this.tokenService.getUserRole()!;
     this.loggedInUserId = this.tokenService.getUserId()!;
 
     this.store.dispatch(loadStaff());
+    this.spinnerService.hide();
 
     this.store.select(selectStaffList).subscribe(staff => {
       this.allStaff = staff;

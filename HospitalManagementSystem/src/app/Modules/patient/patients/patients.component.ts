@@ -8,6 +8,7 @@ import { ShowDetailComponent } from 'src/app/shared/show-detail/show-detail.comp
 import { selectPatientList } from 'src/app/Ngrx/patient/patient.selector';
 import { loadPatients } from 'src/app/Ngrx/patient/patient.action';
 import { TokenService } from 'src/app/services/token.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 
 @Component({
@@ -21,13 +22,19 @@ export class PatientsComponent implements OnInit {
   loggedInUserId: number | null = null;
   role!: string;
 
-  constructor(private store: Store, private dialog: MatDialog,private tokenService:TokenService) { }
+  constructor(private store: Store, 
+    private dialog: MatDialog,
+    private tokenService:TokenService,
+    private spinnerService:SpinnerService
+  ) { }
 
   ngOnInit(): void {
+    this.spinnerService.show()
     this.role = this.tokenService.getUserRole()!;
     this.loggedInUserId = this.tokenService.getUserId()!;
 
     this.store.dispatch(loadPatients());
+    this.spinnerService.hide()
 
     this.store.select(selectPatientList).subscribe(patients => {
       this.allPatients = patients;

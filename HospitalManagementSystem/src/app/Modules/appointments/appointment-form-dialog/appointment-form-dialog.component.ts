@@ -41,7 +41,7 @@ export class AppointmentFormDialogComponent implements OnInit {
     private patientService: PatientService,
     private tokenService: TokenService,
     private appointmentService: AppointmentService,
-    private store: Store
+    private store: Store,
   ) {}
 
   ngOnInit(): void {

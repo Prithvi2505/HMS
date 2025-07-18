@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -25,7 +24,7 @@ export class LoginComponent {
     private router: Router,
     private store: Store,
     private authService: AuthService ,
-    private tokenService: TokenService
+    private tokenService: TokenService,
   ) {}
 
   onLogin() {

@@ -6,6 +6,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { Store } from '@ngrx/store';
 import { showSuccess, showError } from 'src/app/Ngrx/snackbar/snackbar.actions';
 import { BillFormDialogComponent } from '../bill-form-dialog/bill-form-dialog.component';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-bill-table',
@@ -22,7 +23,8 @@ export class BillTableComponent implements OnInit {
     private route:ActivatedRoute,
     private billService: BillService,
     private tokenService:TokenService,
-    private store:Store
+    private store:Store,
+    private spinnerService:SpinnerService
   ) { };
 
   ngOnInit() {
@@ -73,16 +75,26 @@ export class BillTableComponent implements OnInit {
     });
   }
  loadAllBills() {
+    this.spinnerService.show()
     this.billService.getAllBills().subscribe({
-      next: (bills) => this.dataSource = bills,
-      error: (err) => console.error('Failed to fetch all bills:', err)
+      next: (bills) => {this.dataSource = bills
+        this.spinnerService.hide()
+      },
+      error: (err) => {console.error('Failed to fetch all bills:', err)
+        this.spinnerService.hide()
+      }
     });
   }
 
   loadPatientBills(patientId: number) {
+    this.spinnerService.show()
     this.billService.getBillsByPatientId(patientId).subscribe({
-      next: (bills) => this.dataSource = bills,
-      error: (err) => console.error('Failed to fetch patient bills:', err)
+      next: (bills) => {this.dataSource = bills
+        this.spinnerService.hide()
+      },
+      error: (err) => {console.error('Failed to fetch patient bills:', err)
+        this.spinnerService.hide()
+      }
     });
   }
   onUpdate(item: any) { 

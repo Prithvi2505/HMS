@@ -6,6 +6,7 @@ import { RoomWithStaff } from 'src/app/Model/room';
 import { TokenService } from 'src/app/services/token.service';
 import { Store } from '@ngrx/store';
 import { showSuccess, showError } from 'src/app/Ngrx/snackbar/snackbar.actions';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 
 @Component({
@@ -21,8 +22,12 @@ export class AssignedRoomComponent implements OnInit {
   columnHeaders: { [key: string]: string } = {};
   user = { userid: 0, role: '' };
 
-  constructor(private dialog: MatDialog, private route:ActivatedRoute, private roomService:RoomService,
-    private tokenService:TokenService,private store:Store
+  constructor(private dialog: MatDialog, 
+    private route:ActivatedRoute, 
+    private roomService:RoomService,
+    private tokenService:TokenService,
+    private store:Store,
+    private spinnerService:SpinnerService
   ) { }
 
   ngOnInit() {
@@ -63,9 +68,14 @@ export class AssignedRoomComponent implements OnInit {
   }}
 
   loadRooms(staffId: number) {
+    this.spinnerService.show();
     this.roomService.getRoomsByStaff(staffId).subscribe({
-      next: (rooms) => this.dataSource = rooms,
-      error: (err) => console.error('Failed to fetch Rooms:', err)
+      next: (rooms) =>{ this.dataSource = rooms;
+        this.spinnerService.hide();
+      },
+      error: (err) => {console.error('Failed to fetch Rooms:', err);
+        this.spinnerService.hide();
+      }
     });
   }
 

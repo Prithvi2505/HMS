@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateFilterFn } from '@angular/material/datepicker';
 import { Store } from '@ngrx/store';
 import { showError } from 'src/app/Ngrx/snackbar/snackbar.actions';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 export interface DynamicFormField {
   name: string;
@@ -42,10 +43,12 @@ export class DynamicFormComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
   filteredOptions: { [key: string]: any[] } = {};
+  isLoading = true;
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
+    
     const group: any = {};
     for (const field of this.formConfig) {
       group[field.name] = new FormControl(
@@ -66,6 +69,7 @@ export class DynamicFormComponent implements OnInit {
         this.onFormChange(this.form);
       }
     });
+    this.isLoading = false;
   }
 
   onSubmit() {
@@ -97,7 +101,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   selectOption(fieldName: string, option: any): void {
-    this.form.get(fieldName)?.setValue(option.value); // 👈 Store ID instead of name
+    this.form.get(fieldName)?.setValue(option.value); 
     this.filteredOptions[fieldName] = [];
   }
   getLabel(fieldName: string): string {

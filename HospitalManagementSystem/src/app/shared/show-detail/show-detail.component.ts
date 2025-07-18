@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Doctor } from 'src/app/Model/doctor';
 import { Patient } from 'src/app/Model/patient';
 import { Staff } from 'src/app/Model/staff';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-show-detail',
@@ -12,7 +13,7 @@ import { Staff } from 'src/app/Model/staff';
 export class ShowDetailComponent {
    constructor(
     public dialogRef: MatDialogRef<ShowDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:Patient | Doctor | Staff 
+    @Inject(MAT_DIALOG_DATA) public data:Patient | Doctor | Staff ,
   ) {}
 
   isPatient(item: Patient | Doctor | Staff): item is Patient {

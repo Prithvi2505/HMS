@@ -1,3 +1,4 @@
+import { SpinnerService } from './../../services/spinner.service';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -26,10 +27,12 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private registrationService: RegistrationService,
-    private store: Store
+    private store: Store,
+    private spinnerService:SpinnerService
   ) {}
 
   ngOnInit(): void {
+    this.spinnerService.show()
     this.registrationForm = this.fb.group({
       role: ['', Validators.required],
       details: this.fb.group({
@@ -39,6 +42,7 @@ export class RegisterComponent implements OnInit {
         password: ['', Validators.required]
       })
     });
+    this.spinnerService.hide()
 
     this.registrationForm.get('role')!.valueChanges.subscribe(role => {
       this.setRoleForm(role);

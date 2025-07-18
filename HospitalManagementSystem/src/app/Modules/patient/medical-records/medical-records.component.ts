@@ -6,6 +6,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { Store } from '@ngrx/store';
 import { showSuccess, showError } from 'src/app/Ngrx/snackbar/snackbar.actions';
 import { MedicalRecordFormDialogComponent } from '../medical-record-form-dialog/medical-record-form-dialog.component';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class MedicalRecordsComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private medicalRecordService: MedicalRecordService,
     private tokenService:TokenService,
-    private store:Store
+    private store:Store,
+    private spinnerService:SpinnerService
   ) { }
 
   ngOnInit() {
@@ -111,9 +113,14 @@ export class MedicalRecordsComponent implements OnInit {
 }
 
   loadPatientRecords(patientId: number) {
+    this.spinnerService.show()
     this.medicalRecordService.getRecordsByPatientId(patientId).subscribe({
-      next: (medicalRecords) => this.dataSource = medicalRecords,
-      error: (err) => console.error('Failed to fetch patient Medical Record:', err)
+      next: (medicalRecords) => {this.dataSource = medicalRecords;
+        this.spinnerService.hide()
+      },
+      error: (err) => {console.error('Failed to fetch patient Medical Record:', err)
+        this.spinnerService.hide()
+      }
     });
   }
 }

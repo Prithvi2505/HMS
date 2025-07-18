@@ -36,6 +36,8 @@ import { BillTableComponent } from './bill-table/bill-table.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -57,6 +59,7 @@ import { RegisterComponent } from './register/register.component';
     EditUserComponent,
     LoginComponent,
     RegisterComponent,
+    SpinnerComponent,
 
   ],
   imports: [
@@ -76,8 +79,8 @@ import { RegisterComponent } from './register/register.component';
     MatNativeDateModule,
     RouterModule,
     FormsModule,
-    MatAutocompleteModule
-  
+    MatAutocompleteModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     NavbarComponent,
@@ -111,6 +114,8 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     RegisterComponent,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
+    SpinnerComponent,
   ]
 })
 export class SharedModule { }

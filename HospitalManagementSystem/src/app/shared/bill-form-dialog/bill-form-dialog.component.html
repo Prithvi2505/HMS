@@ -1,8 +1,9 @@
 <app-dynamic-form
+  *ngIf="isFormReady"
   [formConfig]="formConfig"
   [formTitle]="title"
   [submitButtonText]="submitText"
   [initialValues]="initialValues"
   (formSubmit)="onSubmit($event)"
   (cancel)="onCancel()"
-></app-dynamic-form>
+/>

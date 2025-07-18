@@ -10,6 +10,7 @@ import {
   showError,
 } from 'src/app/Ngrx/snackbar/snackbar.actions';
 import { AppointmentFormDialogComponent } from '../appointment-form-dialog/appointment-form-dialog.component';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-appointment-table',
@@ -29,7 +30,8 @@ export class AppointmentTableComponent implements OnInit {
     private appointmentService: AppointmentService,
     private tokenService: TokenService,
     private store: Store,
-    private router: Router
+    private router: Router,
+    private spinnerService:SpinnerService
   ) { }
 
   ngOnInit() {
@@ -100,32 +102,38 @@ export class AppointmentTableComponent implements OnInit {
   }
 
   loadAllAppointments() {
+    this.spinnerService.show()
     this.appointmentService.getAllAppointments().subscribe((data) => {
       this.appointments = data.map((app) => ({
         ...app,
         time: new Date(`1970-01-01T${app.time}`),
       }));
       this.dataSource = this.appointments;
+      this.spinnerService.hide()
     });
   }
 
   loadDoctorAppointments(id: number) {
+    this.spinnerService.show()
     this.appointmentService.getAppointmentsByDoctorId(id).subscribe((data) => {
       this.appointments = data.map((app) => ({
         ...app,
         time: new Date(`1970-01-01T${app.time}`),
       }));
       this.dataSource = this.appointments;
+      this.spinnerService.hide()
     });
   }
 
   loadPatientAppointments(id: number) {
+    this.spinnerService.show()
     this.appointmentService.getAppointmentsByPatientId(id).subscribe((data) => {
       this.appointments = data.map((app) => ({
         ...app,
         time: new Date(`1970-01-01T${app.time}`),
       }));
       this.dataSource = this.appointments;
+      this.spinnerService.hide()
     });
   }
 

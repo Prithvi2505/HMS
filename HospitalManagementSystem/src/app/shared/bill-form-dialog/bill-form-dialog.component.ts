@@ -2,8 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { BillService } from 'src/app/services/bill.service';
+import { PatientService } from 'src/app/services/patient.service';
 import { showError, showSuccess } from 'src/app/Ngrx/snackbar/snackbar.actions';
-import { DynamicFormField } from '../dynamic-form/dynamic-form.component'; 
+import { DynamicFormField } from '../dynamic-form/dynamic-form.component';
 
 @Component({
   selector: 'app-bill-form-dialog',
@@ -15,11 +16,13 @@ export class BillFormDialogComponent implements OnInit {
   title = '';
   submitText = '';
   initialValues: any = {};
+  isFormReady = false;
 
   constructor(
     private dialogRef: MatDialogRef<BillFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private billService: BillService,
+    private patientService: PatientService,
     private store: Store
   ) {}
 
@@ -34,22 +37,60 @@ export class BillFormDialogComponent implements OnInit {
       date: raw.date ? new Date(raw.date) : '',
     };
 
-    this.formConfig = [
-      { name: 'patientId', label: 'Patient ID', type: 'number', required: true },
-      { name: 'amount', label: 'Amount (₹)', type: 'number', required: true },
-      {
-        name: 'status',
-        label: 'Status',
-        type: 'select',
-        options: [
-          { value: 'Paid', label: 'Paid' },
-          { value: 'Unpaid', label: 'Unpaid' },
-        ],
-        required: true,
+    this.patientService.getAllPatients().subscribe({
+      next: (patients) => {
+        const patientOptions = patients.map((p: any) => ({
+          value: p.id,
+          label: p.name,
+        }));
+
+        this.formConfig = [
+          {
+            name: 'patientId',
+            label: 'Select Patient',
+            type: 'auto-select',
+            required: true,
+            options: patientOptions,
+          },
+          {
+            name: 'amount',
+            label: 'Amount (₹)',
+            type: 'number',
+            required: true,
+          },
+          {
+            name: 'status',
+            label: 'Status',
+            type: 'select',
+            options: [
+              { value: 'Paid', label: 'Paid' },
+              { value: 'Unpaid', label: 'Unpaid' },
+            ],
+            required: true,
+          },
+          {
+            name: 'date',
+            label: 'Billing Date',
+            type: 'date',
+            required: true,
+          },
+          {
+            name: 'billDetail',
+            label: 'Bill Details',
+            type: 'textarea',
+            required: true,
+          },
+        ];
+
+        // ✅ Mark form ready after config is built
+        this.isFormReady = true;
       },
-      { name: 'date', label: 'Billing Date', type: 'date', required: true },
-      { name: 'billDetail', label: 'Bill Details', type: 'textarea', required: true },
-    ];
+      error: () => {
+        this.store.dispatch(
+          showError({ message: 'Failed to load patient list' })
+        );
+      },
+    });
   }
 
   onSubmit(formData: any): void {
@@ -65,27 +106,41 @@ export class BillFormDialogComponent implements OnInit {
     if (this.data?.mode === 'edit') {
       const id = this.data.initialValues?.id;
       if (!id) {
-        this.store.dispatch(showError({ message: 'Missing bill ID for update.' }));
+        this.store.dispatch(
+          showError({ message: 'Missing bill ID for update.' })
+        );
         return;
       }
 
       this.billService.updateBill(id, payload).subscribe({
         next: () => {
-          this.store.dispatch(showSuccess({ message: 'Bill updated successfully!' }));
+          this.store.dispatch(
+            showSuccess({ message: 'Bill updated successfully!' })
+          );
           this.dialogRef.close(true);
         },
         error: (err) => {
-          this.store.dispatch(showError({ message: err.error?.message || 'Failed to update bill.' }));
+          this.store.dispatch(
+            showError({
+              message: err.error?.message || 'Failed to update bill.',
+            })
+          );
         },
       });
     } else {
       this.billService.createBill(payload).subscribe({
         next: () => {
-          this.store.dispatch(showSuccess({ message: 'Bill successfully created!' }));
+          this.store.dispatch(
+            showSuccess({ message: 'Bill successfully created!' })
+          );
           this.dialogRef.close(true);
         },
         error: (err) => {
-          this.store.dispatch(showError({ message: err.error?.message || 'Failed to create bill.' }));
+          this.store.dispatch(
+            showError({
+              message: err.error?.message || 'Failed to create bill.',
+            })
+          );
         },
       });
     }
@@ -97,6 +152,8 @@ export class BillFormDialogComponent implements OnInit {
 
   private formatDate(date: string | Date): string {
     const d = new Date(date);
-    return `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
+    return `${d.getFullYear()}-${(d.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
   }
 }
